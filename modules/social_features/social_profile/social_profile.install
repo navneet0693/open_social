@@ -673,8 +673,13 @@ function social_profile_update_8911() : void {
 // TODO: Figure out a 10.x release that contains the proper deprecations for an easier upgrade.
 
 // TODO: Add install config for form/display view modes for email, preferred language, nickname and nationality fields.
+// TODO: Add update hook for form/display view modes for nickname and nationality based on social_profile_fields_entity_form_display_alter
 
 // TODO: Figure out SocialProfileFieldsHelper and profile_field_export_mapping alter hook.
 // TODO: Replace SocialProfileFieldsOverride by configuration.
+
+// TODO: Create schema for the third-party-settings.
+
+// TODO: Rewrite all the profile tests x.x
 
 // phpcs:enable

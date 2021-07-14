@@ -241,6 +241,10 @@ function social_profile_form_profile_profile_add_form_alter(array &$form, FormSt
     $form['field_profile_interests']['widget']['target_id']['#selection_settings']['hide_id'] = TRUE;
   }
 
+  if (isset($form['field_profile_nationality']['widget']['target_id'])) {
+    $form['field_profile_nationality']['widget']['target_id']['#selection_settings']['hide_id'] = TRUE;
+  }
+
   // Add custom submit handler just for redirect purposes. We don't want to
   // override the form::save in profile.
   $form['actions']['submit']['#submit'][] = '_social_profile_profile_edit_form_submit';
@@ -279,7 +283,12 @@ function social_profile_form_profile_profile_edit_form_alter(array &$form, FormS
     $form['field_profile_interests']['widget']['target_id']['#selection_settings']['hide_id'] = TRUE;
   }
 
+  if (isset($form['field_profile_nationality']['widget']['target_id'])) {
+    $form['field_profile_nationality']['widget']['target_id']['#selection_settings']['hide_id'] = TRUE;
+  }
+
   // Check if the Social Profile Fields module is on.
+  // @todo Update this for social_profile_fields merge.
   if (\Drupal::moduleHandler()->moduleExists('social_profile_fields')) {
     // Load the profile fields and check if at least one of them can be changed.
     // Load the profile fields and check if at least one of them can be changed.
@@ -487,12 +496,15 @@ function social_profile_preprocess_profile(array &$variables) {
     $variables['#cache']['contexts'][] = 'user';
   }
 
+  // @todo This can be removed, we now have `field_profile_email` instead.
   if (_social_profile_check_property_access($profile, $current_user, 'email')) {
     // Derived from MailToFormatter.php.
     $variables['user_mail'] = Link::fromTextAndUrl($user->getEmail(), Url::fromUri('mailto:' . $user->getEmail()));
   }
 
   // Language field.
+  // @todo This can be removed, we now have `field_profile_preferred_language`.
+  // @todo Add langcode to language field formatter.
   $language_manager = \Drupal::languageManager();
   if ($language_manager->isMultilingual() &&
     _social_profile_check_property_access($profile, $current_user, 'language')) {
@@ -584,6 +596,9 @@ function _social_profile_check_property_access(Profile $profile, AccountProxyInt
 
 /**
  * Implements hook_entity_field_access().
+ *
+ * @todo Remove user access checks and move to field_profile duplicates.
+ * @todo Take visibility_ field into account.
  */
 function social_profile_entity_field_access(string $operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) : AccessResultInterface {
   if ($operation === 'view' && $field_definition->getTargetEntityTypeId() === 'user') {
@@ -722,7 +737,7 @@ function social_profile_user_insert(UserInterface $account) {
 /**
  * Implements hook_ENTITY_TYPE_update().
  */
-function social_profile_user_update(UserInterface $user) {
+function social_profile_user_update(UserInterface $user) : void {
   /** @var \Drupal\profile\ProfileStorageInterface $profile_storage */
   $profile_storage = \Drupal::entityTypeManager()->getStorage('profile');
   $profile = $profile_storage->loadByUser($user, 'profile');
