@@ -14,3 +14,6 @@ services:
     arguments:
       - '@entity_type.manager'
       - '@module_handler'
+  social_profile.profile_fields_permission_provider:
+    class: Drupal\social_profile\ProfileFieldsPermissionProvider
+    arguments: ['@entity_type.manager']
