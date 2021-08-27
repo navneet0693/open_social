@@ -502,7 +502,7 @@ function social_profile_update_11003() : void {
 /**
  * Install or adopt social profile fields fields.
  */
-function social_profile_update_8910() : void {
+function social_profile_update_11002() : void {
   $config_factory = \Drupal::configFactory();
   $nationality_config = $config_factory->getEditable('taxonomy.vocabulary.nationality');
   // If the vocabulary already exists then we need to swap the enforced
@@ -661,7 +661,7 @@ function social_profile_update_8910() : void {
 /**
  * Delete permissions provided by merged social profile fields module.
  */
-function social_profile_update_8911() : void {
+function social_profile_update_11003() : void {
   // This permission is revoked from all roles as it duplicates the broader
   // `administer profile settings` permissions which we would give out to the
   // exact same roles.
@@ -673,7 +673,7 @@ function social_profile_update_8911() : void {
 /**
  * Create a form mode for profiles during registration.
  */
-function social_profile_update_8912() : void {
+function social_profile_update_11004() : void {
   if (EntityFormMode::load('profile.register') === NULL) {
     EntityFormMode::create([
       'langcode' => 'en',
@@ -694,7 +694,7 @@ function social_profile_update_8912() : void {
  *
  * @todo This needs an install hook too.
  */
-function social_profile_update_8913() : void {
+function social_profile_update_11005() : void {
   // This makes the profile available in registration always so that we can
   // control the fields that are shown by changing the registration view mode.
   // We can also change this setting dynamically but that would not persist the
@@ -744,7 +744,7 @@ function social_profile_update_8913() : void {
 /**
  * Migrate social_profile_fields settings into social_profile.
  */
-function social_profile_update_8914() : void {
+function social_profile_update_11006() : void {
   $default_field_status = [
     "field_profile_nick_name" => FALSE,
     "field_profile_address" => TRUE,
@@ -804,7 +804,7 @@ function social_profile_update_8914() : void {
 /**
  * Migrate user visibility preferences to new visibility fields.
  */
-function social_profile_update_8915() : void {
+function social_profile_update_11007() : void {
 
 }
 
