@@ -54,7 +54,7 @@ function social_profile_field_widget_form_alter(&$element, FormStateInterface $f
       break;
 
     case 'field_profile_nick_name':
-        $element['value']['#attributes']['autocomplete'][] = 'nickname';
+      $element['value']['#attributes']['autocomplete'][] = 'nickname';
       break;
 
     case 'field_profile_first_name':
