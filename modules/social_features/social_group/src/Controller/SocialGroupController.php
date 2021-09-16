@@ -185,6 +185,7 @@ class SocialGroupController extends ControllerBase {
     }
 
     // A user must be able to view the user entity.
+    /** @var \Drupal\Core\Access\AccessResult $access */
     $access = $user->access('view', $account, TRUE);
     if ($access->isForbidden()) {
       return $access;
