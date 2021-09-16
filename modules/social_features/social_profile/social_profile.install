@@ -465,7 +465,11 @@ function social_profile_update_8908(array &$sandbox) : void {
     if ($profile === NULL) {
       throw new \RuntimeException("User (id: {$user->id()} is missing a profile.");
     }
-    social_profile_sync_user_fields_to_profile($user, $profile);
+
+    $has_changed = social_profile_copy_shared_user_data_to_profile($user, $profile);
+    if ($has_changed) {
+      $profile->save();
+    }
   }
 
   $sandbox['processed'] += count($user_ids);
@@ -1169,6 +1173,8 @@ function social_profile_update_11012() : void {
   /** @var \Drupal\user\UserDataInterface $user_data */
   $user_data = \Drupal::service('user.data');
   $user_data->delete($modules);
+
+  // TODO: Delete old fields (e.g. field_show_email).
 }
 
 /**
@@ -1276,6 +1282,8 @@ function social_profile_update_11014() : void {
 }
 
 // phpcs:disable
+
+// TODO: When done evaluate update hook order to make grouping more logical.
 
 // TODO: Implement `view` access check for user based on `view blocked user`.
 //   We currently allow access to profile pages of blocked users for everyone.
