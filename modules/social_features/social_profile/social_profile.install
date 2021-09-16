@@ -1171,40 +1171,71 @@ function social_profile_update_11011() : void {
 }
 
 /**
- * Clean up migrated settings and permissions.
+ * Migrate Social Registration Fields settings.
  */
 function social_profile_update_11012() : void {
-  // This is done as a separate step on purpose. This allows extending modules
-  // to set their update dependencies between an update hook performing set-up
-  // but before the settings are removed. In case they want to make any changes
-  // to the default upgrade path.
-  // A hook_requirements checks that uninstalling these modules does not take
-  // any others with it. If modules still rely on any of these then the update
-  // to 11.0.0 is blocked.
-  $modules = [
-    'social_profile_fields',
-    'social_profile_privacy',
-    'social_registration_fields',
-  ];
-
-  /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
-  $module_installer = \Drupal::service('module_installer');
-  $module_installer->uninstall($modules);
-
-  // Manually remove user data in case modules didn't properly clean up.
-  /** @var \Drupal\user\UserDataInterface $user_data */
-  $user_data = \Drupal::service('user.data');
-  $user_data->delete($modules);
-
-  // Clean up the old show email setting.
-  $field_show_email = FieldConfig::load("profile.profile.field_profile_show_email");
-  if ($field_show_email) {
-    $field_show_email->delete();
+  if (!\Drupal::moduleHandler()->moduleExists('social_registration_fields')) {
+    return;
   }
 
-  $field_show_email_storage = FieldStorageConfig::load("profile.field_profile_show_email");
-  if ($field_show_email_storage) {
-    $field_show_email_storage->delete();
+  $settings = \Drupal::config("social_registration_fields.settings");
+
+  /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface $default_profile_form_display */
+  $default_profile_form_display = EntityFormDisplay::load("profile.profile.default");
+  /** @var \Drupal\Core\Entity\Display\EntityFormDisplayInterface|NULL $registration_profile_form_display */
+  $registration_profile_form_display = EntityFormDisplay::load("profile.profile.register");
+
+  if ($registration_profile_form_display === NULL) {
+    throw new \RuntimeException("The 'profile.profile.register' display mode does not exist.");
+  }
+
+  // Load all profile fields so we can find the ones we need.
+  /** @var int[] $ids */
+  $ids = \Drupal::entityQuery('field_config')
+    ->condition('id', 'profile.profile.', 'STARTS_WITH')
+    ->execute();
+  /** @var \Drupal\field\Entity\FieldConfig[] $field_configs */
+  $field_configs = FieldConfig::loadMultiple($ids);
+  foreach ($field_configs as $field_config) {
+    // We're only interested in fields that contain values.
+    if (!FieldManager::isManagedValueField($field_config)) {
+      continue;
+    }
+
+    $field_name = $field_config->getName();
+
+    // Skip fields we know belong to the user entity.
+    if ($field_name === "field_profile_email" || $field_name === "field_profile_preferred_language") {
+      continue;
+    }
+
+    // Check if the module has any configuration for this field or skip it.
+    $field_registration = $settings->get($field_name);
+    if ($field_registration === NULL) {
+      continue;
+    }
+
+    if (isset($field_registration['mandatory']) && (bool) $field_registration['mandatory']) {
+      $field_config->setRequired(TRUE);
+      $field_config->save();
+    }
+
+    $field_on_registration = isset($field_registration['show_on_signup']) && (bool) $field_registration['show_on_signup'];
+
+    if (!$field_on_registration && $registration_profile_form_display->getComponent($field_name) !== NULL) {
+      $registration_profile_form_display->removeComponent($field_name);
+    }
+    elseif ($field_on_registration && $registration_profile_form_display->getComponent($field_name) === NULL) {
+      // Use the same settings as on the default form. This ensures a
+      // consistent order (weight) and consistent choice of widget.
+      $default_form_component = $default_profile_form_display->getComponent($field_name);
+
+      $registration_profile_form_display->setComponent(
+        $field_name,
+        $default_form_component ?? []
+      );
+    }
+
   }
 }
 
@@ -1312,15 +1343,47 @@ function social_profile_update_11014() : void {
   }
 }
 
+/**
+ * Clean up migrated settings and permissions.
+ */
+function social_profile_update_11015() : void {
+  // This is done as a separate step on purpose. This allows extending modules
+  // to set their update dependencies between an update hook performing set-up
+  // but before the settings are removed. In case they want to make any changes
+  // to the default upgrade path.
+  // A hook_requirements checks that uninstalling these modules does not take
+  // any others with it. If modules still rely on any of these then the update
+  // to 11.0.0 is blocked.
+  $modules = [
+    'social_profile_fields',
+    'social_profile_privacy',
+    'social_registration_fields',
+  ];
+
+  /** @var \Drupal\Core\Extension\ModuleInstallerInterface $module_installer */
+  $module_installer = \Drupal::service('module_installer');
+  $module_installer->uninstall($modules);
+
+  // Manually remove user data in case modules didn't properly clean up.
+  /** @var \Drupal\user\UserDataInterface $user_data */
+  $user_data = \Drupal::service('user.data');
+  $user_data->delete($modules);
+
+  // Clean up the old show email setting.
+  $field_show_email = FieldConfig::load("profile.profile.field_profile_show_email");
+  if ($field_show_email) {
+    $field_show_email->delete();
+  }
+
+  $field_show_email_storage = FieldStorageConfig::load("profile.field_profile_show_email");
+  if ($field_show_email_storage) {
+    $field_show_email_storage->delete();
+  }
+}
+
 // phpcs:disable
 
 // TODO: When done evaluate update hook order to make grouping more logical.
-
-// TODO: Create ticket to respect `view blocked user` permission in GraphQL.
-//   To do this create a query alter that does this automatically and remove `status = 1` from most queries.
-
-// TODO: Create separate update hook for social_profile_registration extension.
-
 // TODO: Replace the need for `SocialProfileFieldsFlushForm` by hooking into search.
 
 // TODO: Add install config for form/display view modes for email, preferred language, nickname and nationality fields.
@@ -1342,21 +1405,18 @@ function social_profile_update_11014() : void {
 
 // TODO: Check if profile tags "Allow profile tags" is needed because it overlaps with the profile_tags field config.
 
-// TODO: Migrate social_registration_fields configuration into the new form mode configuration.
-
-// TODO: Test that site managers get the correct permissions during an update, install and when adding new fields later.
-
 // TODO: We probably don't need social_profile_manager_notes anymore.
 
 // TODO: Create README.md
 // TODO: Create UPDATE.md
 
-// TODO: Review ProfileFieldsPermissionProvider permissions, not all of them seem to be needed/make sense.
-
 // TODO: Site manager notes does not fit in Public/Community/Private visibility but requires Administrative.
 
-// TODO: Make human readable label "Visibility for X" so it's more useful.
+// TODO: When done evaluate update hook order to make grouping more logical.
 
 // TODO: What about visibility field label configuration?
+
+// TODO: Create ticket to respect `view blocked user` permission in GraphQL.
+//   To do this create a query alter that does this automatically and remove `status = 1` from most queries.
 
 // phpcs:enable
