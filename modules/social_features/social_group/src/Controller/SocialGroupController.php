@@ -184,8 +184,10 @@ class SocialGroupController extends ControllerBase {
       }
     }
 
-    if ($user->isBlocked()) {
-      return AccessResult::allowedIfHasPermission($account, 'view blocked user');
+    // A user must be able to view the user entity.
+    $access = $user->access('view', $account, TRUE);
+    if ($access->isForbidden()) {
+      return $access;
     }
 
     // Own profile?

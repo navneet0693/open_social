@@ -1285,10 +1285,6 @@ function social_profile_update_11014() : void {
 
 // TODO: When done evaluate update hook order to make grouping more logical.
 
-// TODO: Implement `view` access check for user based on `view blocked user`.
-//   We currently allow access to profile pages of blocked users for everyone.
-//   See Drupal\social_user\Routing\RouteSubscriber.
-
 // TODO: Create ticket to respect `view blocked user` permission in GraphQL.
 //   To do this create a query alter that does this automatically and remove `status = 1` from most queries.
 

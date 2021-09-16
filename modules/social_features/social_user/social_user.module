@@ -5,6 +5,7 @@
  * The social user module alterations.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -21,6 +22,20 @@ use Drupal\user\Plugin\Action\BlockUser;
 use Drupal\user\UserInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\social_user\SocialUserSearchContentBlockAlter;
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function social_user_user_access(UserInterface $user, $operation, AccountInterface $account) {
+  // We don't want to show blocked users unless the user is specifically allowed
+  // to.
+  if ($operation === 'view' && $user->isBlocked()) {
+    return AccessResult::forbiddenIf(
+      !$account->hasPermission("view blocked user"),
+      "The 'view blocked user' permission is required."
+    )->addCacheContexts(['user.permissions']);
+  }
+}
 
 /**
  * Implements hook_entity_type_alter().
