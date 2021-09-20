@@ -1440,4 +1440,6 @@ function social_profile_update_11017() : string {
 // TODO: Create ticket to respect `view blocked user` permission in GraphQL.
 //   To do this create a query alter that does this automatically and remove `status = 1` from most queries.
 
+// TODO: The profile is no longer created with the site's default country code as default value, see DS-4076.
+
 // phpcs:enable
