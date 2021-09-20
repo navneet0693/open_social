@@ -185,6 +185,7 @@ class GraphQLUsersEndpointTest extends SocialGraphQLTestBase {
     $this->setUpCurrentUser([], ['access user profiles']);
     $test_user = $this->createUser();
     self::assertInstanceOf(UserInterface::class, $test_user, "Test set-up failed: could not create user.");
+
     $this->ensureTestProfile($test_user, 'profile');
 
     $this->assertResults(

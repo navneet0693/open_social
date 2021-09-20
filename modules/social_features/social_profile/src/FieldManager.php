@@ -43,6 +43,9 @@ class FieldManager implements EntityFieldManagerInterface {
    * @see \Drupal\social_profile\FieldManager::isOptedOutOfFieldAccessManagement()
    */
   public function getManagedProfileFieldDefinitions(string $bundle = 'profile') : array {
+    // Until Drupal fixes Drupal\field\FieldConfigInterface not implementing
+    // the Drupal\Core\Field\FieldDefinitionInterface phpstan ignore.
+    // @phpstan-ignore-next-line
     return array_filter(
       $this->getFieldDefinitions('profile', $bundle),
       [$this, "isManagedValueField"]
@@ -164,6 +167,7 @@ class FieldManager implements EntityFieldManagerInterface {
    * {@inheritdoc}
    */
   public function setFieldMap(array $field_map) {
+    // @phpstan-ignore-next-line
     return $this->entityFieldManager->setFieldMap($field_map);
   }
 
@@ -177,14 +181,14 @@ class FieldManager implements EntityFieldManagerInterface {
   /**
    * {@inheritdoc}
    */
-  public function clearCachedFieldDefinitions() {
+  public function clearCachedFieldDefinitions() : void {
     $this->entityFieldManager->clearCachedFieldDefinitions();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function useCaches($use_caches = FALSE) {
+  public function useCaches($use_caches = FALSE) : void {
     $this->entityFieldManager->useCaches($use_caches);
   }
 

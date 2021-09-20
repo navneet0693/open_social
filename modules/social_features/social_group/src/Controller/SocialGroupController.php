@@ -3,6 +3,7 @@
 namespace Drupal\social_group\Controller;
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
@@ -163,10 +164,10 @@ class SocialGroupController extends ControllerBase {
    * @param \Drupal\Core\Session\AccountInterface $account
    *   The account we need to check access for.
    *
-   * @return \Drupal\Core\Access\AccessResult
+   * @return \Drupal\Core\Access\AccessResultInterface
    *   If access is allowed.
    */
-  public function myGroupAccess(AccountInterface $account) {
+  public function myGroupAccess(AccountInterface $account) : AccessResultInterface {
     // Fetch user from url.
     $user = $this->requestStack->getCurrentRequest()->get('user');
     // If we don't have a user in the request, assume it's my own profile.

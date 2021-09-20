@@ -545,7 +545,7 @@ function social_profile_update_11002() : void {
   $config_factory = \Drupal::configFactory();
   $nationality_config = $config_factory->getEditable('taxonomy.vocabulary.nationality');
   // If the vocabulary already exists then we need to swap the enforced
-  // dependency.
+  // dependency. Filter out social_profile_fields and add social_profile.
   if (!$nationality_config->isNew()) {
     $dependencies = $nationality_config->get('dependencies');
     $dependencies['enforced']['module'] = array_filter(
@@ -1086,7 +1086,6 @@ function social_profile_update_11009() : void {
  * Set default site manager permissions for profile fields.
  */
 function social_profile_update_11010() : void {
-  // @todo This should probably also do "View all hidden profile fields".
   /** @var \Drupal\user\Entity\Role|NULL $sitemanager_role */
   $sitemanager_role = Role::load('sitemanager');
 
@@ -1343,8 +1342,8 @@ function social_profile_update_11014() : void {
 function social_profile_update_11015() : void {
   // This is done as a separate step on purpose. This allows extending modules
   // to set their update dependencies between an update hook performing set-up
-  // but before the settings are removed. In case they want to make any changes
-  // to the default upgrade path.
+  // but before the settings are removed and the modules uninstalled.
+  // In case they want to make any changes to the default upgrade path.
   // A hook_requirements checks that uninstalling these modules does not take
   // any others with it. If modules still rely on any of these then the update
   // to 11.0.0 is blocked.

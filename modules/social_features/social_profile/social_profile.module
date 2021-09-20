@@ -209,7 +209,10 @@ function social_profile_ensure_associated_visibility_field_config(FieldConfigInt
   }
 
   // Nothing to do if the visibility field config already exists.
-  if (FieldConfig::loadByName($field_config->getTargetEntityTypeId(), $bundle, $visibility_storage_config->getName()) !== NULL) {
+  // Type annotation needed for PHPStan until Drupal 9.2.0.
+  /** @var \Drupal\field\FieldConfigInterface|NULL $existing_field */
+  $existing_field = FieldConfig::loadByName($field_config->getTargetEntityTypeId(), $bundle, $visibility_storage_config->getName());
+  if ($existing_field !== NULL) {
     return;
   }
 
@@ -264,7 +267,8 @@ function social_profile_delete_associated_visibility_field_config(FieldConfigInt
     throw new RuntimeException("{$field_storage_config->getName()} indicated visibility storage in {$visibility_field_name} but that storage does not exist.");
   }
 
-  /** @var \Drupal\field\Entity\FieldConfig|NULL $visibility_config */
+  // Type annotation needed for PHPStan until Drupal 9.2.0.
+  /** @var \Drupal\field\FieldConfigInterface|NULL $visibility_config */
   $visibility_config = FieldConfig::loadByName($field_config->getTargetEntityTypeId(), $bundle, $visibility_storage_config->getName());
 
   // Nothing to delete if it's already gone.
@@ -397,6 +401,24 @@ function social_profile_field_widget_form_alter(&$element, FormStateInterface $f
  *
  * Not called as actual alter hook but called from the social profile widget
  * form alter.
+ *
+ * @param array $element
+ *   The field widget form element as constructed by
+ *   \Drupal\Core\Field\WidgetBaseInterface::form().
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $context
+ *   An associative array containing the following key-value pairs:
+ *   - form: The form structure to which widgets are being attached. This may be
+ *     a full form structure, or a sub-element of a larger form.
+ *   - widget: The widget plugin instance.
+ *   - items: The field values, as a
+ *     \Drupal\Core\Field\FieldItemListInterface object.
+ *   - delta: The order of this item in the array of subelements (0, 1, 2, etc).
+ *   - default: A boolean indicating whether the form is being shown as a dummy
+ *     form to set default values.
+ *
+ * @see hook_field_widget_form_alter
  */
 function social_profile_user_form_profiles_field_alter(array &$element, FormStateInterface $form_state, array $context) : void {
   // We require a form entity to know how we're being displayed.

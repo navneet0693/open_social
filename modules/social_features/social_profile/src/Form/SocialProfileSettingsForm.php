@@ -3,12 +3,10 @@
 namespace Drupal\social_profile\Form;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Database\Connection;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Link;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\social_profile\FieldManager;
@@ -37,20 +35,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class SocialProfileSettingsForm extends ConfigFormBase implements ContainerInjectionInterface {
 
   /**
-   * The database.
-   *
-   * @var \Drupal\Core\Database\Connection
-   */
-  protected $database;
-
-  /**
-   * The language manager.
-   *
-   * @var \Drupal\Core\Language\LanguageManager
-   */
-  protected $languageMananger;
-
-  /**
    * Our Social Profile Field Manager.
    *
    * Contains methods to help us know whether we're managing particular fields.
@@ -76,17 +60,11 @@ class SocialProfileSettingsForm extends ConfigFormBase implements ContainerInjec
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
-   * @param \Drupal\Core\Database\Connection $database
-   *   The database.
-   * @param \Drupal\Core\Language\LanguageManager $language_manager
-   *   The language manager.
    * @param \Drupal\social_profile\FieldManager $field_manager
    *   The Social Profile Field Manager.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Connection $database, LanguageManager $language_manager, FieldManager $field_manager) {
+  public function __construct(ConfigFactoryInterface $config_factory, FieldManager $field_manager) {
     parent::__construct($config_factory);
-    $this->database = $database;
-    $this->languageMananger = $language_manager;
     $this->fieldManager = $field_manager;
   }
 
@@ -96,8 +74,6 @@ class SocialProfileSettingsForm extends ConfigFormBase implements ContainerInjec
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('database'),
-      $container->get('language_manager'),
       $container->get('social_profile.field_manager')
     );
   }
@@ -120,7 +96,6 @@ class SocialProfileSettingsForm extends ConfigFormBase implements ContainerInjec
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    // @todo migrate social_profile_show_* settings to permissions.
     $config = $this->config('social_profile.settings');
 
     // @todo When the verified user role is created allow configuration of `"view " . SOCIAL_PROFILE_FIELD_VISIBILITY_COMMUNITY . " profile fields"` permission to determine what role(s) count as community.
@@ -234,6 +209,7 @@ class SocialProfileSettingsForm extends ConfigFormBase implements ContainerInjec
         continue;
       }
 
+      // Type annotation needed until Drupal 9.2.0.
       /** @var \Drupal\field\FieldConfigInterface|NULL $visibility_field */
       $visibility_field = FieldConfig::loadByName("profile", "profile", $visibility_field_name);
       if ($visibility_field === NULL) {
@@ -509,6 +485,7 @@ class SocialProfileSettingsForm extends ConfigFormBase implements ContainerInjec
         continue;
       }
 
+      // Type annotation needed until Drupal 9.2.0.
       /** @var \Drupal\field\FieldConfigInterface|NULL $visibility_field */
       $visibility_field = FieldConfig::loadByName("profile", "profile", $visibility_field_name);
       if ($visibility_field === NULL) {

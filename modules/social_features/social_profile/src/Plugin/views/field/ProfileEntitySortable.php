@@ -7,6 +7,7 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\views\Plugin\views\field\RenderedEntity;
+use Drupal\views\Plugin\views\query\Sql;
 use Drupal\views\Plugin\ViewsHandlerManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -99,6 +100,11 @@ class ProfileEntitySortable extends RenderedEntity {
    * {@inheritdoc}
    */
   public function clickSort($order) {
+    // We only support this sort type when using Sql as a back-end.
+    if (!$this->query instanceof Sql) {
+      return;
+    }
+
     if (isset($this->field_alias)) {
       // If we want to sort on the profile name, add the correct alias.
       if ($this->table === 'profile' && $this->field === 'profile_entity_sortable') {
@@ -120,6 +126,7 @@ class ProfileEntitySortable extends RenderedEntity {
             'left_field' => 'profile_id',
           ];
 
+          /** @var \Drupal\views\Plugin\views\join\JoinPluginBase $join */
           $join = $this->joinManager->createInstance('standard', $definition);
           $this->query->addRelationship($definition['table'], $join, $this->relationship);
 
@@ -135,6 +142,7 @@ class ProfileEntitySortable extends RenderedEntity {
               'left_field' => 'profile_id',
             ];
 
+            /** @var \Drupal\views\Plugin\views\join\JoinPluginBase $join */
             $join = $this->joinManager->createInstance('standard', $definition);
             $this->query->addRelationship($definition['table'], $join, $this->relationship);
           }
@@ -148,6 +156,7 @@ class ProfileEntitySortable extends RenderedEntity {
           'left_field' => 'uid',
         ];
 
+        /** @var \Drupal\views\Plugin\views\join\JoinPluginBase $join */
         $join = $this->joinManager->createInstance('standard', $definition);
         $this->query->addRelationship($definition['table'], $join, $this->relationship);
 

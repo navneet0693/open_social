@@ -43,10 +43,13 @@ class UniqueNicknameValidator extends ConstraintValidator implements ContainerIn
    * {@inheritdoc}
    */
   public function validate($items, Constraint $constraint) : void {
+    if (!$constraint instanceof UniqueNickname) {
+      return;
+    }
+
     foreach ($items as $item) {
       // Next check if the value is unique.
       if (!$this->isUnique($item->value)) {
-        /** @var \Drupal\social_profile\Plugin\Validation\Constraint\UniqueNickname $constraint */
         $this->context->addViolation($constraint->notUnique, ['%value' => $item->value]);
       }
     }
