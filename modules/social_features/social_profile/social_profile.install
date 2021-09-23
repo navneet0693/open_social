@@ -1287,7 +1287,6 @@ function social_profile_update_11013() : void {
     $visibility_profile_display->setComponent(
       $field_config->getName(),
       [
-        'label' => $field_config->label(),
         'type' => 'options_select',
       ]
     );
