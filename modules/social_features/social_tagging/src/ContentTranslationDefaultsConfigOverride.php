@@ -46,7 +46,7 @@ class ContentTranslationDefaultsConfigOverride implements ConfigFactoryOverrideI
       return $overrides;
     }
 
-    // Translations for "Certificate" fields.
+    // Translations for "Content Tags" vocabulary.
     $config_name = 'language.content_settings.taxonomy_term.social_tagging';
 
     if (in_array($config_name, $names)) {
