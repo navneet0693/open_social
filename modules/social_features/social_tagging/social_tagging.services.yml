@@ -5,4 +5,9 @@ services:
   social_tagging.overrider:
     class: Drupal\social_tagging\SocialTaggingOverrides
     tags:
-      - {name: config.factory.override, priority: 5}
+      - { name: config.factory.override, priority: 5 }
+  social_tagging.translation_defaults:
+    class: Drupal\social_tagging\ContentTranslationDefaultsConfigOverride
+    arguments: ['@module_handler']
+    tags:
+      - { name: config.factory.override, priority: 5 }
