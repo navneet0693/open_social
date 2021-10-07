@@ -23,7 +23,7 @@ class ContentTranslationDefaultsConfigOverride implements ConfigFactoryOverrideI
   protected $moduleHandler;
 
   /**
-   * SocialChallengePhaseConfigOverride constructor.
+   * ContentTranslationDefaultsConfigOverride constructor.
    *
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler service.
@@ -46,7 +46,7 @@ class ContentTranslationDefaultsConfigOverride implements ConfigFactoryOverrideI
       return $overrides;
     }
 
-    // Translations for "Report Reasons" vocabulary.
+    // Translations for "Nationality" vocabulary.
     $config_name = 'language.content_settings.taxonomy_term.nationality';
 
     if (in_array($config_name, $names)) {

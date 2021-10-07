@@ -23,7 +23,7 @@ class ContentTranslationDefaultsConfigOverride implements ConfigFactoryOverrideI
   protected $moduleHandler;
 
   /**
-   * SocialChallengePhaseConfigOverride constructor.
+   * ContentTranslationDefaultsConfigOverride constructor.
    *
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler service.
