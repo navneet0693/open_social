@@ -1016,7 +1016,7 @@ function social_profile_profile_presave(EntityInterface $profile) {
 /**
  * Implements hook_form_alter().
  */
-function social_profile_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+function social_profile_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
   if (in_array($form_id, [
     'profile_profile_edit_form',
   ])) {
