@@ -301,9 +301,68 @@ function social_profile_update_8905() : void {
 }
 
 /**
+ * Update profile form labels.
+ */
+function social_profile_update_10201() : string {
+  /** @var \Drupal\update_helper\Updater $updateHelper */
+  $updateHelper = \Drupal::service('update_helper.updater');
+
+  // Execute configuration update definitions with logging of success.
+  $updateHelper->executeUpdate('social_profile', 'social_profile_update_10201');
+
+  // Output logged messages to related channel of update execution.
+  return $updateHelper->logger()->output();
+}
+
+/**
+ * Update the configs in the database in accordance with the newest schema.
+ */
+function social_profile_update_10301() : string {
+  /** @var \Drupal\update_helper\Updater $updateHelper */
+  $updateHelper = \Drupal::service('update_helper.updater');
+
+  // Execute configuration update definitions with logging of success.
+  $updateHelper->executeUpdate('social_profile', 'social_profile_update_10301');
+
+  // Output logged messages to related channel of update execution.
+  return $updateHelper->logger()->output();
+}
+
+/**
+ * Grant Profile permissions for the Authenticated user role.
+ */
+function social_profile_update_11001(): void {
+  // Authenticated user role permissions.
+  user_role_grant_permissions(
+    RoleInterface::AUTHENTICATED_ID,
+    [
+      'add own profile profile',
+      'update own profile profile',
+      'view any profile profile',
+      'view own profile profile',
+      'view profile',
+    ]
+  );
+}
+
+/**
+ * Add roles filter to the Newest users views.
+ */
+function social_profile_update_11002(): string {
+  /** @var \Drupal\update_helper\Updater $updateHelper */
+  $updateHelper = \Drupal::service('update_helper.updater');
+
+  // Execute configuration update definitions with logging of success.
+  $updateHelper->executeUpdate('social_profile', __FUNCTION__);
+
+  // Output logged messages to related channel of update execution.
+  return $updateHelper->logger()->output();
+}
+
+/**
  * Remove the profile_name field.
  */
-function social_profile_update_8906() : void {
+function social_profile_update_11003() : void {
   // The profile_name field contains a computed value, but we'll be creating
   // visibility values that allow us to query the parts of the computed value
   // directly instead.
@@ -316,7 +375,7 @@ function social_profile_update_8906() : void {
 /**
  * Add email and langcode field to profile.
  */
-function social_profile_update_8907() : void {
+function social_profile_update_11004() : void {
   // By moving the fields to the profile we can display them from the profile
   // directly and use them with our profile visibility fields. This means we no
   // longer have to jump through hoops to pull the e-mail from the user entity.
@@ -388,7 +447,7 @@ function social_profile_update_8907() : void {
 /**
  * Fill new synchronised profile fields.
  */
-function social_profile_update_8908(array &$sandbox) : void {
+function social_profile_update_11005(array &$sandbox) : void {
   if (!isset($sandbox['uids'])) {
     /** @var int[] $uids */
     $uids = \Drupal::entityQuery('user')
@@ -430,67 +489,9 @@ function social_profile_update_8908(array &$sandbox) : void {
 }
 
 /**
- * Update profile form labels.
- */
-function social_profile_update_10201() : string {
-  /** @var \Drupal\update_helper\Updater $updateHelper */
-  $updateHelper = \Drupal::service('update_helper.updater');
-
-  // Execute configuration update definitions with logging of success.
-  $updateHelper->executeUpdate('social_profile', 'social_profile_update_10201');
-
-  // Output logged messages to related channel of update execution.
-  return $updateHelper->logger()->output();
-}
-
-/**
- * Update the configs in the database in accordance with the newest schema.
- */
-function social_profile_update_10301() : string {
-  /** @var \Drupal\update_helper\Updater $updateHelper */
-  $updateHelper = \Drupal::service('update_helper.updater');
-
-  // Execute configuration update definitions with logging of success.
-  $updateHelper->executeUpdate('social_profile', 'social_profile_update_10301');
-
-  // Output logged messages to related channel of update execution.
-  return $updateHelper->logger()->output();
-}
-
-/**
- * Grant Profile permissions for the Authenticated user role.
- */
-function social_profile_update_11001(): void {
-  // Authenticated user role permissions.
-  user_role_grant_permissions(
-    RoleInterface::AUTHENTICATED_ID,
-    [
-      'add own profile profile',
-      'update own profile profile',
-      'view own profile profile',
-      'view profile',
-    ]
-  );
-}
-
-/**
- * Add roles filter to the Newest users views.
- */
-function social_profile_update_11002(): string {
-  /** @var \Drupal\update_helper\Updater $updateHelper */
-  $updateHelper = \Drupal::service('update_helper.updater');
-
-  // Execute configuration update definitions with logging of success.
-  $updateHelper->executeUpdate('social_profile', __FUNCTION__);
-
-  // Output logged messages to related channel of update execution.
-  return $updateHelper->logger()->output();
-}
-
-/**
  * Install visibility profile fields.
  */
-function social_profile_update_11003() : void {
+function social_profile_update_11006() : void {
   // We do this for all currently existing fields regardless of when this update
   // hook runs since we have other methods in place to catch newly created
   // fields and filter out previously updated fields.
@@ -541,7 +542,7 @@ function social_profile_update_11003() : void {
 /**
  * Install or adopt social profile fields fields.
  */
-function social_profile_update_11002() : void {
+function social_profile_update_11007() : void {
   $config_factory = \Drupal::configFactory();
   $nationality_config = $config_factory->getEditable('taxonomy.vocabulary.nationality');
   // If the vocabulary already exists then we need to swap the enforced
@@ -700,7 +701,7 @@ function social_profile_update_11002() : void {
 /**
  * Delete permissions provided by merged social profile fields module.
  */
-function social_profile_update_11003() : void {
+function social_profile_update_11008() : void {
   // This permission is revoked from all roles as it duplicates the broader
   // `administer profile settings` permissions which we would give out to the
   // exact same roles.
@@ -712,7 +713,7 @@ function social_profile_update_11003() : void {
 /**
  * Create a form mode for profiles during registration.
  */
-function social_profile_update_11004() : void {
+function social_profile_update_11009() : void {
   if (EntityFormMode::load('profile.register') === NULL) {
     EntityFormMode::create([
       'langcode' => 'en',
@@ -733,7 +734,7 @@ function social_profile_update_11004() : void {
  *
  * @todo This needs an install hook too.
  */
-function social_profile_update_11005() : void {
+function social_profile_update_11011() : void {
   // This makes the profile available in registration always so that we can
   // control the fields that are shown by changing the registration view mode.
   // We can also change this setting dynamically but that would not persist the
@@ -779,7 +780,7 @@ function social_profile_update_11005() : void {
 /**
  * Migrate social_profile_fields settings into social_profile.
  */
-function social_profile_update_11006() : void {
+function social_profile_update_11012() : void {
   $default_field_status = [
     "field_profile_nick_name" => FALSE,
     "field_profile_address" => TRUE,
@@ -836,7 +837,7 @@ function social_profile_update_11006() : void {
 /**
  * Migrate platform visibility settings to new visibility fields.
  */
-function social_profile_update_11007() : void {
+function social_profile_update_11013() : void {
   // Define SocialProfilePrivacyHelperInterface::* constants so we can reference
   // them and keep the update hook working while throwing out the interface.
   // $constant_hide = 2; // for completeness but we don't use it.
@@ -914,7 +915,7 @@ function social_profile_update_11007() : void {
 /**
  * Migrate user visibility preferences to new visibility fields.
  */
-function social_profile_update_11008(array &$sandbox) : void {
+function social_profile_update_11014(array &$sandbox) : void {
   // Define SocialProfilePrivacyHelperInterface::* constants so we can reference
   // them and keep the update hook working while throwing out the interface.
   // $constant_hide = 2; // for completeness but we don't use it.
@@ -1035,7 +1036,7 @@ function social_profile_update_11008(array &$sandbox) : void {
 /**
  * Migrate user edit permissions for profile fields.
  */
-function social_profile_update_11009() : void {
+function social_profile_update_11015() : void {
   // By default all fields were editable for a user except some site manager
   // only fields such as profile tagging or site manager notes.
   // Some extensions (e.g. using SSO) may disable editing of some fields but
@@ -1085,7 +1086,7 @@ function social_profile_update_11009() : void {
 /**
  * Set default site manager permissions for profile fields.
  */
-function social_profile_update_11010() : void {
+function social_profile_update_11016() : void {
   /** @var \Drupal\user\Entity\Role|NULL $sitemanager_role */
   $sitemanager_role = Role::load('sitemanager');
 
@@ -1121,7 +1122,7 @@ function social_profile_update_11010() : void {
 /**
  * Migrate existing custom profile related config and permissions.
  */
-function social_profile_update_11011() : void {
+function social_profile_update_11017() : void {
   /** @var \Drupal\user\RoleInterface[] $roles */
   $roles = Role::loadMultiple();
 
@@ -1166,7 +1167,7 @@ function social_profile_update_11011() : void {
 /**
  * Migrate Social Registration Fields settings.
  */
-function social_profile_update_11012() : void {
+function social_profile_update_11018() : void {
   if (!\Drupal::moduleHandler()->moduleExists('social_registration_fields')) {
     return;
   }
@@ -1235,7 +1236,7 @@ function social_profile_update_11012() : void {
 /**
  * Create profile visibility form.
  */
-function social_profile_update_11013() : void {
+function social_profile_update_11019() : void {
   if (EntityFormMode::load("profile.visibility") === NULL) {
     EntityFormMode::create([
       'langcode' => 'en',
@@ -1319,7 +1320,7 @@ function social_profile_update_11013() : void {
 /**
  * Delete user profile view.
  */
-function social_profile_update_11014() : void {
+function social_profile_update_11020() : void {
   // Update the user profile landing page if it was set to the view.
   $social_user_settings = \Drupal::configFactory()->getEditable('social_user.settings');
   if ($social_user_settings->get('social_user_profile_landingpage') === 'view.user_information.user_information') {
@@ -1338,7 +1339,7 @@ function social_profile_update_11014() : void {
 /**
  * Clean up migrated settings and permissions.
  */
-function social_profile_update_11015() : void {
+function social_profile_update_11021() : void {
   // This is done as a separate step on purpose. This allows extending modules
   // to set their update dependencies between an update hook performing set-up
   // but before the settings are removed and the modules uninstalled.
@@ -1376,12 +1377,12 @@ function social_profile_update_11015() : void {
 /**
  * Update field configuration to match removed profile template.
  */
-function social_profile_update_11016() : string {
+function social_profile_update_11022() : string {
   /** @var \Drupal\update_helper\Updater $updateHelper */
   $updateHelper = \Drupal::service('update_helper.updater');
 
   // Execute configuration update definitions with logging of success.
-  $updateHelper->executeUpdate('social_profile', 'social_profile_update_11016');
+  $updateHelper->executeUpdate('social_profile', 'social_profile_update_11022');
 
   // Output logged messages to related channel of update execution.
   return $updateHelper->logger()->output();
@@ -1390,12 +1391,12 @@ function social_profile_update_11016() : string {
 /**
  * Update nickname in profile form display.
  */
-function social_profile_update_11017() : string {
+function social_profile_update_11023() : string {
   /** @var \Drupal\update_helper\Updater $updateHelper */
   $updateHelper = \Drupal::service('update_helper.updater');
 
   // Execute configuration update definitions with logging of success.
-  $updateHelper->executeUpdate('social_profile', 'social_profile_update_11017');
+  $updateHelper->executeUpdate('social_profile', 'social_profile_update_11023');
 
   // Output logged messages to related channel of update execution.
   return $updateHelper->logger()->output();
