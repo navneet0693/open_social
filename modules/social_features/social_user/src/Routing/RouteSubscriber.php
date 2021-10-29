@@ -55,6 +55,12 @@ class RouteSubscriber extends RouteSubscriberBase {
     foreach ($disable_access_for as $route_name) {
       if ($route = $collection->get($route_name)) {
         $route->setRequirement('_entity_access', 'user.view');
+
+        // Ensure parameter upcasting until
+        // https://www.drupal.org/project/drupal/issues/2528166 is fixed.
+        $parameters = $route->getOption('parameters') ?? [];
+        $parameters['user']['type'] = 'entity:user';
+        $route->setOption('parameters', $parameters);
       }
     }
   }

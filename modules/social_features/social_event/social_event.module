@@ -68,7 +68,9 @@ function social_event_form_views_exposed_form_alter(&$form, FormStateInterface $
     $form['status']['#options'][0] = t('Unpublished');
     $form['status']['#options'][1] = t('Published');
 
-    $account_uid = \Drupal::routeMatch()->getParameter('user');
+    /** @var \Drupal\user\UserInterface $account */
+    $account = \Drupal::routeMatch()->getParameter('user');
+    $account_uid = $account->id();
     $current_uid = \Drupal::currentUser()->id();
 
     if ($account_uid !== $current_uid) {
@@ -933,7 +935,9 @@ function social_event_preprocess_views_view(&$variables) {
   }
   // Add a custom cache tag to the user events overview page.
   if ($variables['view']->current_display === 'events_overview' && $variables['view']->id() === 'events') {
-    $account_id = \Drupal::routeMatch()->getParameter('user');
+    /** @var \Drupal\user\UserInterface $account */
+    $account = \Drupal::routeMatch()->getParameter('user');
+    $account_id = $account->id();
     $variables['#cache']['tags'][] = 'event_content_list:user:' . $account_id;
   }
 }
