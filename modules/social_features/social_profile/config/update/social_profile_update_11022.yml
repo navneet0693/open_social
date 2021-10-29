@@ -1,15 +1,6 @@
 core.entity_form_display.profile.profile.default:
   expected_config: { }
   update_actions:
-    delete:
-      third_party_settings:
-        field_group:
-          group_profile_names_image:
-            children:
-              - field_profile_first_name
-              - field_profile_last_name
-              - field_profile_banner_image
-              - field_profile_image
     add:
       content:
         field_profile_nationality:
@@ -36,6 +27,15 @@ core.entity_form_display.profile.profile.default:
             children:
               - field_profile_nationality
     change:
+      third_party_settings:
+        field_group:
+          group_profile_names_image:
+            children:
+              - field_profile_nick_name
+              - field_profile_first_name
+              - field_profile_last_name
+              - field_profile_banner_image
+              - field_profile_image
       hidden:
         field_profile_email: true
         field_profile_preferred_language: true

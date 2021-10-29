@@ -519,7 +519,17 @@ function social_profile_update_11005(array &$sandbox) : void {
     $profile = $profile_storage->loadByUser($user, 'profile');
     // All users in Open Social are required to have a profile at this time.
     if ($profile === NULL) {
-      throw new \RuntimeException("User (id: {$user->id()} is missing a profile.");
+      // It's possible that the user was turned into a "deleted user". This is
+      // functionality introduced in Social Chat which will come to Open Social
+      // with OAuth. These users did not yet have blank profiles created
+      // automatically before `social_profile_ensure_default_user_profile` was
+      // introduced.
+      if (strpos($user->getAccountName(), "__DELETED_USER_") === 0) {
+        $profile = social_profile_ensure_default_user_profile($user);
+      }
+      else {
+        throw new \RuntimeException("User (id: {$user->id()} is missing a profile.");
+      }
     }
 
     $has_changed = social_profile_copy_shared_user_data_to_profile($user, $profile);
@@ -1427,20 +1437,6 @@ function social_profile_update_11022() : string {
 
   // Execute configuration update definitions with logging of success.
   $updateHelper->executeUpdate('social_profile', 'social_profile_update_11022');
-
-  // Output logged messages to related channel of update execution.
-  return $updateHelper->logger()->output();
-}
-
-/**
- * Update nickname in profile form display.
- */
-function social_profile_update_11023() : string {
-  /** @var \Drupal\update_helper\Updater $updateHelper */
-  $updateHelper = \Drupal::service('update_helper.updater');
-
-  // Execute configuration update definitions with logging of success.
-  $updateHelper->executeUpdate('social_profile', 'social_profile_update_11023');
 
   // Output logged messages to related channel of update execution.
   return $updateHelper->logger()->output();
