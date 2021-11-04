@@ -63,6 +63,9 @@
             "drupal/crop": {
                 "Automated crop integration": "https://www.drupal.org/files/issues/2018-12-16/2830768-crop-automated_crop_integration-45.patch"
             },
+            "drupal/gin": {
+                "Select2 elements do not have a correct styles": "https://www.drupal.org/files/issues/2021-11-01/3246977-ui_improvements_select2_elements-1.patch"
+            },
             "drupal/group": {
                 "Add computed field for Group reference": "https://www.drupal.org/files/issues/add-computed-field-without-FieldItemListComputedInterface-2718195-34.patch",
                 "Use VBO together with group permission": "https://www.drupal.org/files/issues/2019-10-09/vbo-and-group-permission-3020883-10.patch",
