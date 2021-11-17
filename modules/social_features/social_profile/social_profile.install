@@ -79,6 +79,8 @@ function social_profile_install() {
 
   _social_profile_populate_nationalities_vocabulary('10.3.0');
 
+  _social_profile_extend_admin_people_view_with_real_name();
+
   // Grant the default permissions for this feature.
   user_role_grant_permissions(
     RoleInterface::AUTHENTICATED_ID,
@@ -236,6 +238,179 @@ function _social_profile_populate_nationalities_vocabulary(string $version) : vo
       'name' => $nationality,
     ])->save();
   }
+}
+
+/**
+ * Adds the ability to search for first and last name on the admin people view.
+ */
+function _social_profile_extend_admin_people_view_with_real_name() : void {
+  // Edit the config directly rather than the view entity so that we can add
+  // config dependencies.
+  $view_config = \Drupal::configFactory()->getEditable("views.view.user_admin_people");
+
+  // If the view doesn't exist there's no need to change it.
+  // Loading a non-existent view creates a new config entity.
+  if ($view_config->isNew()) {
+    return;
+  }
+
+  $dependencies = $view_config->get('dependencies');
+  $dependencies['module'][] = 'social_profile';
+  $dependencies['config'][] = 'field.storage.profile.field_profile_first_name';
+  $dependencies['config'][] = 'field.storage.profile.field_profile_last_name';
+  $view_config->set('dependencies', $dependencies);
+
+  $fields = $view_config->get('display.default.display_options.fields');
+  $fields['field_profile_first_name'] = [
+    'id' => 'field_profile_first_name',
+    'table' => 'profile__field_profile_first_name',
+    'field' => 'field_profile_first_name',
+    'relationship' => 'profile',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'label' => 'First name',
+    'exclude' => TRUE,
+    'alter' => [
+      'alter_text' => FALSE,
+      'text' => '',
+      'make_link' => FALSE,
+      'path' => '',
+      'absolute' => FALSE,
+      'external' => FALSE,
+      'replace_spaces' => FALSE,
+      'path_case' => 'none',
+      'trim_whitespace' => FALSE,
+      'alt' => '',
+      'rel' => '',
+      'link_class' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'nl2br' => FALSE,
+      'max_length' => 0,
+      'word_boundary' => TRUE,
+      'ellipsis' => TRUE,
+      'more_link' => FALSE,
+      'more_link_text' => '',
+      'more_link_path' => '',
+      'strip_tags' => FALSE,
+      'trim' => FALSE,
+      'preserve_tags' => '',
+      'html' => FALSE,
+    ],
+    'element_type' => '',
+    'element_class' => '',
+    'element_label_type' => '',
+    'element_label_class' => '',
+    'element_label_colon' => TRUE,
+    'element_wrapper_type' => '',
+    'element_wrapper_class' => '',
+    'element_default_classes' => TRUE,
+    'empty' => '',
+    'hide_empty' => FALSE,
+    'empty_zero' => FALSE,
+    'hide_alter_empty' => TRUE,
+    'click_sort_column' => 'value',
+    'type' => 'string',
+    'settings' => [
+      'link_to_entity' => FALSE,
+    ],
+    'group_column' => 'value',
+    'group_columns' => [],
+    'group_rows' => TRUE,
+    'delta_limit' => 0,
+    'delta_offset' => 0,
+    'delta_reversed' => FALSE,
+    'delta_first_last' => FALSE,
+    'multi_type' => 'separator',
+    'separator' => ', ',
+    'field_api_classes' => FALSE,
+    'plugin_id' => 'field',
+  ];
+  $fields['field_profile_last_name'] = [
+    'id' => 'field_profile_last_name',
+    'table' => 'profile__field_profile_last_name',
+    'field' => 'field_profile_last_name',
+    'relationship' => 'profile',
+    'group_type' => 'group',
+    'admin_label' => '',
+    'label' => 'Last name',
+    'exclude' => TRUE,
+    'alter' => [
+      'alter_text' => FALSE,
+      'text' => '',
+      'make_link' => FALSE,
+      'path' => '',
+      'absolute' => FALSE,
+      'external' => FALSE,
+      'replace_spaces' => FALSE,
+      'path_case' => 'none',
+      'trim_whitespace' => FALSE,
+      'alt' => '',
+      'rel' => '',
+      'link_class' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'target' => '',
+      'nl2br' => FALSE,
+      'max_length' => 0,
+      'word_boundary' => TRUE,
+      'ellipsis' => TRUE,
+      'more_link' => FALSE,
+      'more_link_text' => '',
+      'more_link_path' => '',
+      'strip_tags' => FALSE,
+      'trim' => FALSE,
+      'preserve_tags' => '',
+      'html' => FALSE,
+    ],
+    'element_type' => '',
+    'element_class' => '',
+    'element_label_type' => '',
+    'element_label_class' => '',
+    'element_label_colon' => TRUE,
+    'element_wrapper_type' => '',
+    'element_wrapper_class' => '',
+    'element_default_classes' => TRUE,
+    'empty' => '',
+    'hide_empty' => FALSE,
+    'empty_zero' => FALSE,
+    'hide_alter_empty' => TRUE,
+    'click_sort_column' => 'value',
+    'type' => 'string',
+    'settings' => [
+      'link_to_entity' => FALSE,
+    ],
+    'group_column' => 'value',
+    'group_columns' => [],
+    'group_rows' => TRUE,
+    'delta_limit' => 0,
+    'delta_offset' => 0,
+    'delta_reversed' => FALSE,
+    'delta_first_last' => FALSE,
+    'multi_type' => 'separator',
+    'separator' => ', ',
+    'field_api_classes' => FALSE,
+    'plugin_id' => 'field',
+  ];
+  $view_config->set('display.default.display_options.fields', $fields);
+
+  $combine_filter = $view_config->get('display.default.display_options.filters.combine');
+  $combine_filter['fields']['field_profile_first_name'] = 'field_profile_first_name';
+  $combine_filter['fields']['field_profile_last_name'] = 'field_profile_last_name';
+  $view_config->set('display.default.display_options.filters.combine', $combine_filter);
+
+  $cache_metadata = $view_config->get('display.default.cache_metadata');
+  $cache_metadata['tags'][] = 'config:field.storage.profile.field_profile_first_name';
+  $cache_metadata['tags'][] = 'config:field.storage.profile.field_profile_last_name';
+  $view_config->set('display.default.cache_metadata', $cache_metadata);
+
+  $cache_metadata = $view_config->get('display.page_1.cache_metadata');
+  $cache_metadata['tags'][] = 'config:field.storage.profile.field_profile_first_name';
+  $cache_metadata['tags'][] = 'config:field.storage.profile.field_profile_last_name';
+  $view_config->set('display.page_1.cache_metadata', $cache_metadata);
+
+  $view_config->save();
 }
 
 /**
