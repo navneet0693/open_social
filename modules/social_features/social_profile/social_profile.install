@@ -1766,41 +1766,23 @@ function social_profile_update_11023() : string {
 
 // phpcs:disable
 
-// TODO: User visibility still used even when user can't edit.
-
-// TODO: Replace the need for `SocialProfileFieldsFlushForm` by hooking into search.
-
-// TODO: Add/Update install config for form/display view modes for email, preferred language, nickname and nationality fields.
-//   Include field_group config changes.
-// TODO: Add update hook for form/display view modes for nickname and nationality based on social_profile_fields_entity_form_display_alter
-
-// TODO: Figure out SocialProfileFieldsHelper and profile_field_export_mapping alter hook.
-// TODO: Replace SocialProfileFieldsOverride by configuration.
-
-// TODO: Create schema for the third-party-settings.
-
-// TODO: Rewrite all the profile tests x.x
+// TODO: Create README.md
+// TODO: Create UPDATE.md
 
 // TODO: Index visibility info into search as it's needed to filter information.
+// TODO: Replace the need for `SocialProfileFieldsFlushForm` by hooking into search.
+
+// TODO: Figure out SocialProfileFieldsHelper and profile_field_export_mapping alter hook.
+
+// TODO: Rewrite all the profile tests x.x
 
 // TODO: Add tooltips to header row of the settings form to explain each column.
 
 // TODO: Check if profile tags "Allow profile tags" is needed because it overlaps with the profile_tags field config.
 
 // TODO: We probably don't need social_profile_manager_notes anymore.
-
-// TODO: Create README.md
-// TODO: Create UPDATE.md
-
 // TODO: Site manager notes does not fit in Public/Community/Private visibility but requires Administrative.
 
 // TODO: When done evaluate update hook order to make grouping more logical.
-
-// TODO: What about visibility field label configuration?
-
-// TODO: Create ticket to respect `view blocked user` permission in GraphQL.
-//   To do this create a query alter that does this automatically and remove `status = 1` from most queries.
-
-// TODO: The profile is no longer created with the site's default country code as default value, see DS-4076.
 
 // phpcs:enable
