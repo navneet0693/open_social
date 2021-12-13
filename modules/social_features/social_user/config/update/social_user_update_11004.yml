@@ -4,53 +4,44 @@ views.view.user_admin_people:
       default:
         display_options:
           filters:
-            id:
+            created:
               expose:
-                max_placeholder: ''
-                min_placeholder: ''
-                multiple: false
-                placeholder: ''
-              group_info:
-                description: null
-                group_items:
-                  1: {  }
-                  2: {  }
-                  3: {  }
-                identifier: id
-                label: ID
-              operator: '='
-              plugin_id: numeric
-              value:
-                max: ''
-                min: ''
-                value: ''
+                operator_limit_selection: true
+                operator_list:
+                  '<': '<'
+                  '>': '>'
+                  between: between
+                remember_roles:
+                  verified: '0'
+            login:
+              expose:
+                operator_limit_selection: true
+                operator_list:
+                  '<': '<'
+                  '>': '>'
+                  between: between
+                remember_roles:
+                  verified: '0'
   update_actions:
     delete:
       display:
         default:
           display_options:
             filters:
-              id:
+              created:
                 expose:
-                  max_placeholder: ''
-                  min_placeholder: ''
-                  placeholder: ''
-                group_info:
-                  group_items:
-                    1: {  }
-                    2: {  }
-                    3: {  }
-                value:
-                  max: ''
-                  min: ''
-                  value: ''
-    add:
-      display:
-        default:
-          display_options:
-            filters:
-              id:
+                  operator_list:
+                    '<': '<'
+                    '>': '>'
+                    between: between
+                  remember_roles:
+                    verified: '0'
+              login:
                 expose:
+                  operator_list:
+                    '<': '<'
+                    '>': '>'
+                    between: between
                   remember_roles:
                     verified: '0'
     change:
@@ -58,15 +49,11 @@ views.view.user_admin_people:
         default:
           display_options:
             filters:
-              id:
+              created:
                 expose:
-                  multiple: true
-                  reduce: false
-                group_info:
-                  description: ''
-                  group_items: {  }
-                  identifier: ''
-                  label: ''
-                operator: in
-                plugin_id: in_operator
-                value: {  }
+                  operator_limit_selection: false
+                  operator_list: {  }
+              login:
+                expose:
+                  operator_limit_selection: false
+                  operator_list: {  }
