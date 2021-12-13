@@ -1,11 +1,11 @@
 @api @topic @stability @perfect @critical @DS-2311 @DS-7612 @stability-3 @topic-follow-content
 Feature: Follow Content
   Benefit: In order receive (email) notification  when a new comments or reply has been placed
-  Role: As a LU
+  Role: As a Verified
   Goal/desire: I want to be able to subscribe to content
 
   Scenario: Follow content
-    Given I am logged in as an "authenticated user"
+    Given I am logged in as an "verified"
     And I am on "user"
     And I click "Topics"
     And I click "Create Topic"
@@ -55,6 +55,7 @@ Feature: Follow Content
       And I wait for AJAX to finish
     Then I should see the link "Unfollow content"
       And I should not see the link "Follow content"
+      And I logout
 
     Given I am logged in as "Dude 2"
       And I am on "/all-topics"
@@ -66,6 +67,7 @@ Feature: Follow Content
       And I wait for AJAX to finish
     Then I should see the link "Unfollow content"
       And I should not see the link "Follow content"
+      And I logout
 
     Given I am logged in as "Dude 3"
       And I am on "/all-topics"
@@ -79,6 +81,7 @@ Feature: Follow Content
       And I should see "This is a test comment" in the "Main content"
       And I should see "second"
       And I should see "ago"
+      And I logout
 
     # Check if the Dude 1 got a notification.
     Given I am logged in as "Dude 1"
