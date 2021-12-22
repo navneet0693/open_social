@@ -11481,11 +11481,6 @@ parameters:
 			path: modules/social_features/social_group/modules/social_group_flexible_group/social_group_flexible_group.module
 
 		-
-			message: "#^Parameter \\#2 \\$group of method Drupal\\\\social_group_flexible_group\\\\Access\\\\FlexibleGroupJoinPermissionAccessCheck\\:\\:calculateJoinPermission\\(\\) expects Drupal\\\\group\\\\Entity\\\\Group, Drupal\\\\group\\\\Entity\\\\GroupInterface given\\.$#"
-			count: 1
-			path: modules/social_features/social_group/modules/social_group_flexible_group/src/Access/FlexibleGroupJoinPermissionAccessCheck.php
-
-		-
 			message: "#^Method Drupal\\\\social_group_flexible_group\\\\EventSubscriber\\\\RedirectSubscriber\\:\\:checkForRedirection\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_flexible_group/src/EventSubscriber/RedirectSubscriber.php
@@ -12976,11 +12971,6 @@ parameters:
 			path: modules/social_features/social_group/social_group.module
 
 		-
-			message: "#^Function _social_group_get_current_group\\(\\) should return Drupal\\\\group\\\\Entity\\\\GroupInterface\\|null but returns object\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/social_group.module
-
-		-
 			message: "#^Function _social_group_grant_admin_role\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/social_group.module
@@ -13667,11 +13657,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method getDisplayName\\(\\) on Drupal\\\\user\\\\Entity\\\\User\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/Element/SocialGroupEntityAutocomplete.php
-
-		-
-			message: "#^Cannot call method getMember\\(\\) on Drupal\\\\group\\\\Entity\\\\GroupInterface\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_group/src/Element/SocialGroupEntityAutocomplete.php
 
