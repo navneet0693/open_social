@@ -6,7 +6,7 @@ use Drupal\Core\Entity\EntityReferenceSelection\SelectionWithAutocreateInterface
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\social_core\Entity\Element\EntityAutocomplete;
 use Drupal\Component\Utility\Tags;
-use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
 
 /**
  * Provides an Group member autocomplete form element.
@@ -19,13 +19,13 @@ use Drupal\user\Entity\User;
 class SocialGroupEntityAutocomplete extends EntityAutocomplete {
 
   /**
-   * Form element validation handler for entity_autocomplete elements.
+   * {@inheritdoc}
    */
   public static function validateEntityAutocomplete(array &$element, FormStateInterface $form_state, array &$complete_form, $select2 = FALSE) {
-    $duplicated_values = $value = [];
-
     // Load the current Group so we can see if there are existing members.
-    $group = _social_group_get_current_group();
+    if (($group = _social_group_get_current_group()) === NULL) {
+      return;
+    }
 
     if ($select2 !== TRUE) {
       $input_values = Tags::explode($element['#value']);
@@ -33,6 +33,9 @@ class SocialGroupEntityAutocomplete extends EntityAutocomplete {
     else {
       $input_values = $element['#value'];
     }
+
+    $duplicated_values = $value = [];
+    $storage = \Drupal::entityTypeManager()->getStorage('user');
 
     foreach ($input_values as $input) {
       $match = static::extractEntityIdFromAutocompleteInput($input);
@@ -60,10 +63,12 @@ class SocialGroupEntityAutocomplete extends EntityAutocomplete {
           'target_id' => $match,
         ];
 
-        $account = User::load($match);
         // User is already a member, add it to an array for the Form element
         // to render an error after all checks are gone.
-        if ($group->hasMember($account)) {
+        if (
+          ($account = $storage->load($match)) instanceof UserInterface &&
+          $group->hasMember($account)
+        ) {
           $duplicated_values[] = $account->getDisplayName();
         }
         // We need set "validate_reference" for element to prevent
