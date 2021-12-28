@@ -18951,11 +18951,6 @@ parameters:
 			path: modules/social_features/social_user/social_user.module
 
 		-
-			message: "#^Cannot call method fetchAllKeyed\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_user/social_user.module
-
-		-
 			message: "#^Function social_user_action_info_alter\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_user/social_user.module
