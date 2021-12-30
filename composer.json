@@ -144,10 +144,12 @@
                 "Redirection issue when interface language is different from content language": "https://www.drupal.org/files/issues/2020-06-01/redirect-interface_language_different_from_content_language_2991423-13.patch"
             },
             "drupal/socialblue": {
-                "Sky theme by default": "https://git.drupalcode.org/project/socialblue/-/merge_requests/52.diff"
+                "Sky theme by default": "https://git.drupalcode.org/project/socialblue/-/merge_requests/52.diff",
+                "YANG-6475 Make join methods for groups re-usable": "patches/re-use-group-join-methods-3256328-3.patch"
             },
             "drupal/socialbase": {
-                "Update deprecated function": "https://git.drupalcode.org/project/socialbase/-/merge_requests/75.diff"
+                "Update deprecated function": "https://git.drupalcode.org/project/socialbase/-/merge_requests/75.diff",
+                "YANG-6475 Make join methods for groups re-usable": "https://www.drupal.org/files/issues/2021-12-29/re-use-group-join-methods-3256324-3.patch"
             }
         }
     },
