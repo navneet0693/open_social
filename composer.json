@@ -143,13 +143,12 @@
             "drupal/redirect": {
                 "Redirection issue when interface language is different from content language": "https://www.drupal.org/files/issues/2020-06-01/redirect-interface_language_different_from_content_language_2991423-13.patch"
             },
-            "drupal/socialblue": {
-                "Sky theme by default": "https://git.drupalcode.org/project/socialblue/-/merge_requests/52.diff",
-                "YANG-6475 Make join methods for groups re-usable": "patches/re-use-group-join-methods-3256328-3.patch"
-            },
             "drupal/socialbase": {
-                "Update deprecated function": "https://git.drupalcode.org/project/socialbase/-/merge_requests/75.diff",
+                "[Internal] Add extra check for the file.": "https://git.drupalcode.org/project/socialbase/-/merge_requests/81.diff",
                 "YANG-6475 Make join methods for groups re-usable": "https://www.drupal.org/files/issues/2021-12-29/re-use-group-join-methods-3256324-3.patch"
+            },
+            "drupal/socialblue": {
+                "YANG-6475 Make join methods for groups re-usable": "patches/re-use-group-join-methods-3256328-3.patch"
             }
         }
     },
@@ -200,7 +199,7 @@
         "drupal/search_api": "1.21.0",
         "drupal/select2": "1.13.0",
         "drupal/shariff": "1.7",
-        "drupal/socialblue": "2.0.0",
+        "drupal/socialblue": "2.1.0",
         "drupal/swiftmailer": "2.0.0",
         "drupal/token": "1.9",
         "drupal/ultimate_cron": "2.0-alpha5",
