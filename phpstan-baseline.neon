@@ -11865,11 +11865,6 @@ parameters:
 			path: modules/social_features/social_group/modules/social_group_request/social_group_request.module
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Form\\\\FormInterface\\:\\:getEntity\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_group/modules/social_group_request/social_group_request.module
-
-		-
 			message: "#^Call to an undefined method Drupal\\\\activity_creator\\\\ActivityInterface\\:\\:getRelatedEntity\\(\\)\\.$#"
 			count: 2
 			path: modules/social_features/social_group/modules/social_group_request/social_group_request.module
@@ -11891,16 +11886,6 @@ parameters:
 
 		-
 			message: "#^Function social_group_request_entity_base_field_info\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_group/modules/social_group_request/social_group_request.module
-
-		-
-			message: "#^Function social_group_request_form_alter\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_group/modules/social_group_request/social_group_request.module
-
-		-
-			message: "#^Function social_group_request_form_alter\\(\\) has parameter \\$form_id with no type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_request/social_group_request.module
 
@@ -12635,18 +12620,8 @@ parameters:
 			path: modules/social_features/social_group/social_group.module
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:get\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_group/social_group.module
-
-		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getFileUri\\(\\)\\.$#"
 			count: 2
-			path: modules/social_features/social_group/social_group.module
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getName\\(\\)\\.$#"
-			count: 1
 			path: modules/social_features/social_group/social_group.module
 
 		-
@@ -12686,11 +12661,6 @@ parameters:
 
 		-
 			message: "#^Else branch is unreachable because previous condition is always true\\.$#"
-			count: 1
-			path: modules/social_features/social_group/social_group.module
-
-		-
-			message: "#^Expression in empty\\(\\) is not falsy\\.$#"
 			count: 1
 			path: modules/social_features/social_group/social_group.module
 
