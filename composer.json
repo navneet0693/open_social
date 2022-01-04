@@ -148,7 +148,7 @@
                 "YANG-6475 Make join methods for groups re-usable": "https://www.drupal.org/files/issues/2021-12-29/re-use-group-join-methods-3256324-3.patch"
             },
             "drupal/socialblue": {
-                "YANG-6475 Make join methods for groups re-usable": "patches/re-use-group-join-methods-3256328-3.patch"
+                "YANG-6475 Make join methods for groups re-usable": "https://www.drupal.org/files/issues/2021-12-29/re-use-group-join-methods-3256328-3.patch"
             }
         }
     },
