@@ -1030,14 +1030,3 @@ function social_profile_profile_presave(EntityInterface $profile) {
     $profile->set('profile_name', $profile_name);
   }
 }
-
-/**
- * Implements hook_form_alter().
- */
-function social_profile_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
-  if (in_array($form_id, [
-    'profile_profile_edit_form',
-  ])) {
-    $form['#attached']['library'][] = 'social_profile/admin';
-  }
-}
