@@ -37,6 +37,12 @@ class SocialGroupEntityAutocomplete extends EntityAutocomplete {
       $entity = $entity->getGroup();
     }
 
+    // We need set "validate_reference" for element to prevent receive notice
+    // Undefined index #validate_reference.
+    if (!isset($element['#validate_reference'])) {
+      $element['#validate_reference'] = FALSE;
+    }
+
     if (!$entity instanceof SocialGroupInterface) {
       parent::validateEntityAutocomplete($element, $form_state, $complete_form);
 
@@ -87,11 +93,7 @@ class SocialGroupEntityAutocomplete extends EntityAutocomplete {
         ) {
           $duplicated_values[] = $account->getDisplayName();
         }
-        // We need set "validate_reference" for element to prevent
-        // receive notice Undefined index #validate_reference.
-        if (!isset($element['#validate_reference'])) {
-          $element['#validate_reference'] = FALSE;
-        }
+
         // Validate input for every single user. This way we make sure that
         // The element validates one, or more users added in the autocomplete.
         // This is because Group doesn't allow adding multiple users at once,
