@@ -32,7 +32,9 @@ class SocialGroupEntityAutocomplete extends EntityAutocomplete {
     /** @var \Drupal\Core\Entity\ContentEntityFormInterface $form_object */
     $form_object = $form_state->getFormObject();
 
-    if (($entity = $form_object->getEntity()) instanceof GroupContentInterface) {
+    $entity = $form_object->getEntity();
+
+    if ($entity instanceof GroupContentInterface) {
       // Load the current Group, so we can see if there are existing members.
       $entity = $entity->getGroup();
     }
@@ -85,12 +87,11 @@ class SocialGroupEntityAutocomplete extends EntityAutocomplete {
           'target_id' => $match,
         ];
 
+        $account = $storage->load($match);
+
         // User is already a member, add it to an array for the Form element
         // to render an error after all checks are gone.
-        if (
-          ($account = $storage->load($match)) instanceof UserInterface &&
-          $entity->hasMember($account)
-        ) {
+        if ($account instanceof UserInterface && $entity->hasMember($account)) {
           $duplicated_values[] = $account->getDisplayName();
         }
 
