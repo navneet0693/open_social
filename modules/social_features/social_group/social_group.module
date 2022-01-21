@@ -1157,10 +1157,31 @@ function _social_group_cross_posting_group_type_validate(array $element, FormSta
 
 /**
  * Function to validate entries against group members.
+ *
+ * @param array $element
+ *   The element being processed.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The current state of the form.
+ * @param array $complete_form
+ *   The complete form structure.
+ *
+ * @deprecated in social:11.1.0 and is removed from social:12.0.0. Use
+ *   \Drupal\social_group\Element\SocialGroupEntityAutocomplete::validateEntityAutocompleteSelect2()
+ *   instead.
+ *
+ * @see https://www.drupal.org/node/3254715
  */
-function _social_group_unique_members($element, &$form_state, $complete_form) {
+function _social_group_unique_members(
+  array &$element,
+  FormStateInterface $form_state,
+  array $complete_form
+): void {
   // Call the autocomplete function to make sure enrollees are unique.
-  SocialGroupEntityAutocomplete::validateEntityAutocomplete($element, $form_state, $complete_form, TRUE);
+  SocialGroupEntityAutocomplete::validateEntityAutocompleteSelect2(
+    $element,
+    $form_state,
+    $complete_form,
+  );
 }
 
 /**
@@ -1856,7 +1877,7 @@ function social_group_preprocess_views_view(&$variables) {
  *
  * Sets an active class on stream tab when viewing group canonical page.
  */
-function social_group_preprocess_menu_local_task(&$variables) {
+function social_group_preprocess_menu_local_task(array &$variables): void {
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name != 'entity.group.canonical') {
     return;
@@ -1868,13 +1889,10 @@ function social_group_preprocess_menu_local_task(&$variables) {
     return;
   }
 
-  /** @var \Drupal\Core\Url $menu_url */
-  $menu_url = $link['#url'] ?? NULL;
-  if (!$menu_url) {
-    return;
-  }
-
-  if ($menu_url->getRouteName() === 'social_group.stream') {
+  if (
+    $link['#url'] instanceof Url &&
+    $link['#url']->getRouteName() === 'social_group.stream'
+  ) {
     $variables['element']['#active'] = TRUE;
     $variables['attributes']['class'][] = 'active';
   }
