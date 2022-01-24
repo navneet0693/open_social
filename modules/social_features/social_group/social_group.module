@@ -1883,19 +1883,13 @@ function social_group_preprocess_menu_local_task(array &$variables): void {
     return;
   }
 
-  /** @var array $link */
-  $link = $variables['link'] ?? NULL;
-  if (!$link) {
-    return;
-  }
-
-  if (
-    $link['#url'] instanceof Url &&
-    $link['#url']->getRouteName() === 'social_group.stream'
-  ) {
+  if (isset($variables['link']['#url'])
+    && $variables['link']['#url'] instanceof Url
+    && $variables['link']['#url']->getRouteName() === 'social_group.stream') {
     $variables['element']['#active'] = TRUE;
     $variables['attributes']['class'][] = 'active';
   }
+
 }
 
 /**
