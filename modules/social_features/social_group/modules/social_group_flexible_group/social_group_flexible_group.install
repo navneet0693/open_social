@@ -422,7 +422,7 @@ function social_group_flexible_group_update_10303(&$sandbox) {
 /**
  * Allow extending list of allowed join methods dynamically.
  */
-function social_group_flexible_group_update_11001(): string {
+function social_group_flexible_group_update_11101(): string {
   /** @var \Drupal\update_helper\UpdaterInterface $update_helper */
   $update_helper = \Drupal::service('update_helper.updater');
 
