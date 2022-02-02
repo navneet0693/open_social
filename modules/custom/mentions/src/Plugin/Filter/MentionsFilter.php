@@ -38,7 +38,7 @@ class MentionsFilter extends FilterBase implements ContainerFactoryPluginInterfa
   /**
    * The entity type manager.
    */
-  protected EntityTypeManagerInterface $entityTypeManager;
+  protected EntityTypeManagerInterface $entityManager;
 
   /**
    * The renderer service.
@@ -86,7 +86,7 @@ class MentionsFilter extends FilterBase implements ContainerFactoryPluginInterfa
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity type manager.
    * @param \Drupal\Core\Render\RendererInterface $render
    *   The renderer.
@@ -112,7 +112,7 @@ class MentionsFilter extends FilterBase implements ContainerFactoryPluginInterfa
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    $entity_type_manager = $container->get('entity_type.manager');
+    $entity_manager = $container->get('entity_type.manager');
     $renderer = $container->get('renderer');
     $config = $container->get('config.factory');
     $mentions_manager = $container->get('plugin.manager.mentions');
@@ -120,7 +120,7 @@ class MentionsFilter extends FilterBase implements ContainerFactoryPluginInterfa
     return new static($configuration,
       $plugin_id,
       $plugin_definition,
-      $entity_type_manager,
+      $entity_manager,
       $renderer,
       $config,
       $mentions_manager,
