@@ -268,7 +268,8 @@ function social_topic_widget_alter(array &$form) {
 
   // Change the widget if more than X.
   if (count($form['field_topic_type']['widget']['#options']) >= $config->get('social_topic_type_select_changer')) {
-    $form['field_topic_type']['widget']['#type'] = 'select';
+    $form['field_topic_type']['widget']['#type'] = 'select2';
+    $form['field_topic_type']['widget']['#multiple'] = TRUE;
   }
 }
 
