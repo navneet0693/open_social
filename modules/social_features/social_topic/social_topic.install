@@ -476,7 +476,7 @@ function social_topic_update_10303() {
 /**
  * Make topic type multiple.
  */
-function social_topic_update_11001(): void {
+function social_topic_update_11101(): void {
   /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $field_storage_config_storage */
   $field_storage_config_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config');
 
