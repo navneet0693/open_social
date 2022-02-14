@@ -11715,11 +11715,6 @@ parameters:
 			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/Block/SocialGroupInviteNotificationBlock.php
 
 		-
-			message: "#^Cannot call method id\\(\\) on Drupal\\\\group\\\\Entity\\\\GroupInterface\\|null\\.$#"
-			count: 3
-			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/Block/SocialInviteLocalActionsBlock.php
-
-		-
 			message: "#^Method Drupal\\\\social_group_invite\\\\Routing\\\\RouteSubscriber\\:\\:alterRoutes\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_invite/src/Routing/RouteSubscriber.php
@@ -19593,4 +19588,44 @@ parameters:
 			message: "#^Parameter \\#1 \\$raw of static method Drupal\\\\Component\\\\Serialization\\\\Yaml\\:\\:decode\\(\\) expects string, string\\|false given\\.$#"
 			count: 2
 			path: src/Installer/OptionalModuleManager.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Form/SocialGroupInviteResendConfirmForm.php
+
+		-
+			message: "#^Method Drupal\\\\social_group_invite\\\\Form\\\\SocialGroupInviteVBOConfirmAction\\:\\:buildForm\\(\\) has parameter \\$display_id with no type specified\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Form/SocialGroupInviteVBOConfirmAction.php
+
+		-
+			message: "#^Method Drupal\\\\social_group_invite\\\\Form\\\\SocialGroupInviteVBOConfirmAction\\:\\:buildForm\\(\\) has parameter \\$view_id with no type specified\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Form/SocialGroupInviteVBOConfirmAction.php
+
+		-
+			message: "#^Method Drupal\\\\social_group_invite\\\\Plugin\\\\Action\\\\SocialGroupInviteResend\\:\\:execute\\(\\) has parameter \\$entity with no type specified\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/Action/SocialGroupInviteResend.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/Action/SocialGroupInviteResend.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/Block/SocialInviteLocalActionsBlock.php
+
+		-
+			message: "#^Method Drupal\\\\social_group_invite\\\\Plugin\\\\views\\\\field\\\\SocialGroupInviteViewsBulkOperationsBulkForm\\:\\:viewsFormValidate\\(\\) has parameter \\$form with no type specified\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/views/field/SocialGroupInviteViewsBulkOperationsBulkForm.php
+
+		-
+			message: "#^Parameter \\#1 \\$filters of method Drupal\\\\views\\\\ViewExecutable\\:\\:setExposedInput\\(\\) expects array\\<string\\>, array\\<string, true\\> given\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/views/field/SocialGroupInviteViewsBulkOperationsBulkForm.php
 

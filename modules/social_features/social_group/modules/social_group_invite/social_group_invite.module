@@ -675,10 +675,14 @@ function social_group_invite_mail_alter(&$message) {
         if (!empty($resent_invites)) {
           // The mail params list should contain group content entity.
           /* @see ginvite_group_content_insert() */
-          if ($params['group_content'] instanceof GroupContentInterface) {
+          if (
+            ($params['group_content'] instanceof GroupContentInterface) &&
+            in_array($params['group_content']->uuid(), $resent_invites)
+          ) {
             $overridden_body = $invite_settings['invite_resend_message'];
             // Remove handled resent invite from list.
-            $tempstore->set(SocialGroupInviteResend::TEMP_STORE_ID, array_diff($resent_invites, [(int) $params['group_content']->id()]));
+            unset($resent_invites[$params['group_content']->uuid()]);
+            $tempstore->set(SocialGroupInviteResend::TEMP_STORE_ID, $resent_invites);
           }
         }
       }
@@ -805,7 +809,7 @@ function social_group_invite_entity_operation_alter(array &$operations, EntityIn
       'url' => Url::fromRoute('social_group_invite.resend_invite',
         [
           'group' => $entity->getGroup()->id(),
-          'group_content' => $entity->id()
+          'group_content' => $entity->id(),
         ]
       ),
     ];

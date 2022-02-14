@@ -3,13 +3,11 @@
 namespace Drupal\social_group_invite\Form;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
-use Drupal\grequest\Plugin\GroupContentEnabler\GroupMembershipRequest;
-use Drupal\group\Entity\Group;
-use Drupal\group\Entity\GroupContent;
 use Drupal\group\Entity\GroupContentInterface;
 use Drupal\group\Entity\GroupInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -22,7 +20,7 @@ class SocialGroupInviteResendConfirmForm extends ConfirmFormBase implements Cont
   /**
    * Invite (a group content entity).
    *
-   * @var \Drupal\group\Entity\GroupContentInterface
+   * @var \Drupal\group\Entity\GroupContentInterface|null
    */
   protected $invite;
 
@@ -61,7 +59,9 @@ class SocialGroupInviteResendConfirmForm extends ConfirmFormBase implements Cont
    * {@inheritdoc}
    */
   public function getDescription(): TranslatableMarkup {
-    return $this->t("Send a reminder to <strong>@user</strong>?", ['@user' => $this->invite->getEntity()->label()]);
+    return $this->t("Send a reminder to <strong>@user</strong>?", [
+      '@user' => $this->invite instanceof EntityInterface ? $this->invite->getEntity()->label() : 'member',
+    ]);
   }
 
   /**
@@ -77,7 +77,7 @@ class SocialGroupInviteResendConfirmForm extends ConfirmFormBase implements Cont
   public function buildForm(array $form, FormStateInterface $form_state, GroupInterface $group = NULL, GroupContentInterface $group_content = NULL): array {
     $this->invite = $group_content;
 
-    $form =  parent::buildForm($form, $form_state);
+    $form = parent::buildForm($form, $form_state);
     $form['#attributes']['class'][] = 'form--default';
     $form['actions']['#prefix'] = '</div></div>';
     $form['actions']['cancel']['#attributes']['class'][] = 'btn btn-flat';
@@ -90,13 +90,13 @@ class SocialGroupInviteResendConfirmForm extends ConfirmFormBase implements Cont
    *
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
 
     if (!($this->invite instanceof GroupContentInterface)) {
       return;
     }
 
-    /** @var \Drupal\Core\Action\ActionInterface $action */
+    /** @var \Drupal\social_group_invite\Plugin\Action\SocialGroupInviteResend $action */
     $action = $this->actionManager->createInstance('social_group_invite_resend_action');
     $action->execute($this->invite);
 

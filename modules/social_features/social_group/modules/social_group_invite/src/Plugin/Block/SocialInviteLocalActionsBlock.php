@@ -125,6 +125,7 @@ class SocialInviteLocalActionsBlock extends BlockBase implements ContainerFactor
 
     // Get current group so we can build correct links.
     if (_social_group_invite_current_type_enabled_invites()) {
+      /** @var \Drupal\group\Entity\GroupInterface $group */
       $group = _social_group_get_current_group();
 
       $button = [

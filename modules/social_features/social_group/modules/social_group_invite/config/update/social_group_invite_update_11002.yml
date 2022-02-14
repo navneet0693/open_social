@@ -5,9 +5,19 @@ views.view.social_group_invitations:
       display:
         default:
           display_options:
+            access:
+              options:
+                group_permission: { }
             fields:
               delete_group_content: { }
               dropbutton: { }
+    change:
+      display:
+        default:
+          display_options:
+            access:
+              type: group_managers_only
+              options: {  }
     add:
       display:
         default:
@@ -71,7 +81,7 @@ views.view.social_group_invitations:
                   0:
                     action_id: social_group_invite_resend_action
                     preconfiguration:
-                      label_override: 'Resend invites'
+                      label_override: 'Send reminders'
                   3:
                     action_id: social_group_delete_group_content_action
                     preconfiguration:
@@ -129,4 +139,3 @@ views.view.social_group_invitations:
                 destination: true
                 entity_type: group_content
                 plugin_id: entity_operations
-

@@ -71,7 +71,7 @@ class SocialGroupInviteResend extends ViewsBulkOperationsActionBase implements C
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
     return new static(
       $configuration,
       $plugin_id,
@@ -87,7 +87,7 @@ class SocialGroupInviteResend extends ViewsBulkOperationsActionBase implements C
    * @throws \Drupal\Core\TempStore\TempStoreException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function execute($entity = NULL) {
+  public function execute($entity = NULL): void {
     // This action allows to resend invitations for each member.
     $time = $this->time->getCurrentTime();
 
@@ -99,12 +99,17 @@ class SocialGroupInviteResend extends ViewsBulkOperationsActionBase implements C
     // higher than old ones.
     $duplicate->set('created', $time);
     $duplicate->setChangedTime($time);
-    $duplicate->save();
 
     // Set new invite to temp storage. This needs to identify if recipient of
     // this invite should receive the altered invite message.
+    // Unfortunately, sending emails is triggering on entity inserting,
+    // and we don't have an "id" yet, so we should "uuid" property.
+    /* @see ginvite_group_content_insert() */
     $values = (array) $this->tempStore->get(SocialGroupInviteResend::TEMP_STORE_ID);
-    $this->tempStore->set(SocialGroupInviteResend::TEMP_STORE_ID, $values[] = (int) $duplicate->id());
+    $values[$duplicate->uuid()] = $duplicate->uuid();
+    $this->tempStore->set(SocialGroupInviteResend::TEMP_STORE_ID, $values);
+
+    $duplicate->save();
 
     // Remove original invitation as don't needed.
     $entity->delete();

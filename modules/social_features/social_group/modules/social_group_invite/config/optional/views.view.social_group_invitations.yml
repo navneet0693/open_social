@@ -27,9 +27,8 @@ display:
     position: 0
     display_options:
       access:
-        type: group_permission
-        options:
-          group_permission: 'administer members'
+        type: group_managers_only
+        options: {  }
       cache:
         type: tag
         options: {  }
@@ -201,7 +200,7 @@ display:
             0:
               action_id: social_group_invite_resend_action
               preconfiguration:
-                label_override: 'Resend invites'
+                label_override: 'Send reminders'
             3:
               action_id: social_group_delete_group_content_action
               preconfiguration:

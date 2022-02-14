@@ -148,7 +148,7 @@ function social_group_invite_update_11001(): void {
 /**
  * Add views bulk operations to "manage invites" page.
  */
-function social_group_invite_update_11002() {
+function social_group_invite_update_11002(): string {
   /** @var \Drupal\update_helper\Updater $updateHelper */
   $updateHelper = \Drupal::service('update_helper.updater');
 
