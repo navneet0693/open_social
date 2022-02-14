@@ -7,10 +7,12 @@
 
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\message\Entity\Message;
 use Drupal\node\NodeInterface;
 use Drupal\votingapi\Entity\Vote;
 use Drupal\Core\Render\Markup;
 use Drupal\node\Entity\Node;
+use Drupal\votingapi\VoteInterface;
 
 /**
  * Implements hook_token_info().
@@ -53,7 +55,11 @@ function social_like_tokens($type, $tokens, array $data, array $options, Bubblea
   if ($type == 'social_like' && !empty($data['message'])) {
     /** @var \Drupal\message\Entity\Message $message */
     $message = $data['message'];
-    if ($vote = Vote::load($message->getFieldValue('field_message_related_object', 'target_id'))) {
+
+    if (
+      ($message instanceof Message) &&
+      $vote = Vote::load($message->getFieldValue('field_message_related_object', 'target_id'))
+    ) {
       foreach ($tokens as $name => $original) {
         switch ($name) {
 
@@ -146,6 +152,9 @@ function social_like_tokens_alter(array &$replacements, array $context, Bubbleab
           /** @var \Drupal\social_activity\EmailTokenServices $email_token_services */
           $email_token_services = \Drupal::service('social_activity.email_token_services');
           $vote = $email_token_services->getRelatedObject($message);
+          if (!($vote instanceof VoteInterface)) {
+            return;
+          }
 
           /** @var \Drupal\votingapi\Entity\Vote $vote */
           $storage = \Drupal::entityTypeManager()

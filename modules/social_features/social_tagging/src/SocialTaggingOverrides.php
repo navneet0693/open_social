@@ -5,11 +5,14 @@ namespace Drupal\social_tagging;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryOverrideInterface;
 use Drupal\Core\Config\StorageInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Configuration override.
  */
 class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
+
+  use StringTranslationTrait;
 
   /**
    * Whether this config override should apply to the provided configurations.
@@ -96,7 +99,7 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
     // Prepare fields.
     $fields['social_tagging'] = [
       'identifier' => 'tag',
-      'label' => 'Tags',
+      'label' => $this->t('Tags'),
     ];
 
     if ($tag_service->allowSplit()) {
@@ -207,7 +210,7 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
     $fields = [];
     $fields['social_tagging_target_id'] = [
       'identifier' => 'tag',
-      'label' => 'Tags',
+      'label' => $this->t('Tags'),
     ];
 
     if ($tag_service->allowSplit()) {
@@ -252,10 +255,19 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
         }
 
         $relationship = ($config_name === 'views.view.group_topics' || $config_name === 'views.view.group_events') ? 'gc__node' : 'none';
-        $table = ($config_name === 'views.view.newest_groups') ? 'group__social_tagging' : 'node__social_tagging';
 
-        if ($tag_service->profileActive()) {
-          $table = 'profile__social_tagging';
+        // Select the correct table, based on the config.
+        switch ($config_name) {
+          case 'views.view.newest_groups':
+            $table = 'group__social_tagging';
+            break;
+
+          case 'views.view.newest_users':
+            $table = 'profile__social_tagging';
+            break;
+
+          default:
+            $table = 'node__social_tagging';
         }
 
         foreach ($fields as $field => $data) {
