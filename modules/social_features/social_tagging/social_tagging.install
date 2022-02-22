@@ -46,9 +46,6 @@ function social_tagging_uninstall(): void {
   // Remove the search api fields.
   _social_tagging_remove_fields_search_api();
 
-  // Update field definitions.
-  _social_tagging_field_definitions_update();
-
   try {
     if (\Drupal::moduleHandler()->moduleExists('social_search')) {
       social_search_resave_search_indexes(['social_content', 'social_groups']);
@@ -168,9 +165,24 @@ function social_tagging_update_8003(): void {
 }
 
 /**
+ * Update the field definitions on install, or in an update hook.
+ */
+function _social_profile_field_definitions_update($field): void {
+  // Update definitions and schema.
+  $list = \Drupal::entityDefinitionUpdateManager()->getChangeList();
+  if (!empty($list[$field])) {
+    foreach ($list[$field] as $item) {
+      \Drupal::entityDefinitionUpdateManager()->updateEntityType($item);
+    }
+  }
+}
+
+/**
  * Toggle user index.
  */
 function social_tagging_update_8004(): void {
+  _social_profile_field_definitions_update('social_tagging');
+
   // Toggle the index users.
   try {
     // If the search module is enabled we need to update the group index.
@@ -189,8 +201,9 @@ function social_tagging_update_8004(): void {
 function social_tagging_update_8005(): void {
   _social_tagging_add_fields_search_api();
 
-  // Update field definitions.
-  _social_tagging_field_definitions_update();
+  // Update definitions and schema.
+  _social_profile_field_definitions_update('social_tagging');
+
   // Toggle the index users.
   try {
     // If the search module is enabled we need to update the group index.
