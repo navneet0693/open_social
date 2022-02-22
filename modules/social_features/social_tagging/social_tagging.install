@@ -13,7 +13,7 @@ use Drupal\search_api\Item\Field;
 /**
  * Install the module.
  */
-function social_tagging_install() {
+function social_tagging_install(): void {
   // Grant the default permissions for this feature.
   user_role_grant_permissions(
     'sitemanager',
@@ -42,7 +42,7 @@ function social_tagging_install() {
 /**
  * Uninstall the module.
  */
-function social_tagging_uninstall() {
+function social_tagging_uninstall(): void {
   // Remove the search api fields.
   _social_tagging_remove_fields_search_api();
 
@@ -62,7 +62,7 @@ function social_tagging_uninstall() {
 /**
  * Add fields to search API.
  */
-function _social_tagging_search_api_fields() {
+function _social_tagging_search_api_fields(): array {
   return [
     'social_content' => 'node',
     'social_groups' => 'group',
@@ -73,7 +73,7 @@ function _social_tagging_search_api_fields() {
 /**
  * Add fields to search API.
  */
-function _social_tagging_add_fields_search_api() {
+function _social_tagging_add_fields_search_api(): void {
   $fields = _social_tagging_search_api_fields();
 
   foreach ($fields as $index => $type) {
@@ -97,7 +97,7 @@ function _social_tagging_add_fields_search_api() {
 /**
  * Remove fields from search API.
  */
-function _social_tagging_remove_fields_search_api() {
+function _social_tagging_remove_fields_search_api(): void {
   $fields = _social_tagging_search_api_fields();
 
   foreach ($fields as $index => $type) {
@@ -115,7 +115,7 @@ function _social_tagging_remove_fields_search_api() {
 /**
  * Exclude landing pages from tagging.
  */
-function social_tagging_update_8001() {
+function social_tagging_update_8001(): void {
   // Set allow to true, since that's the case by default.
   $config = \Drupal::getContainer()->get('config.factory')->getEditable('social_tagging.settings');
   $config->set('tag_node_type_landing_page', FALSE)->save();
@@ -124,7 +124,7 @@ function social_tagging_update_8001() {
 /**
  * Toggle group index.
  */
-function social_tagging_update_8002() {
+function social_tagging_update_8002(): void {
   // Toggle the index groups.
   try {
     // If the search module is enabled we need to update the group index.
@@ -140,7 +140,7 @@ function social_tagging_update_8002() {
 /**
  * Install Tagging base field to profile entity type.
  */
-function social_tagging_update_8003() {
+function social_tagging_update_8003(): void {
   $field_storage_definition = BaseFieldDefinition::create('entity_reference')
     ->setLabel(t('Tagging'))
     ->setDescription(t('Tagging field.'))
@@ -170,7 +170,7 @@ function social_tagging_update_8003() {
 /**
  * Toggle user index.
  */
-function social_tagging_update_8004() {
+function social_tagging_update_8004(): void {
   // Toggle the index users.
   try {
     // If the search module is enabled we need to update the group index.
@@ -186,7 +186,7 @@ function social_tagging_update_8004() {
 /**
  * Add the search api fields.
  */
-function social_tagging_update_8005() {
+function social_tagging_update_8005(): void {
   _social_tagging_add_fields_search_api();
 
   // Update field definitions.

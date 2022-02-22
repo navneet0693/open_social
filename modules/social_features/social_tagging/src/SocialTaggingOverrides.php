@@ -6,6 +6,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryOverrideInterface;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\social_tagging\SocialTaggingService;
 
 /**
  * Configuration override.
@@ -13,6 +14,23 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
 
   use StringTranslationTrait;
+
+  /**
+   * The Social Tagging Service.
+   *
+   * @var \Drupal\social_tagging\SocialTaggingService
+   */
+  protected $taggingService;
+
+  /**
+   * Constructs the service.
+   *
+   * @param \Drupal\social_tagging\SocialTaggingService $tagging_service
+   *   The Social Tagging Service.
+   */
+  public function __construct(SocialTaggingService $tagging_service) {
+    $this->taggingService = $tagging_service;
+  }
 
   /**
    * Whether this config override should apply to the provided configurations.
@@ -67,8 +85,7 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
 
     $overrides = [];
 
-    /** @var \Drupal\social_tagging\SocialTaggingService $tag_service */
-    $tag_service = \Drupal::service('social_tagging.tag_service');
+    $tag_service = $this->taggingService;
 
     // Check if tagging is active.
     if (!($tag_service->active() && $tag_service->hasContent())) {
