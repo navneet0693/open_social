@@ -113,6 +113,7 @@ function _social_tagging_remove_fields_search_api(): void {
  * Update the field definitions on install, or in an update hook.
  *
  * @param string $field
+ *  The field definition you want to update.
  */
 function _social_profile_field_definitions_update(string $field): void {
   // Update definitions and schema.
