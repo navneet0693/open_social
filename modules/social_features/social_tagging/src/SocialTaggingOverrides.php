@@ -3,6 +3,7 @@
 namespace Drupal\social_tagging;
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ConfigFactoryOverrideInterface;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -22,13 +23,23 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
   protected $taggingService;
 
   /**
+   * The config factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * Constructs the service.
    *
    * @param \Drupal\social_tagging\SocialTaggingService $tagging_service
    *   The Social Tagging Service.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    */
-  public function __construct(SocialTaggingService $tagging_service) {
+  public function __construct(SocialTaggingService $tagging_service, ConfigFactoryInterface $config_factory) {
     $this->taggingService = $tagging_service;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -85,6 +96,7 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
     $overrides = [];
 
     $tag_service = $this->taggingService;
+    $config = $this->configFactory;
 
     // Check if tagging is active.
     if (!($tag_service->active() && $tag_service->hasContent())) {
@@ -93,7 +105,7 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
 
     // Remove tagging field from search index if not needed.
     if (!$tag_service->groupActive()) {
-      $field_settings = \Drupal::configFactory()
+      $field_settings = $config
         ->getEditable('search_api.index.social_groups')
         ->get('field_settings');
 
@@ -103,7 +115,7 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
     }
 
     if (!$tag_service->profileActive()) {
-      $field_settings = \Drupal::configFactory()
+      $field_settings = $config
         ->getEditable('search_api.index.social_users')
         ->get('field_settings');
 

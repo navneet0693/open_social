@@ -18155,11 +18155,6 @@ parameters:
 			path: modules/social_features/social_tagging/src/SocialTaggingOverrides.php
 
 		-
-			message: "#^\\\\Drupal calls should be avoided in classes, use dependency injection instead$#"
-			count: 1
-			path: modules/social_features/social_tagging/src/SocialTaggingOverrides.php
-
-		-
 			message: "#^Parameter \\#1 \\$tid of method Drupal\\\\taxonomy\\\\TermStorage\\:\\:loadParents\\(\\) expects int, int\\|string\\|null given\\.$#"
 			count: 1
 			path: modules/social_features/social_tagging/src/SocialTaggingService.php
