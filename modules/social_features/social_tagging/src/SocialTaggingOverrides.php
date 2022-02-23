@@ -12,7 +12,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  */
 class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
 
-  use StringTranslationTrait;Add tagging field to the search index
+  use StringTranslationTrait;
 
   /**
    * The Social Tagging Service.
@@ -25,7 +25,7 @@ class SocialTaggingOverrides implements ConfigFactoryOverrideInterface {
    * Constructs the service.
    *
    * @param \Drupal\social_tagging\SocialTaggingService $tagging_service
-   *    The Social Tagging Service.
+   *   The Social Tagging Service.
    */
   public function __construct(SocialTaggingService $tagging_service) {
     $this->taggingService = $tagging_service;
