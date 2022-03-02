@@ -34,7 +34,7 @@ class EnrollRequestDeclineForm extends FormBase {
    *
    * @var \Drupal\Core\Routing\RedirectDestinationInterface
    */
-  protected RedirectDestinationInterface $redirectDestination;
+  protected $redirectDestination;
 
   /**
    * The current user.
