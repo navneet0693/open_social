@@ -67,7 +67,7 @@ class EnrollRequestDeclineForm extends FormBase {
   /**
    * The Social Profile name service.
    *
-   * @var \Drupal\social_profile\SocialProfileNameService;
+   * @var \Drupal\social_profile\SocialProfileNameService
    */
   protected SocialProfileNameService $socialProfileNameService;
 
