@@ -380,9 +380,6 @@ function social_private_message_thread_view_alter(array &$build, EntityInterface
       '#type' => 'link',
       '#url' => $url,
       '#title' => t('Delete thread'),
-      '#attributes' => [
-        'title' => t('Delete thread'),
-      ],
     ];
   }
   else {
