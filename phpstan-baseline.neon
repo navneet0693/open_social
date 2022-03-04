@@ -26,26 +26,6 @@ parameters:
 			path: modules/custom/activity_basics/activity_basics.module
 
 		-
-			message: "#^Function _activity_basics_entity_action\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/activity_basics/activity_basics.module
-
-		-
-			message: "#^Function activity_basics_entity_insert\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/activity_basics/activity_basics.module
-
-		-
-			message: "#^Function activity_basics_entity_update\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/activity_basics/activity_basics.module
-
-		-
-			message: "#^Function activity_basics_social_group_move\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/activity_basics/activity_basics.module
-
-		-
 			message: "#^Method Drupal\\\\activity_basics\\\\Plugin\\\\ActivityAction\\\\CreateActivityAction\\:\\:create\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/custom/activity_basics/src/Plugin/ActivityAction/CreateActivityAction.php
@@ -97,11 +77,16 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getOwnerId\\(\\)\\.$#"
-			count: 3
+			count: 1
 			path: modules/custom/activity_basics/src/Plugin/ActivityContext/OwnerActivityContext.php
 
 		-
 			message: "#^Cannot call method get\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
+			count: 1
+			path: modules/custom/activity_basics/src/Plugin/ActivityContext/OwnerActivityContext.php
+
+		-
+			message: "#^Result of && is always true\\.$#"
 			count: 1
 			path: modules/custom/activity_basics/src/Plugin/ActivityContext/OwnerActivityContext.php
 
@@ -166,11 +151,6 @@ parameters:
 			path: modules/custom/activity_creator/activity.page.inc
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\:\\:referencedEntities\\(\\)\\.$#"
-			count: 1
-			path: modules/custom/activity_creator/activity.page.inc
-
-		-
 			message: "#^Cannot call method getFileUri\\(\\) on Drupal\\\\file\\\\Entity\\\\File\\|null\\.$#"
 			count: 1
 			path: modules/custom/activity_creator/activity.page.inc
@@ -182,11 +162,6 @@ parameters:
 
 		-
 			message: "#^If condition is always true\\.$#"
-			count: 1
-			path: modules/custom/activity_creator/activity.page.inc
-
-		-
-			message: "#^Parameter \\#1 \\$text of static method Drupal\\\\Core\\\\Link\\:\\:fromTextAndUrl\\(\\) expects string, array given\\.$#"
 			count: 1
 			path: modules/custom/activity_creator/activity.page.inc
 
@@ -421,27 +396,22 @@ parameters:
 			path: modules/custom/activity_creator/src/ActivityAccessControlHandler.php
 
 		-
-			message: "#^Parameter \\#1 \\$condition of static method Drupal\\\\Core\\\\Access\\\\AccessResult\\:\\:allowedIf\\(\\) expects bool, bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface given\\.$#"
-			count: 1
-			path: modules/custom/activity_creator/src/ActivityAccessControlHandler.php
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getCommentedEntity\\(\\)\\.$#"
-			count: 1
-			path: modules/custom/activity_creator/src/ActivityFactory.php
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getParentComment\\(\\)\\.$#"
-			count: 1
-			path: modules/custom/activity_creator/src/ActivityFactory.php
-
-		-
 			message: "#^Cannot call method fetchField\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
 			count: 1
 			path: modules/custom/activity_creator/src/ActivityFactory.php
 
 		-
-			message: "#^Cannot call method getCommentedEntity\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
+			message: "#^Cannot call method getCommentedEntity\\(\\) on Drupal\\\\comment\\\\Entity\\\\Comment\\|null\\.$#"
+			count: 1
+			path: modules/custom/activity_creator/src/ActivityFactory.php
+
+		-
+			message: "#^Cannot call method getEntityTypeId\\(\\) on Drupal\\\\Core\\\\Entity\\\\FieldableEntityInterface\\|null\\.$#"
+			count: 1
+			path: modules/custom/activity_creator/src/ActivityFactory.php
+
+		-
+			message: "#^Cannot call method id\\(\\) on Drupal\\\\Core\\\\Entity\\\\FieldableEntityInterface\\|null\\.$#"
 			count: 1
 			path: modules/custom/activity_creator/src/ActivityFactory.php
 
@@ -556,6 +526,11 @@ parameters:
 			path: modules/custom/activity_creator/src/ActivityFactory.php
 
 		-
+			message: "#^Parameter \\#1 \\$ids of static method Drupal\\\\Core\\\\Entity\\\\EntityBase\\:\\:loadMultiple\\(\\) expects array\\|null, array\\|int\\<min, \\-1\\>\\|int\\<1, max\\> given\\.$#"
+			count: 1
+			path: modules/custom/activity_creator/src/ActivityFactory.php
+
+		-
 			message: "#^Parameter \\#1 \\$message of method Drupal\\\\activity_creator\\\\ActivityFactory\\:\\:getAggregationSettings\\(\\) expects Drupal\\\\message\\\\Entity\\\\Message, Drupal\\\\message\\\\MessageInterface given\\.$#"
 			count: 1
 			path: modules/custom/activity_creator/src/ActivityFactory.php
@@ -601,11 +576,6 @@ parameters:
 			path: modules/custom/activity_creator/src/ActivityHtmlRouteProvider.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of static method Drupal\\\\Core\\\\Link\\:\\:fromTextAndUrl\\(\\) expects string, string\\|null given\\.$#"
-			count: 1
-			path: modules/custom/activity_creator/src/ActivityListBuilder.php
-
-		-
 			message: "#^Cannot call method fetchCol\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
 			count: 1
 			path: modules/custom/activity_creator/src/ActivityNotifications.php
@@ -622,6 +592,11 @@ parameters:
 
 		-
 			message: "#^Method Drupal\\\\activity_creator\\\\ActivityNotifications\\:\\:create\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: modules/custom/activity_creator/src/ActivityNotifications.php
+
+		-
+			message: "#^Method Drupal\\\\activity_creator\\\\ActivityNotifications\\:\\:getActivityIdsByEntity\\(\\) should return array but returns array\\|int\\.$#"
 			count: 1
 			path: modules/custom/activity_creator/src/ActivityNotifications.php
 
@@ -739,6 +714,11 @@ parameters:
 			message: "#^Variable \\$vote in PHPDoc tag @var does not exist\\.$#"
 			count: 1
 			path: modules/custom/activity_creator/src/Entity/Activity.php
+
+		-
+			message: "#^Class Drupal\\\\activity_creator\\\\Form\\\\ActivityDeleteForm extends @internal class Drupal\\\\Core\\\\Entity\\\\ContentEntityDeleteForm\\.$#"
+			count: 1
+			path: modules/custom/activity_creator/src/Form/ActivityDeleteForm.php
 
 		-
 			message: "#^Method Drupal\\\\activity_creator\\\\Form\\\\ActivityForm\\:\\:save\\(\\) should return int but return statement is missing\\.$#"
@@ -1406,6 +1386,11 @@ parameters:
 			path: modules/custom/activity_send/modules/activity_send_email/src/Plugin/QueueWorker/ActivitySendEmailWorker.php
 
 		-
+			message: "#^Result of && is always true\\.$#"
+			count: 1
+			path: modules/custom/activity_send/modules/activity_send_email/src/Plugin/QueueWorker/ActivitySendEmailWorker.php
+
+		-
 			message: "#^Variable \\$group in empty\\(\\) always exists and is not falsy\\.$#"
 			count: 1
 			path: modules/custom/activity_send/modules/activity_send_email/src/Plugin/QueueWorker/ActivitySendEmailWorker.php
@@ -1616,16 +1601,6 @@ parameters:
 			path: modules/custom/activity_viewer/src/Plugin/views/filter/ActivityPostVisibilityAccess.php
 
 		-
-			message: "#^Method Drupal\\\\activity_viewer\\\\Plugin\\\\views\\\\filter\\\\ActivityPostVisibilityAccess\\:\\:canExpose\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/activity_viewer/src/Plugin/views/filter/ActivityPostVisibilityAccess.php
-
-		-
-			message: "#^Method Drupal\\\\activity_viewer\\\\Plugin\\\\views\\\\filter\\\\ActivityPostVisibilityAccess\\:\\:query\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/activity_viewer/src/Plugin/views/filter/ActivityPostVisibilityAccess.php
-
-		-
 			message: "#^Parameter \\#2 \\$value of method Drupal\\\\Core\\\\Database\\\\Query\\\\Condition\\:\\:condition\\(\\) expects array\\|Drupal\\\\Core\\\\Database\\\\Query\\\\SelectInterface\\|string\\|null, int given\\.$#"
 			count: 3
 			path: modules/custom/activity_viewer/src/Plugin/views/filter/ActivityPostVisibilityAccess.php
@@ -1659,61 +1634,6 @@ parameters:
 			message: "#^PHPDoc tag @param for parameter \\$entity_repository with type Drupal\\\\Core\\\\Entity\\\\EntityRepositoryInterface\\|null is not subtype of native type Drupal\\\\Core\\\\Entity\\\\EntityRepositoryInterface\\.$#"
 			count: 1
 			path: modules/custom/activity_viewer/src/Plugin/views/row/ActivityRow.php
-
-		-
-			message: "#^Function alternative_frontpage_install\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/alternative_frontpage.install
-
-		-
-			message: "#^Call to an undefined method Symfony\\\\Contracts\\\\EventDispatcher\\\\Event\\:\\:getRequest\\(\\)\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/EventSubscriber/RedirectHomepageSubscriber.php
-
-		-
-			message: "#^Call to an undefined method Symfony\\\\Contracts\\\\EventDispatcher\\\\Event\\:\\:setResponse\\(\\)\\.$#"
-			count: 2
-			path: modules/custom/alternative_frontpage/src/EventSubscriber/RedirectHomepageSubscriber.php
-
-		-
-			message: "#^Left side of && is always true\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/EventSubscriber/RedirectHomepageSubscriber.php
-
-		-
-			message: "#^Method Drupal\\\\alternative_frontpage\\\\EventSubscriber\\\\RedirectHomepageSubscriber\\:\\:checkForHomepageRedirect\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/EventSubscriber/RedirectHomepageSubscriber.php
-
-		-
-			message: "#^Property Drupal\\\\alternative_frontpage\\\\EventSubscriber\\\\RedirectHomepageSubscriber\\:\\:\\$alternativeFrontpageSettings \\(Drupal\\\\Core\\\\Config\\\\ConfigFactory\\) does not accept Drupal\\\\Core\\\\Config\\\\ImmutableConfig\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/EventSubscriber/RedirectHomepageSubscriber.php
-
-		-
-			message: "#^Property Drupal\\\\alternative_frontpage\\\\EventSubscriber\\\\RedirectHomepageSubscriber\\:\\:\\$siteSettings \\(Drupal\\\\Core\\\\Config\\\\ConfigFactory\\) does not accept Drupal\\\\Core\\\\Config\\\\ImmutableConfig\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/EventSubscriber/RedirectHomepageSubscriber.php
-
-		-
-			message: "#^Strict comparison using \\=\\=\\= between string and Drupal\\\\Core\\\\Config\\\\ImmutableConfig will always evaluate to false\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/EventSubscriber/RedirectHomepageSubscriber.php
-
-		-
-			message: "#^Method Drupal\\\\alternative_frontpage\\\\Form\\\\AlternativeFrontpageSettings\\:\\:create\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/Form/AlternativeFrontpageSettings.php
-
-		-
-			message: "#^Method Drupal\\\\alternative_frontpage\\\\Form\\\\AlternativeFrontpageSettings\\:\\:submitForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/Form/AlternativeFrontpageSettings.php
-
-		-
-			message: "#^Method Drupal\\\\alternative_frontpage\\\\Form\\\\AlternativeFrontpageSettings\\:\\:validateForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/alternative_frontpage/src/Form/AlternativeFrontpageSettings.php
 
 		-
 			message: "#^Function download_count_install\\(\\) has no return type specified\\.$#"
@@ -1889,21 +1809,6 @@ parameters:
 			message: "#^Method Drupal\\\\dropdown\\\\Element\\\\Dropdown\\:\\:processDropdown\\(\\) has parameter \\$element with no type specified\\.$#"
 			count: 1
 			path: modules/custom/dropdown/src/Element/Dropdown.php
-
-		-
-			message: "#^Access to an undefined property Drupal\\\\Core\\\\Field\\\\FieldItemInterface\\:\\:\\$value\\.$#"
-			count: 1
-			path: modules/custom/dropdown/src/Plugin/Field/FieldFormatter/DropdownFieldFormatter.php
-
-		-
-			message: "#^Method Drupal\\\\dropdown\\\\Plugin\\\\Field\\\\FieldFormatter\\\\DropdownFieldFormatter\\:\\:getLabelForValue\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/custom/dropdown/src/Plugin/Field/FieldFormatter/DropdownFieldFormatter.php
-
-		-
-			message: "#^Method Drupal\\\\dropdown\\\\Plugin\\\\Field\\\\FieldFormatter\\\\DropdownFieldFormatter\\:\\:getLabelForValue\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: modules/custom/dropdown/src/Plugin/Field/FieldFormatter/DropdownFieldFormatter.php
 
 		-
 			message: "#^Method Drupal\\\\dropdown\\\\Plugin\\\\Field\\\\FieldType\\\\Dropdown\\:\\:allowedValuesDescription\\(\\) has no return type specified\\.$#"
@@ -2179,6 +2084,11 @@ parameters:
 			message: "#^Call to an undefined method Prophecy\\\\Prophecy\\\\ObjectProphecy\\:\\:id\\(\\)\\.$#"
 			count: 3
 			path: modules/custom/entity_access_by_field/tests/src/Unit/EntityAccessTest.php
+
+		-
+		  message: "#^Call to an undefined method Prophecy\\\\Prophecy\\\\ObjectProphecy\\:\\:bundle\\(\\)\\.$#"
+		  count: 3
+		  path: modules/custom/entity_access_by_field/tests/src/Unit/EntityAccessTest.php
 
 		-
 			message: "#^Method Drupal\\\\entity_access_by_field\\\\Tests\\\\EntityAccessTest\\:\\:testAllowedAccess\\(\\) has no return type specified\\.$#"
@@ -2496,11 +2406,6 @@ parameters:
 			path: modules/custom/grequest/src/Controller/GrequestController.php
 
 		-
-			message: "#^Access to undefined constant Drupal\\\\grequest\\\\Form\\\\GroupRequestMembershipForm\\:\\:TYPE_ERROR\\.$#"
-			count: 1
-			path: modules/custom/grequest/src/Form/GroupRequestMembershipForm.php
-
-		-
 			message: "#^Method Drupal\\\\grequest\\\\Form\\\\GroupRequestMembershipForm\\:\\:submitForm\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/custom/grequest/src/Form/GroupRequestMembershipForm.php
@@ -2761,6 +2666,11 @@ parameters:
 			path: modules/custom/mentions/mentions.install
 
 		-
+			message: "#^Argument of an invalid type array\\|int supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: modules/custom/mentions/mentions.module
+
+		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:get\\(\\)\\.$#"
 			count: 1
 			path: modules/custom/mentions/mentions.module
@@ -2861,6 +2771,11 @@ parameters:
 			path: modules/custom/mentions/mentions.module
 
 		-
+			message: "#^Parameter \\#1 \\$ids of method Drupal\\\\Core\\\\Entity\\\\EntityStorageInterface\\:\\:loadMultiple\\(\\) expects array\\|null, array\\|int given\\.$#"
+			count: 1
+			path: modules/custom/mentions/mentions.module
+
+		-
 			message: "#^Method Drupal\\\\mentions\\\\Entity\\\\Mentions\\:\\:getCreatedTime\\(\\) should return int but returns string\\.$#"
 			count: 1
 			path: modules/custom/mentions/src/Entity/Mentions.php
@@ -2916,7 +2831,7 @@ parameters:
 			path: modules/custom/mentions/src/Entity/MentionsType.php
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getPlugin\\(\\)\\.$#"
+			message: "#^Method Drupal\\\\Core\\\\Executable\\\\ExecutableInterface\\:\\:execute\\(\\) invoked with 1 parameter, 0 required\\.$#"
 			count: 1
 			path: modules/custom/mentions/src/EventSubscriber/MentionsDelete.php
 
@@ -2931,7 +2846,12 @@ parameters:
 			path: modules/custom/mentions/src/EventSubscriber/MentionsDelete.php
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getPlugin\\(\\)\\.$#"
+			message: "#^Variable \\$action_plugin in empty\\(\\) always exists and is not falsy\\.$#"
+			count: 1
+			path: modules/custom/mentions/src/EventSubscriber/MentionsDelete.php
+
+		-
+			message: "#^Method Drupal\\\\Core\\\\Executable\\\\ExecutableInterface\\:\\:execute\\(\\) invoked with 1 parameter, 0 required\\.$#"
 			count: 1
 			path: modules/custom/mentions/src/EventSubscriber/MentionsInsert.php
 
@@ -2946,7 +2866,12 @@ parameters:
 			path: modules/custom/mentions/src/EventSubscriber/MentionsInsert.php
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getPlugin\\(\\)\\.$#"
+			message: "#^Variable \\$action_plugin in empty\\(\\) always exists and is not falsy\\.$#"
+			count: 1
+			path: modules/custom/mentions/src/EventSubscriber/MentionsInsert.php
+
+		-
+			message: "#^Method Drupal\\\\Core\\\\Executable\\\\ExecutableInterface\\:\\:execute\\(\\) invoked with 1 parameter, 0 required\\.$#"
 			count: 1
 			path: modules/custom/mentions/src/EventSubscriber/MentionsUpdate.php
 
@@ -2957,6 +2882,11 @@ parameters:
 
 		-
 			message: "#^Method Drupal\\\\mentions\\\\EventSubscriber\\\\MentionsUpdate\\:\\:onMentionsUpdate\\(\\) has parameter \\$event with no type specified\\.$#"
+			count: 1
+			path: modules/custom/mentions/src/EventSubscriber/MentionsUpdate.php
+
+		-
+			message: "#^Variable \\$action_plugin in empty\\(\\) always exists and is not falsy\\.$#"
 			count: 1
 			path: modules/custom/mentions/src/EventSubscriber/MentionsUpdate.php
 
@@ -3051,11 +2981,6 @@ parameters:
 			path: modules/custom/mentions/src/Plugin/Filter/MentionsFilter.php
 
 		-
-			message: "#^Property Drupal\\\\mentions\\\\Plugin\\\\Filter\\\\MentionsFilter\\:\\:\\$tokenService is never read, only written\\.$#"
-			count: 1
-			path: modules/custom/mentions/src/Plugin/Filter/MentionsFilter.php
-
-		-
 			message: "#^Offset 'entity_type' does not exist on array\\|string\\.$#"
 			count: 1
 			path: modules/custom/mentions/src/Plugin/Mentions/Entity.php
@@ -3078,6 +3003,11 @@ parameters:
 		-
 			message: "#^Offset 'value' does not exist on array\\|string\\.$#"
 			count: 2
+			path: modules/custom/mentions/src/Plugin/Mentions/Entity.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function reset expects array\\|object, array\\|int\\<min, \\-1\\>\\|int\\<1, max\\> given\\.$#"
+			count: 1
 			path: modules/custom/mentions/src/Plugin/Mentions/Entity.php
 
 		-
@@ -3286,11 +3216,6 @@ parameters:
 			path: modules/custom/social_ajax_comments/src/Routing/RouteSubscriber.php
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getSetting\\(\\)\\.$#"
-			count: 1
-			path: modules/custom/social_file_private/social_file_private.install
-
-		-
 			message: "#^Function social_file_private_requirements\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/custom/social_file_private/social_file_private.install
@@ -3391,9 +3316,9 @@ parameters:
 			path: modules/custom/social_font/src/FontHtmlRouteProvider.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of static method Drupal\\\\Core\\\\Link\\:\\:fromTextAndUrl\\(\\) expects string, string\\|null given\\.$#"
+			message: "#^Class Drupal\\\\social_font\\\\Form\\\\FontDeleteForm extends @internal class Drupal\\\\Core\\\\Entity\\\\ContentEntityDeleteForm\\.$#"
 			count: 1
-			path: modules/custom/social_font/src/FontListBuilder.php
+			path: modules/custom/social_font/src/Form/FontDeleteForm.php
 
 		-
 			message: "#^Method Drupal\\\\social_font\\\\Form\\\\FontForm\\:\\:save\\(\\) should return int but return statement is missing\\.$#"
@@ -3482,6 +3407,11 @@ parameters:
 
 		-
 			message: "#^Method Drupal\\\\social_graphql\\\\GraphQL\\\\EntityConnection\\:\\:getResult\\(\\) should return GraphQL\\\\Executor\\\\Promise\\\\Adapter\\\\SyncPromise but returns GraphQL\\\\Executor\\\\Promise\\\\Adapter\\\\SyncPromise\\|null\\.$#"
+			count: 1
+			path: modules/custom/social_graphql/src/GraphQL/EntityConnection.php
+
+		-
+			message: "#^Parameter \\#1 \\$result of method Drupal\\\\social_graphql\\\\GraphQL\\\\ConnectionQueryHelperInterface\\:\\:getLoaderPromise\\(\\) expects array, array\\|int given\\.$#"
 			count: 1
 			path: modules/custom/social_graphql/src/GraphQL/EntityConnection.php
 
@@ -3826,21 +3756,6 @@ parameters:
 			path: modules/custom/social_lets_connect/modules/social_lets_connect_usage/src/Plugin/ShareUsageDataPlugin/EntityTypeCount.php
 
 		-
-			message: "#^Access to an undefined property Drupal\\\\Core\\\\Extension\\\\Extension\\:\\:\\$info\\.$#"
-			count: 1
-			path: modules/custom/social_lets_connect/modules/social_lets_connect_usage/src/Plugin/ShareUsageDataPlugin/ModulesInstalled.php
-
-		-
-			message: "#^Access to an undefined property Drupal\\\\Core\\\\Extension\\\\Extension\\:\\:\\$origin\\.$#"
-			count: 1
-			path: modules/custom/social_lets_connect/modules/social_lets_connect_usage/src/Plugin/ShareUsageDataPlugin/ModulesInstalled.php
-
-		-
-			message: "#^Access to an undefined property Drupal\\\\Core\\\\Extension\\\\Extension\\:\\:\\$status\\.$#"
-			count: 1
-			path: modules/custom/social_lets_connect/modules/social_lets_connect_usage/src/Plugin/ShareUsageDataPlugin/ModulesInstalled.php
-
-		-
 			message: "#^\\\\Drupal calls should be avoided in classes, use dependency injection instead$#"
 			count: 4
 			path: modules/custom/social_lets_connect/modules/social_lets_connect_usage/src/Plugin/ShareUsageDataPlugin/ModulesInstalled.php
@@ -3909,11 +3824,6 @@ parameters:
 			message: "#^Strict comparison using \\=\\=\\= between null and string will always evaluate to false\\.$#"
 			count: 1
 			path: modules/custom/social_magic_login/social_magic_login.module
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\data_policy\\\\DataPolicyConsentManager\\:\\:hasGivenConsent\\(\\)\\.$#"
-			count: 1
-			path: modules/custom/social_magic_login/src/Controller/MagicLoginController.php
 
 		-
 			message: "#^Method Drupal\\\\social_magic_login\\\\Controller\\\\MagicLoginController\\:\\:create\\(\\) has no return type specified\\.$#"
@@ -4077,6 +3987,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$group of function _social_path_manager_get_path_suffix expects Drupal\\\\group\\\\Entity\\\\GroupInterface, Drupal\\\\Core\\\\Entity\\\\EntityInterface given\\.$#"
+			count: 1
+			path: modules/custom/social_path_manager/social_path_manager.module
+
+		-
+			message: "#^Parameter \\#1 \\$input of function array_keys expects array, array\\|int given\\.$#"
 			count: 1
 			path: modules/custom/social_path_manager/social_path_manager.module
 
@@ -4441,7 +4356,7 @@ parameters:
 			path: modules/social_features/social_activity/modules/social_activity_filter/social_activity_filter.module
 
 		-
-			message: "#^Cannot call method get\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
+			message: "#^Cannot call method get\\(\\) on Drupal\\\\views\\\\Entity\\\\View\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_activity/modules/social_activity_filter/src/Form/FilterSettingsForm.php
 
@@ -4472,11 +4387,6 @@ parameters:
 
 		-
 			message: "#^Argument of an invalid type \\(float\\|int\\) supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: modules/social_features/social_activity/modules/social_activity_filter/src/Plugin/views/display/FilterBlock.php
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:get\\(\\)\\.$#"
 			count: 1
 			path: modules/social_features/social_activity/modules/social_activity_filter/src/Plugin/views/display/FilterBlock.php
 
@@ -4811,9 +4721,14 @@ parameters:
 			path: modules/social_features/social_activity/src/SocialActivityLazyBuilder.php
 
 		-
-			message: "#^Parameter \\#1 \\$view of method Drupal\\\\views\\\\ViewExecutableFactory\\:\\:get\\(\\) expects Drupal\\\\views\\\\ViewEntityInterface, Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$view of method Drupal\\\\views\\\\ViewExecutableFactory\\:\\:get\\(\\) expects Drupal\\\\views\\\\ViewEntityInterface, Drupal\\\\views\\\\Entity\\\\View\\|null given\\.$#"
 			count: 1
 			path: modules/social_features/social_activity/src/SocialActivityLazyBuilder.php
+
+		-
+			message: "#^Argument of an invalid type array\\|int supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: modules/social_features/social_album/social_album.install
 
 		-
 			message: "#^Function _social_album_blocks\\(\\) has no return type specified\\.$#"
@@ -5726,12 +5641,12 @@ parameters:
 			path: modules/social_features/social_comment/src/Form/SocialCommentAdminOverview.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of method Drupal\\\\Core\\\\TempStore\\\\PrivateTempStore\\:\\:set\\(\\) expects string, int given\\.$#"
+			message: "#^Parameter \\#1 \\$ids of method Drupal\\\\Core\\\\Entity\\\\EntityStorageInterface\\:\\:loadMultiple\\(\\) expects array\\|null, array\\|int given\\.$#"
 			count: 1
 			path: modules/social_features/social_comment/src/Form/SocialCommentAdminOverview.php
 
 		-
-			message: "#^Property Drupal\\\\social_comment\\\\Form\\\\SocialCommentAdminOverview\\:\\:\\$commentStorage \\(Drupal\\\\comment\\\\CommentStorageInterface\\) does not accept Drupal\\\\Core\\\\Entity\\\\EntityStorageInterface\\.$#"
+			message: "#^Parameter \\#1 \\$key of method Drupal\\\\Core\\\\TempStore\\\\PrivateTempStore\\:\\:set\\(\\) expects string, int given\\.$#"
 			count: 1
 			path: modules/social_features/social_comment/src/Form/SocialCommentAdminOverview.php
 
@@ -5801,17 +5716,17 @@ parameters:
 			path: modules/social_features/social_comment/src/Routing/RouteSubscriber.php
 
 		-
-			message: "#^Parameter \\#1 \\$text of class Drupal\\\\Core\\\\Link constructor expects string, string\\|null given\\.$#"
-			count: 1
-			path: modules/social_features/social_comment/src/SocialCommentBreadcrumbBuilder.php
-
-		-
 			message: "#^Variable \\$comment might not be defined\\.$#"
 			count: 1
 			path: modules/social_features/social_comment/src/SocialCommentBreadcrumbBuilder.php
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityStorageInterface\\:\\:loadThread\\(\\)\\.$#"
+			message: "#^Parameter \\#3 \\$mode of method Drupal\\\\comment\\\\CommentStorage\\:\\:loadThread\\(\\) expects int, string given\\.$#"
+			count: 1
+			path: modules/social_features/social_comment/src/SocialCommentLazyRenderer.php
+
+		-
+			message: "#^Parameter \\#4 \\$comments_per_page of method Drupal\\\\comment\\\\CommentStorage\\:\\:loadThread\\(\\) expects int, int\\|string\\|null given\\.$#"
 			count: 1
 			path: modules/social_features/social_comment/src/SocialCommentLazyRenderer.php
 
@@ -5833,6 +5748,11 @@ parameters:
 		-
 			message: "#^Method Drupal\\\\Tests\\\\social_comment\\\\Kernel\\\\CommentViewAccessTest\\:\\:testUserCanViewOnlyPublishedComment\\(\\) has no return type specified\\.$#"
 			count: 1
+			path: modules/social_features/social_comment/tests/src/Kernel/CommentViewAccessTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$haystack of static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\) expects Countable\\|iterable, array\\|int given\\.$#"
+			count: 8
 			path: modules/social_features/social_comment/tests/src/Kernel/CommentViewAccessTest.php
 
 		-
@@ -5966,11 +5886,6 @@ parameters:
 			path: modules/social_features/social_comment_upload/src/SocialCommentUploadConfigOverride.php
 
 		-
-			message: "#^Method Drupal\\\\social_book_content_block\\\\Plugin\\\\ContentBlock\\\\BookContentBlock\\:\\:query\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/modules/social_book_content_block/src/Plugin/ContentBlock/BookContentBlock.php
-
-		-
 			message: "#^Function social_content_block_landing_page_preprocess\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_content_block/modules/social_content_block_landing_page/social_content_block_landing_page.module
@@ -6029,26 +5944,6 @@ parameters:
 			message: "#^Function social_event_content_block_update_8003\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_content_block/modules/social_event_content_block/social_event_content_block.install
-
-		-
-			message: "#^Method Drupal\\\\social_event_content_block\\\\Plugin\\\\ContentBlock\\\\EventContentBlock\\:\\:query\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/modules/social_event_content_block/src/Plugin/ContentBlock/EventContentBlock.php
-
-		-
-			message: "#^Method Drupal\\\\social_group_content_block\\\\Plugin\\\\ContentBlock\\\\GroupContentBlock\\:\\:query\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/modules/social_group_content_block/src/Plugin/ContentBlock/GroupContentBlock.php
-
-		-
-			message: "#^Method Drupal\\\\social_page_content_block\\\\Plugin\\\\ContentBlock\\\\PageContentBlock\\:\\:query\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/modules/social_page_content_block/src/Plugin/ContentBlock/PageContentBlock.php
-
-		-
-			message: "#^Call to method setDescription\\(\\) on an unknown class Drupal\\\\field\\\\Entity\\\\Drupal\\\\field\\\\Entity\\\\FieldConfigInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/social_content_block.install
 
 		-
 			message: "#^Cannot call method getSetting\\(\\) on Drupal\\\\field\\\\FieldStorageConfigInterface\\|null\\.$#"
@@ -6226,11 +6121,6 @@ parameters:
 			path: modules/social_features/social_content_block/src/Annotation/ContentBlock.php
 
 		-
-			message: "#^Method Drupal\\\\social_content_block\\\\ContentBlockPluginInterface\\:\\:query\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/src/ContentBlockPluginInterface.php
-
-		-
 			message: "#^Access to an undefined property Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\:\\:\\$title\\.$#"
 			count: 1
 			path: modules/social_features/social_content_block/src/ContentBuilder.php
@@ -6241,29 +6131,9 @@ parameters:
 			path: modules/social_features/social_content_block/src/ContentBuilder.php
 
 		-
-			message: "#^Method Drupal\\\\social_content_block\\\\ContentBuilder\\:\\:updateFormSortingOptions\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/src/ContentBuilder.php
-
-		-
-			message: "#^Method Drupal\\\\social_content_block\\\\ContentBuilder\\:\\:updateFormSortingOptions\\(\\) has parameter \\$form with no type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/src/ContentBuilder.php
-
-		-
-			message: "#^Parameter \\#1 \\$table of method Drupal\\\\Core\\\\Database\\\\Connection\\:\\:select\\(\\) expects string, string\\|null given\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/src/ContentBuilder.php
-
-		-
 			message: "#^Parameter \\#2 \\$value of method Drupal\\\\Core\\\\Database\\\\Query\\\\ConditionInterface\\:\\:condition\\(\\) expects array\\|Drupal\\\\Core\\\\Database\\\\Query\\\\SelectInterface\\|string\\|null, int given\\.$#"
 			count: 1
 			path: modules/social_features/social_content_block/src/ContentBuilder.php
-
-		-
-			message: "#^Method Drupal\\\\social_content_block\\\\Plugin\\\\ContentBlock\\\\TopicContentBlock\\:\\:query\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_content_block/src/Plugin/ContentBlock/TopicContentBlock.php
 
 		-
 			message: "#^Access to an undefined property Drupal\\\\Core\\\\Entity\\\\FieldableEntityInterface\\:\\:\\$field_plugin_id\\.$#"
@@ -6299,6 +6169,11 @@ parameters:
 			message: "#^Method Drupal\\\\social_content_block\\\\Routing\\\\RouteSubscriber\\:\\:alterRoutes\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_content_block/src/Routing/RouteSubscriber.php
+
+		-
+			message: "#^Argument of an invalid type array\\|int supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: modules/social_features/social_content_block/src/SocialContentBlockOverride.php
 
 		-
 			message: "#^Method Drupal\\\\social_content_block\\\\SocialContentBlockOverride\\:\\:createConfigObject\\(\\) should return Drupal\\\\Core\\\\Config\\\\StorableConfigBase but returns null\\.$#"
@@ -6464,36 +6339,6 @@ parameters:
 			message: "#^Method Drupal\\\\social_content_report\\\\Routing\\\\RouteSubscriber\\:\\:alterRoutes\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_content_report/src/Routing/RouteSubscriber.php
-
-		-
-			message: "#^Access to an undefined property Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:\\$field_call_to_action_link\\.$#"
-			count: 2
-			path: modules/social_features/social_core/social_core.install
-
-		-
-			message: "#^Access to an undefined property Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:\\$field_hero_image\\.$#"
-			count: 1
-			path: modules/social_features/social_core/social_core.install
-
-		-
-			message: "#^Access to an undefined property Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:\\$field_text_block\\.$#"
-			count: 1
-			path: modules/social_features/social_core/social_core.install
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:set\\(\\)\\.$#"
-			count: 2
-			path: modules/social_features/social_core/social_core.install
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Extension\\\\ThemeHandler\\:\\:install\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_core/social_core.install
-
-		-
-			message: "#^Call to method setDescription\\(\\) on an unknown class Drupal\\\\field\\\\Entity\\\\Drupal\\\\field\\\\Entity\\\\FieldConfigInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_core/social_core.install
 
 		-
 			message: "#^Cannot access property \\$field_book_image on Drupal\\\\node\\\\Entity\\\\Node\\|null\\.$#"
@@ -6901,6 +6746,11 @@ parameters:
 			path: modules/social_features/social_core/social_core.install
 
 		-
+			message: "#^Parameter \\#1 \\$array_arg of function current expects array\\|object, array\\|int given\\.$#"
+			count: 1
+			path: modules/social_features/social_core/social_core.install
+
+		-
 			message: "#^Parameter \\#1 \\$input of static method Symfony\\\\Component\\\\Yaml\\\\Yaml\\:\\:parse\\(\\) expects string, string\\|false given\\.$#"
 			count: 1
 			path: modules/social_features/social_core/social_core.install
@@ -6911,7 +6761,22 @@ parameters:
 			path: modules/social_features/social_core/social_core.install
 
 		-
+			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, array\\|int given\\.$#"
+			count: 3
+			path: modules/social_features/social_core/social_core.install
+
+		-
 			message: "#^Parameter \\#2 \\$str of function explode expects string, int\\|string given\\.$#"
+			count: 1
+			path: modules/social_features/social_core/social_core.install
+
+		-
+			message: "#^Property Drupal\\\\block_content\\\\Entity\\\\BlockContent\\:\\:\\$field_hero_image \\(Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\) does not accept array\\<string, int\\|string\\|null\\>\\.$#"
+			count: 1
+			path: modules/social_features/social_core/social_core.install
+
+		-
+			message: "#^Property Drupal\\\\block_content\\\\Entity\\\\BlockContent\\:\\:\\$field_text_block \\(Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\) does not accept array\\<string, string\\>\\.$#"
 			count: 1
 			path: modules/social_features/social_core/social_core.install
 
@@ -7611,12 +7476,11 @@ parameters:
 			path: modules/social_features/social_embed/src/SocialEmbedConfigOverride.php
 
 		-
-			message:
-				"""
-					#^Call to deprecated method assertEqual\\(\\) of class Drupal\\\\KernelTests\\\\KernelTestBase\\:
-					in drupal\\:8\\.0\\.0 and is removed from drupal\\:10\\.0\\.0\\. Use
-					  \\$this\\-\\>assertEquals\\(\\) instead\\.$#
-				"""
+			message: """
+				#^Call to deprecated method assertEqual\\(\\) of class Drupal\\\\KernelTests\\\\KernelTestBase\\:
+				in drupal\\:8\\.0\\.0 and is removed from drupal\\:10\\.0\\.0\\. Use
+				  \\$this\\-\\>assertEquals\\(\\) instead\\.$#
+			"""
 			count: 2
 			path: modules/social_features/social_embed/tests/src/Kernel/SocialUserEmbedTest.php
 
@@ -7654,11 +7518,6 @@ parameters:
 			message: "#^Method Drupal\\\\social_event_addtocal\\\\Form\\\\SocialAddToCalendarSettingsForm\\:\\:submitForm\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_addtocal/src/Form/SocialAddToCalendarSettingsForm.php
-
-		-
-			message: "#^Call to method delete\\(\\) on an unknown class Drupal\\\\field\\\\Entity\\\\Drupal\\\\field\\\\Entity\\\\FieldConfigInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_an_enroll/social_event_an_enroll.install
 
 		-
 			message: "#^Function _social_event_an_enroll_fix_blocks\\(\\) has no return type specified\\.$#"
@@ -7916,13 +7775,18 @@ parameters:
 			path: modules/social_features/social_event/modules/social_event_an_enroll/src/EventAnEnrollService.php
 
 		-
-			message: "#^Parameter \\#2 \\$nid of method Drupal\\\\social_event_an_enroll\\\\EventAnEnrollService\\:\\:tokenExists\\(\\) expects int, int\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#2 \\$value of method Drupal\\\\Core\\\\Database\\\\Query\\\\ConditionInterface\\:\\:condition\\(\\) expects array\\|Drupal\\\\Core\\\\Database\\\\Query\\\\SelectInterface\\|string\\|null, int given\\.$#"
+			count: 3
+			path: modules/social_features/social_event/modules/social_event_an_enroll/src/EventAnEnrollService.php
+
+		-
+			message: "#^Result of \\|\\| is always true\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_an_enroll/src/EventAnEnrollService.php
 
 		-
-			message: "#^Parameter \\#2 \\$value of method Drupal\\\\Core\\\\Database\\\\Query\\\\ConditionInterface\\:\\:condition\\(\\) expects array\\|Drupal\\\\Core\\\\Database\\\\Query\\\\SelectInterface\\|string\\|null, int given\\.$#"
-			count: 3
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
 			path: modules/social_features/social_event/modules/social_event_an_enroll/src/EventAnEnrollService.php
 
 		-
@@ -8046,11 +7910,6 @@ parameters:
 			path: modules/social_features/social_event/modules/social_event_an_enroll_enrolments_export/social_event_an_enroll_enrolments_export.module
 
 		-
-			message: "#^Cannot call method isAllowed\\(\\) on bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_an_enroll_enrolments_export/src/Plugin/Action/ExportAllEnrolments.php
-
-		-
 			message: "#^Method Drupal\\\\social_event_an_enroll_enrolments_export\\\\Plugin\\\\Action\\\\ExportAllEnrolments\\:\\:executeMultiple\\(\\) should return array but return statement is missing\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_an_enroll_enrolments_export/src/Plugin/Action/ExportAllEnrolments.php
@@ -8059,11 +7918,6 @@ parameters:
 			message: "#^Method Drupal\\\\social_event_an_enroll_enrolments_export\\\\SocialEventAnEnrollEnrolmentsExportOverrides\\:\\:createConfigObject\\(\\) should return Drupal\\\\Core\\\\Config\\\\StorableConfigBase but returns null\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_an_enroll_enrolments_export/src/SocialEventAnEnrollEnrolmentsExportOverrides.php
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\File\\\\FileSystem\\:\\:uriScheme\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_enrolments_export/social_event_enrolments_export.module
 
 		-
 			message: "#^Function social_event_enrolments_export_file_download\\(\\) has no return type specified\\.$#"
@@ -8096,16 +7950,6 @@ parameters:
 			path: modules/social_features/social_event/modules/social_event_enrolments_export/social_event_enrolments_export.module
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\:\\:referencedEntities\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_enrolments_export/src/Plugin/Action/ExportEnrolments.php
-
-		-
-			message: "#^Cannot call method isAllowed\\(\\) on bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_enrolments_export/src/Plugin/Action/ExportEnrolments.php
-
-		-
 			message: "#^Method Drupal\\\\social_event_enrolments_export\\\\Plugin\\\\Action\\\\ExportEnrolments\\:\\:executeMultiple\\(\\) should return array but return statement is missing\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_enrolments_export/src/Plugin/Action/ExportEnrolments.php
@@ -8114,11 +7958,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$str of function md5 expects string, float given\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_enrolments_export/src/Plugin/Action/ExportEnrolments.php
-
-		-
-			message: "#^Call to method delete\\(\\) on an unknown class Drupal\\\\field\\\\Entity\\\\Drupal\\\\field\\\\Entity\\\\FieldConfigInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_invite/social_event_invite.install
 
 		-
 			message: "#^Function social_event_invite_install\\(\\) has no return type specified\\.$#"
@@ -8342,11 +8181,6 @@ parameters:
 
 		-
 			message: "#^Method Drupal\\\\social_event_invite\\\\Controller\\\\UserEnrollInviteController\\:\\:updateEnrollmentInvite\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_invite/src/Controller/UserEnrollInviteController.php
-
-		-
-			message: "#^Method Drupal\\\\social_event_invite\\\\Controller\\\\UserEnrollInviteController\\:\\:updateEnrollmentInvite\\(\\) has parameter \\$accept_decline with no type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_invite/src/Controller/UserEnrollInviteController.php
 
@@ -8871,16 +8705,6 @@ parameters:
 			path: modules/social_features/social_event/modules/social_event_managers/src/Controller/EventManagersController.php
 
 		-
-			message: "#^Method Drupal\\\\social_event_managers\\\\Element\\\\SocialEnrollmentAutocomplete\\:\\:validateEntityAutocomplete\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_managers/src/Element/SocialEnrollmentAutocomplete.php
-
-		-
-			message: "#^Method Drupal\\\\social_event_managers\\\\Element\\\\SocialEnrollmentAutocomplete\\:\\:validateEntityAutocomplete\\(\\) has parameter \\$select2 with no type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_managers/src/Element/SocialEnrollmentAutocomplete.php
-
-		-
 			message: "#^PHPDoc tag @var has invalid value \\(/Drupal\\\\Core\\\\Entity\\\\EntityReferenceSelection\\\\SelectionInterface \\$handler\\)\\: Unexpected token \"/Drupal\\\\\\\\Core\\\\\\\\Entity\\\\\\\\EntityReferenceSelection\\\\\\\\SelectionInterface\", expected type at offset 9$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_managers/src/Element/SocialEnrollmentAutocomplete.php
@@ -8982,11 +8806,6 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method Drupal\\\\social_event\\\\EventEnrollmentInterface\\:\\:getFieldValue\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_managers/src/Plugin/Action/EventEnrollmentEntityDeleteAction.php
-
-		-
-			message: "#^Cannot call method isAllowed\\(\\) on bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_managers/src/Plugin/Action/EventEnrollmentEntityDeleteAction.php
 
@@ -9226,11 +9045,6 @@ parameters:
 			path: modules/social_features/social_event/modules/social_event_max_enroll/src/SocialEventMaxEnrollServiceProvider.php
 
 		-
-			message: "#^Call to method setDescription\\(\\) on an unknown class Drupal\\\\field\\\\Entity\\\\Drupal\\\\field\\\\Entity\\\\FieldConfigInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_type/social_event_type.install
-
-		-
 			message: "#^Function social_event_type_install\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_type/social_event_type.install
@@ -9361,24 +9175,9 @@ parameters:
 			path: modules/social_features/social_event/modules/social_event_type/src/SocialEventTypeConfigOverride.php
 
 		-
-			message: "#^Offset 'display' does not exist on array\\{display\\: non\\-empty\\-array\\<literal\\-string&non\\-empty\\-string, array\\{display_options\\: array\\{filters\\: array\\{field_event_type_target_id\\: array\\{id\\: 'field_event_type…', table\\: 'node__field_event…', field\\: 'field_event_type…', relationship\\: 'none', group_type\\: 'group', admin_label\\: '', operator\\: 'or', value\\: array\\{\\}, \\.\\.\\.\\}\\}\\}\\}\\>\\}\\|array\\{third_party_settings\\?\\: array\\{field_group\\: array\\{group_title_image\\: array\\{children\\: mixed\\}\\}\\}, content\\: mixed\\}\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_type/src/SocialEventTypeConfigOverride.php
-
-		-
-			message: "#^Offset 'field_event_type…' on array\\{field_event_type_target_id\\: array\\{id\\: 'field_event_type…', table\\: 'node__field_event…', field\\: 'field_event_type…', relationship\\: 'none', group_type\\: 'group', admin_label\\: '', operator\\: 'or', value\\: array\\{\\}, \\.\\.\\.\\}\\} in isset\\(\\) always exists and is not nullable\\.$#"
-			count: 1
-			path: modules/social_features/social_event/modules/social_event_type/src/SocialEventTypeConfigOverride.php
-
-		-
 			message: "#^\\\\Drupal calls should be avoided in classes, use dependency injection instead$#"
 			count: 1
 			path: modules/social_features/social_event/modules/social_event_type/src/SocialEventTypeConfigOverride.php
-
-		-
-			message: "#^Call to method setDescription\\(\\) on an unknown class Drupal\\\\field\\\\Entity\\\\Drupal\\\\field\\\\Entity\\\\FieldConfigInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_event/social_event.install
 
 		-
 			message: "#^Cannot access offset 'id' on array\\|bool\\.$#"
@@ -10001,6 +9800,11 @@ parameters:
 			path: modules/social_features/social_event/social_event.post_update.php
 
 		-
+			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, array\\|int given\\.$#"
+			count: 1
+			path: modules/social_features/social_event/social_event.post_update.php
+
+		-
 			message: "#^Function social_event_token_info\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_event/social_event.tokens.inc
@@ -10144,11 +9948,6 @@ parameters:
 			message: "#^Parameter \\#2 \\$regex of method Symfony\\\\Component\\\\Routing\\\\Route\\:\\:setRequirement\\(\\) expects string, bool\\|string given\\.$#"
 			count: 1
 			path: modules/social_features/social_event/src/EventEnrollmentHtmlRouteProvider.php
-
-		-
-			message: "#^Parameter \\#1 \\$text of static method Drupal\\\\Core\\\\Link\\:\\:fromTextAndUrl\\(\\) expects string, string\\|null given\\.$#"
-			count: 1
-			path: modules/social_features/social_event/src/EventEnrollmentListBuilder.php
 
 		-
 			message: "#^Parameter \\#2 \\$event of method Drupal\\\\social_event\\\\EventEnrollmentStatusHelper\\:\\:userEnrollments\\(\\) expects int, null given\\.$#"
@@ -10296,6 +10095,11 @@ parameters:
 			path: modules/social_features/social_event/src/Form/EnrollRequestModalForm.php
 
 		-
+			message: "#^Class Drupal\\\\social_event\\\\Form\\\\EventEnrollmentDeleteForm extends @internal class Drupal\\\\Core\\\\Entity\\\\ContentEntityDeleteForm\\.$#"
+			count: 1
+			path: modules/social_features/social_event/src/Form/EventEnrollmentDeleteForm.php
+
+		-
 			message: "#^Method Drupal\\\\social_event\\\\Form\\\\EventEnrollmentForm\\:\\:save\\(\\) should return int but return statement is missing\\.$#"
 			count: 1
 			path: modules/social_features/social_event/src/Form/EventEnrollmentForm.php
@@ -10349,11 +10153,6 @@ parameters:
 			message: "#^Access to an undefined property Drupal\\\\datetime\\\\Plugin\\\\Field\\\\FieldType\\\\DateTimeFieldItemList\\:\\:\\$date\\.$#"
 			count: 1
 			path: modules/social_features/social_event/src/Plugin/GraphQL/DataProducer/Field/DateToTimestamp.php
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\:\\:referencedEntities\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_event/src/Plugin/GraphQL/QueryHelper/EventManagersQueryHelper.php
 
 		-
 			message: "#^Parameter \\#2 \\$backing_id of class Drupal\\\\social_graphql\\\\Wrappers\\\\Cursor constructor expects int, int\\|string\\|null given\\.$#"
@@ -10651,6 +10450,11 @@ parameters:
 			path: modules/social_features/social_follow_content/src/Plugin/ActivityContext/FollowContentActivityContext.php
 
 		-
+			message: "#^Result of && is always true\\.$#"
+			count: 1
+			path: modules/social_features/social_follow_content/src/Plugin/ActivityContext/FollowContentActivityContext.php
+
+		-
 			message: "#^Variable \\$group in empty\\(\\) always exists and is not falsy\\.$#"
 			count: 1
 			path: modules/social_features/social_follow_content/src/Plugin/ActivityContext/FollowContentActivityContext.php
@@ -10748,6 +10552,11 @@ parameters:
 		-
 			message: "#^Parameter \\#1 \\$input of static method Symfony\\\\Component\\\\Yaml\\\\Yaml\\:\\:parse\\(\\) expects string, string\\|false given\\.$#"
 			count: 3
+			path: modules/social_features/social_follow_taxonomy/modules/social_follow_tag/social_follow_tag.install
+
+		-
+			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, array\\|int\\<min, \\-1\\>\\|int\\<1, max\\> given\\.$#"
+			count: 1
 			path: modules/social_features/social_follow_taxonomy/modules/social_follow_tag/social_follow_tag.install
 
 		-
@@ -11129,11 +10938,6 @@ parameters:
 			message: "#^Method Drupal\\\\social_group_default_route\\\\RouteSubscriber\\\\RouteSubscriber\\:\\:alterRoutes\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_default_route/src/RouteSubscriber/RouteSubscriber.php
-
-		-
-			message: "#^Call to method setDescription\\(\\) on an unknown class Drupal\\\\field\\\\Entity\\\\Drupal\\\\field\\\\Entity\\\\FieldConfigInterface\\.$#"
-			count: 3
-			path: modules/social_features/social_group/modules/social_group_flexible_group/social_group_flexible_group.install
 
 		-
 			message: "#^Cannot call method clear\\(\\) on Drupal\\\\search_api\\\\Entity\\\\Index\\|null\\.$#"
@@ -11702,7 +11506,7 @@ parameters:
 
 		-
 			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
-			count: 1
+			count: 2
 			path: modules/social_features/social_group/modules/social_group_invite/social_group_invite.module
 
 		-
@@ -11961,6 +11765,11 @@ parameters:
 			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/ActivityContext/InvitedToGroupActivityContext.php
 
 		-
+			message: "#^Left side of && is always true\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/Block/SocialGroupInviteNotificationBlock.php
+
+		-
 			message: "#^Property Drupal\\\\social_group_invite\\\\Plugin\\\\Block\\\\SocialGroupInviteNotificationBlock\\:\\:\\$group \\(Drupal\\\\group\\\\Entity\\\\GroupInterface\\) does not accept Drupal\\\\group\\\\Entity\\\\GroupInterface\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_invite/src/Plugin/Block/SocialGroupInviteNotificationBlock.php
@@ -12001,11 +11810,6 @@ parameters:
 			path: modules/social_features/social_group/modules/social_group_invite/src/SocialGroupInviteServiceProvider.php
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\File\\\\FileSystem\\:\\:uriScheme\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_group/modules/social_group_members_export/social_group_members_export.module
-
-		-
 			message: "#^Function social_group_members_export_file_download\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_members_export/social_group_members_export.module
@@ -12024,11 +11828,6 @@ parameters:
 			message: "#^Parameter \\#2 \\$subject of function preg_match expects string, bool\\|string given\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_members_export/social_group_members_export.module
-
-		-
-			message: "#^Cannot call method isAllowed\\(\\) on bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_group/modules/social_group_members_export/src/Plugin/Action/ExportMember.php
 
 		-
 			message: "#^Method Drupal\\\\social_group_members_export\\\\Plugin\\\\Action\\\\ExportMember\\:\\:executeMultiple\\(\\) should return array but return statement is missing\\.$#"
@@ -12386,6 +12185,11 @@ parameters:
 			path: modules/social_features/social_group/modules/social_group_request/src/Plugin/ActivityContext/ApprovedRequestJoinGroupActivityContext.php
 
 		-
+			message: "#^Left side of && is always true\\.$#"
+			count: 1
+			path: modules/social_features/social_group/modules/social_group_request/src/Plugin/Block/SocialGroupRequestMembershipNotification.php
+
+		-
 			message: "#^Property Drupal\\\\social_group_request\\\\Plugin\\\\Block\\\\SocialGroupRequestMembershipNotification\\:\\:\\$group \\(Drupal\\\\group\\\\Entity\\\\GroupInterface\\) does not accept Drupal\\\\group\\\\Entity\\\\GroupInterface\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_request/src/Plugin/Block/SocialGroupRequestMembershipNotification.php
@@ -12536,11 +12340,6 @@ parameters:
 			path: modules/social_features/social_group/modules/social_group_secret/social_group_secret.module
 
 		-
-			message: "#^Call to an undefined method Symfony\\\\Component\\\\HttpKernel\\\\Event\\\\RequestEvent\\:\\:setException\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_group/modules/social_group_secret/src/EventSubscriber/SocialGroupSecretSubscriber.php
-
-		-
 			message: "#^Method Drupal\\\\social_group_secret\\\\EventSubscriber\\\\SocialGroupSecretSubscriber\\:\\:on403\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/modules/social_group_secret/src/EventSubscriber/SocialGroupSecretSubscriber.php
@@ -12631,28 +12430,38 @@ parameters:
 			path: modules/social_features/social_group/social_group.install
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:setStatus\\(\\)\\.$#"
-			count: 2
-			path: modules/social_features/social_group/social_group.install
-
-		-
 			message: "#^Cannot call method fetchCol\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
 			count: 2
 			path: modules/social_features/social_group/social_group.install
 
 		-
-			message: "#^Cannot call method getComponent\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
-			count: 2
+			message: "#^Cannot call method getComponent\\(\\) on Drupal\\\\Core\\\\Entity\\\\Entity\\\\EntityFormDisplay\\|null\\.$#"
+			count: 1
 			path: modules/social_features/social_group/social_group.install
 
 		-
-			message: "#^Cannot call method setComponent\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
-			count: 2
+			message: "#^Cannot call method getComponent\\(\\) on Drupal\\\\layout_builder\\\\Entity\\\\LayoutBuilderEntityViewDisplay\\|null\\.$#"
+			count: 1
 			path: modules/social_features/social_group/social_group.install
 
 		-
-			message: "#^Cannot call method toArray\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
-			count: 2
+			message: "#^Cannot call method setComponent\\(\\) on Drupal\\\\Core\\\\Entity\\\\Entity\\\\EntityFormDisplay\\|null\\.$#"
+			count: 1
+			path: modules/social_features/social_group/social_group.install
+
+		-
+			message: "#^Cannot call method setComponent\\(\\) on Drupal\\\\layout_builder\\\\Entity\\\\LayoutBuilderEntityViewDisplay\\|null\\.$#"
+			count: 1
+			path: modules/social_features/social_group/social_group.install
+
+		-
+			message: "#^Cannot call method toArray\\(\\) on Drupal\\\\field\\\\Entity\\\\FieldConfig\\|null\\.$#"
+			count: 1
+			path: modules/social_features/social_group/social_group.install
+
+		-
+			message: "#^Cannot call method toArray\\(\\) on Drupal\\\\field\\\\Entity\\\\FieldStorageConfig\\|null\\.$#"
+			count: 1
 			path: modules/social_features/social_group/social_group.install
 
 		-
@@ -12886,18 +12695,13 @@ parameters:
 			path: modules/social_features/social_group/social_group.install
 
 		-
-			message: "#^Access to an undefined property Drupal\\\\views\\\\Plugin\\\\views\\\\query\\\\QueryPluginBase\\:\\:\\$where\\.$#"
-			count: 1
-			path: modules/social_features/social_group/social_group.module
-
-		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:get\\(\\)\\.$#"
 			count: 1
 			path: modules/social_features/social_group/social_group.module
 
 		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getFileUri\\(\\)\\.$#"
-			count: 2
+			count: 1
 			path: modules/social_features/social_group/social_group.module
 
 		-
@@ -12926,11 +12730,6 @@ parameters:
 			path: modules/social_features/social_group/social_group.module
 
 		-
-			message: "#^Cannot call method buildUrl\\(\\) on Drupal\\\\image\\\\Entity\\\\ImageStyle\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/social_group.module
-
-		-
 			message: "#^Cannot call method fetchAll\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
 			count: 2
 			path: modules/social_features/social_group/social_group.module
@@ -12938,11 +12737,6 @@ parameters:
 		-
 			message: "#^Cannot call method fetchAllAssoc\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
 			count: 2
-			path: modules/social_features/social_group/social_group.module
-
-		-
-			message: "#^Cannot call method getGroupContent\\(\\) on Drupal\\\\group\\\\GroupMembership\\|false\\.$#"
-			count: 3
 			path: modules/social_features/social_group/social_group.module
 
 		-
@@ -12962,11 +12756,6 @@ parameters:
 
 		-
 			message: "#^Expression in empty\\(\\) is not falsy\\.$#"
-			count: 1
-			path: modules/social_features/social_group/social_group.module
-
-		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
 			count: 1
 			path: modules/social_features/social_group/social_group.module
 
@@ -13476,11 +13265,6 @@ parameters:
 			path: modules/social_features/social_group/social_group.module
 
 		-
-			message: "#^Parameter \\#1 \\$type of method Drupal\\\\social_group\\\\SocialGroupHelperService\\:\\:getDefaultGroupVisibility\\(\\) expects string, int\\|string given\\.$#"
-			count: 1
-			path: modules/social_features/social_group/social_group.module
-
-		-
 			message: "#^Parameter \\#1 \\$type of method Drupal\\\\social_group\\\\SocialGroupHelperService\\:\\:getDefaultGroupVisibility\\(\\) expects string, int\\|string\\|null given\\.$#"
 			count: 3
 			path: modules/social_features/social_group/social_group.module
@@ -13512,11 +13296,6 @@ parameters:
 
 		-
 			message: "#^Trying to invoke non\\-empty\\-string but it might not be a callable\\.$#"
-			count: 1
-			path: modules/social_features/social_group/social_group.module
-
-		-
-			message: "#^Variable \\$condition might not be defined\\.$#"
 			count: 1
 			path: modules/social_features/social_group/social_group.module
 
@@ -13696,8 +13475,23 @@ parameters:
 			path: modules/social_features/social_group/src/Controller/SocialGroupController.php
 
 		-
+			message: "#^Method Drupal\\\\social_group\\\\Controller\\\\SocialGroupListBuilder\\:\\:getEntityIds\\(\\) should return array but returns array\\|int\\.$#"
+			count: 1
+			path: modules/social_features/social_group/src/Controller/SocialGroupListBuilder.php
+
+		-
 			message: "#^Cannot call method fetchAllKeyed\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
 			count: 2
+			path: modules/social_features/social_group/src/CrossPostingService.php
+
+		-
+			message: "#^Method Drupal\\\\social_group\\\\CrossPostingService\\:\\:getGroupIdsByGroupContentNodeEntity\\(\\) should return array but returns array\\|int\\<min, \\-1\\>\\|int\\<1, max\\>\\.$#"
+			count: 1
+			path: modules/social_features/social_group/src/CrossPostingService.php
+
+		-
+			message: "#^Method Drupal\\\\social_group\\\\CrossPostingService\\:\\:getGroupIdsForNode\\(\\) should return array but returns array\\|int\\<min, \\-1\\>\\|int\\<1, max\\>\\.$#"
+			count: 1
 			path: modules/social_features/social_group/src/CrossPostingService.php
 
 		-
@@ -13707,21 +13501,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method getDisplayName\\(\\) on Drupal\\\\user\\\\Entity\\\\User\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/Element/SocialGroupEntityAutocomplete.php
-
-		-
-			message: "#^Cannot call method getMember\\(\\) on Drupal\\\\group\\\\Entity\\\\GroupInterface\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/Element/SocialGroupEntityAutocomplete.php
-
-		-
-			message: "#^Method Drupal\\\\social_group\\\\Element\\\\SocialGroupEntityAutocomplete\\:\\:validateEntityAutocomplete\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/Element/SocialGroupEntityAutocomplete.php
-
-		-
-			message: "#^Method Drupal\\\\social_group\\\\Element\\\\SocialGroupEntityAutocomplete\\:\\:validateEntityAutocomplete\\(\\) has parameter \\$select2 with no type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/src/Element/SocialGroupEntityAutocomplete.php
 
@@ -13771,11 +13550,6 @@ parameters:
 			path: modules/social_features/social_group/src/Form/SocialGroupAddForm.php
 
 		-
-			message: "#^Cannot call method isAllowed\\(\\) on bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/Form/SocialGroupAddForm.php
-
-		-
 			message: "#^Method Drupal\\\\social_group\\\\Form\\\\SocialGroupAddForm\\:\\:create\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/src/Form/SocialGroupAddForm.php
@@ -13796,7 +13570,7 @@ parameters:
 			path: modules/social_features/social_group/src/Form/SocialGroupAddForm.php
 
 		-
-			message: "#^Cannot call method label\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
+			message: "#^Cannot call method label\\(\\) on Drupal\\\\node\\\\Entity\\\\NodeType\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_group/src/Form/SocialGroupSettings.php
 
@@ -13881,11 +13655,6 @@ parameters:
 			path: modules/social_features/social_group/src/Plugin/Action/ChangeGroupMembershipRole.php
 
 		-
-			message: "#^Cannot call method isAllowed\\(\\) on bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/Plugin/Action/ChangeGroupMembershipRole.php
-
-		-
 			message: "#^Method Drupal\\\\social_group\\\\Plugin\\\\Action\\\\ChangeGroupMembershipRole\\:\\:execute\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_group/src/Plugin/Action/ChangeGroupMembershipRole.php
@@ -13921,11 +13690,6 @@ parameters:
 			path: modules/social_features/social_group/src/Plugin/Action/SocialSendEmail.php
 
 		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/Plugin/Block/GroupAddBlock.php
-
-		-
 			message: "#^\\\\Drupal calls should be avoided in classes, use dependency injection instead$#"
 			count: 1
 			path: modules/social_features/social_group/src/Plugin/Block/GroupAddEventBlock.php
@@ -13946,7 +13710,17 @@ parameters:
 			path: modules/social_features/social_group/src/Plugin/Block/GroupStatisticBlock.php
 
 		-
+			message: "#^Argument of an invalid type array\\|int supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: modules/social_features/social_group/src/Plugin/EntityReferenceSelection/SocialGroupSelection.php
+
+		-
 			message: "#^Cannot call method getKey\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityTypeInterface\\|null\\.$#"
+			count: 1
+			path: modules/social_features/social_group/src/Plugin/EntityReferenceSelection/SocialGroupSelection.php
+
+		-
+			message: "#^Parameter \\#1 \\$arr1 of function array_diff expects array, array\\|int given\\.$#"
 			count: 1
 			path: modules/social_features/social_group/src/Plugin/EntityReferenceSelection/SocialGroupSelection.php
 
@@ -14096,6 +13870,11 @@ parameters:
 			path: modules/social_features/social_group/src/SetGroupsForNodeService.php
 
 		-
+			message: "#^Parameter \\#1 \\$ids of method Drupal\\\\Core\\\\Entity\\\\EntityStorageInterface\\:\\:loadMultiple\\(\\) expects array\\|null, array\\|int\\<min, \\-1\\>\\|int\\<1, max\\> given\\.$#"
+			count: 2
+			path: modules/social_features/social_group/src/SetGroupsForNodeService.php
+
+		-
 			message: "#^Trying to invoke non\\-empty\\-string but it might not be a callable\\.$#"
 			count: 1
 			path: modules/social_features/social_group/src/SetGroupsForNodeService.php
@@ -14109,51 +13888,6 @@ parameters:
 			message: "#^Method Drupal\\\\social_group\\\\SocialGroupAdminPeopleConfigOverride\\:\\:createConfigObject\\(\\) should return Drupal\\\\Core\\\\Config\\\\StorableConfigBase but returns null\\.$#"
 			count: 1
 			path: modules/social_features/social_group/src/SocialGroupAdminPeopleConfigOverride.php
-
-		-
-			message: "#^Cannot call method fetchAll\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
-			count: 2
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
-
-		-
-			message: "#^Cannot call method fetchAllAssoc\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
-
-		-
-			message: "#^Cannot call method fetchField\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
-
-		-
-			message: "#^Cannot call method get\\(\\) on Drupal\\\\social_post\\\\Entity\\\\Post\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
-
-		-
-			message: "#^Cannot call method getCommentedEntity\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
-
-		-
-			message: "#^Method Drupal\\\\social_group\\\\SocialGroupHelperService\\:\\:getGroupsToAddUrl\\(\\) should return Drupal\\\\Core\\\\Url but returns Drupal\\\\Core\\\\Url\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(/Drupal/social_post/Entity/Post \\$post\\)\\: Unexpected token \"/Drupal/social_post/Entity/Post\", expected type at offset 9$#"
-			count: 1
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
-
-		-
-			message: "#^Parameter \\#2 \\$value of method Drupal\\\\Core\\\\Database\\\\Query\\\\ConditionInterface\\:\\:condition\\(\\) expects array\\|Drupal\\\\Core\\\\Database\\\\Query\\\\SelectInterface\\|string\\|null, int given\\.$#"
-			count: 1
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
-
-		-
-			message: "#^\\\\Drupal calls should be avoided in classes, use dependency injection instead$#"
-			count: 1
-			path: modules/social_features/social_group/src/SocialGroupHelperService.php
 
 		-
 			message: "#^Method Drupal\\\\social_group\\\\SocialGroupSelectorWidgetConfigOverride\\:\\:createConfigObject\\(\\) should return Drupal\\\\Core\\\\Config\\\\StorableConfigBase but returns null\\.$#"
@@ -14572,7 +14306,12 @@ parameters:
 
 		-
 			message: "#^Cannot call method label\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
-			count: 2
+			count: 1
+			path: modules/social_features/social_like/social_like.tokens.inc
+
+		-
+			message: "#^Cannot call method label\\(\\) on Drupal\\\\node\\\\Entity\\\\NodeType\\|null\\.$#"
+			count: 1
 			path: modules/social_features/social_like/social_like.tokens.inc
 
 		-
@@ -14637,6 +14376,11 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getOwnerId\\(\\)\\.$#"
+			count: 1
+			path: modules/social_features/social_like/src/Plugin/ActivityContext/VoteActivityContext.php
+
+		-
+			message: "#^Result of && is always true\\.$#"
 			count: 1
 			path: modules/social_features/social_like/src/Plugin/ActivityContext/VoteActivityContext.php
 
@@ -14841,7 +14585,7 @@ parameters:
 			path: modules/social_features/social_mentions/social_mentions.tokens.inc
 
 		-
-			message: "#^Cannot call method label\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
+			message: "#^Cannot call method label\\(\\) on Drupal\\\\node\\\\Entity\\\\NodeType\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_mentions/social_mentions.tokens.inc
 
@@ -14931,6 +14675,11 @@ parameters:
 			path: modules/social_features/social_mentions/src/Plugin/ActivityContext/MentionActivityContext.php
 
 		-
+			message: "#^Result of && is always true\\.$#"
+			count: 1
+			path: modules/social_features/social_mentions/src/Plugin/ActivityContext/MentionActivityContext.php
+
+		-
 			message: "#^Variable \\$group in empty\\(\\) always exists and is not falsy\\.$#"
 			count: 1
 			path: modules/social_features/social_mentions/src/Plugin/ActivityContext/MentionActivityContext.php
@@ -14984,6 +14733,11 @@ parameters:
 			message: "#^Method Drupal\\\\social_node\\\\Service\\\\SocialNodeMessengerInterface\\:\\:setNode\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_node/src/Service/SocialNodeMessengerInterface.php
+
+		-
+			message: "#^Class Drupal\\\\social_node\\\\SocialNodeForm extends @internal class Drupal\\\\node\\\\NodeForm\\.$#"
+			count: 1
+			path: modules/social_features/social_node/src/SocialNodeForm.php
 
 		-
 			message: "#^Method Drupal\\\\social_node\\\\SocialNodeForm\\:\\:create\\(\\) has no return type specified\\.$#"
@@ -15326,6 +15080,11 @@ parameters:
 			path: modules/social_features/social_post/modules/social_post_album/src/Routing/RouteSubscriber.php
 
 		-
+			message: "#^Plugin definitions cannot be altered\\.$#"
+			count: 1
+			path: modules/social_features/social_post/modules/social_post_album/src/Service/SocialPostAlbumElementInfoManager.php
+
+		-
 			message: "#^Method Drupal\\\\social_post_album\\\\SocialPostPhotoAlbumConfigOverride\\:\\:createConfigObject\\(\\) should return Drupal\\\\Core\\\\Config\\\\StorableConfigBase but returns null\\.$#"
 			count: 1
 			path: modules/social_features/social_post/modules/social_post_album/src/SocialPostPhotoAlbumConfigOverride.php
@@ -15447,11 +15206,6 @@ parameters:
 
 		-
 			message: "#^Function social_post_mass_update\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_post/social_post.admin.inc
-
-		-
-			message: "#^Parameter \\#1 \\$text of static method Drupal\\\\Core\\\\Link\\:\\:fromTextAndUrl\\(\\) expects string, string\\|null given\\.$#"
 			count: 1
 			path: modules/social_features/social_post/social_post.admin.inc
 
@@ -15616,6 +15370,16 @@ parameters:
 			path: modules/social_features/social_post/social_post.module
 
 		-
+			message: "#^Parameter \\#1 \\$ids of method Drupal\\\\Core\\\\Entity\\\\EntityStorageInterface\\:\\:loadMultiple\\(\\) expects array\\|null, array\\|int given\\.$#"
+			count: 1
+			path: modules/social_features/social_post/social_post.module
+
+		-
+			message: "#^Parameter \\#1 \\$posts of function social_post_mass_update expects array, array\\|int given\\.$#"
+			count: 1
+			path: modules/social_features/social_post/social_post.module
+
+		-
 			message: "#^Cannot call method fetchAll\\(\\) on Drupal\\\\Core\\\\Database\\\\StatementInterface\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_post/social_post.post_update.php
@@ -15637,11 +15401,6 @@ parameters:
 
 		-
 			message: "#^If condition is always true\\.$#"
-			count: 1
-			path: modules/social_features/social_post/src/Controller/PostCommentController.php
-
-		-
-			message: "#^Parameter \\#2 \\$comment of method Drupal\\\\social_comment\\\\Controller\\\\SocialCommentController\\:\\:redirectToOriginalEntity\\(\\) expects Drupal\\\\comment\\\\CommentInterface\\|null, Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null given\\.$#"
 			count: 1
 			path: modules/social_features/social_post/src/Controller/PostCommentController.php
 
@@ -15704,6 +15463,11 @@ parameters:
 			message: "#^Variable \\$visibility might not be defined\\.$#"
 			count: 1
 			path: modules/social_features/social_post/src/Entity/Post.php
+
+		-
+			message: "#^Class Drupal\\\\social_post\\\\Form\\\\PostDeleteForm extends @internal class Drupal\\\\Core\\\\Entity\\\\ContentEntityDeleteForm\\.$#"
+			count: 1
+			path: modules/social_features/social_post/src/Form/PostDeleteForm.php
 
 		-
 			message: "#^\\\\Drupal calls should be avoided in classes, use dependency injection instead$#"
@@ -15811,12 +15575,12 @@ parameters:
 			path: modules/social_features/social_post/src/Plugin/Block/PostBlock.php
 
 		-
-			message: "#^Method Drupal\\\\social_post\\\\Plugin\\\\Block\\\\PostBlock\\:\\:blockAccess\\(\\) should return Drupal\\\\Core\\\\Access\\\\AccessResult but returns bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
+			message: "#^Method Drupal\\\\social_post\\\\Plugin\\\\Block\\\\PostBlock\\:\\:blockAccess\\(\\) should return Drupal\\\\Core\\\\Access\\\\AccessResult but returns Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
 			count: 1
 			path: modules/social_features/social_post/src/Plugin/Block/PostBlock.php
 
 		-
-			message: "#^Method Drupal\\\\social_post\\\\Plugin\\\\Block\\\\PostGroupBlock\\:\\:blockAccess\\(\\) should return Drupal\\\\Core\\\\Access\\\\AccessResult but returns bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
+			message: "#^Method Drupal\\\\social_post\\\\Plugin\\\\Block\\\\PostGroupBlock\\:\\:blockAccess\\(\\) should return Drupal\\\\Core\\\\Access\\\\AccessResult but returns Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
 			count: 1
 			path: modules/social_features/social_post/src/Plugin/Block/PostGroupBlock.php
 
@@ -16576,17 +16340,12 @@ parameters:
 			path: modules/social_features/social_private_message/src/Controller/SocialPrivateMessageController.php
 
 		-
-			message: "#^Method Drupal\\\\social_private_message\\\\Element\\\\SocialPrivateMessageEntityAutocomplete\\:\\:validateEntityAutocomplete\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_private_message/src/Element/SocialPrivateMessageEntityAutocomplete.php
-
-		-
 			message: "#^Call to method hasPermission\\(\\) on an unknown class Drupal\\\\Session\\\\AccountProxyInterface\\.$#"
 			count: 2
 			path: modules/social_features/social_private_message/src/Mapper/PrivateMessageMapper.php
 
 		-
-			message: "#^Cannot call method hasPermission\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
+			message: "#^Cannot call method hasPermission\\(\\) on Drupal\\\\user\\\\Entity\\\\Role\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_private_message/src/Plugin/EntityReferenceSelection/UserSelection.php
 
@@ -16594,11 +16353,6 @@ parameters:
 			message: "#^Variable \\$r_storage in PHPDoc tag @var does not match assigned variable \\$role_storage\\.$#"
 			count: 1
 			path: modules/social_features/social_private_message/src/Plugin/EntityReferenceSelection/UserSelection.php
-
-		-
-			message: "#^If condition is always true\\.$#"
-			count: 1
-			path: modules/social_features/social_private_message/src/Plugin/Field/FieldFormatter/SocialPrivateMessageThreadMemberFormatter.php
 
 		-
 			message: "#^Method Drupal\\\\social_private_message\\\\Plugin\\\\UserExportPlugin\\\\UserAnalyticsPrivateMessage\\:\\:getValue\\(\\) should return string but returns int\\|string\\.$#"
@@ -16981,11 +16735,6 @@ parameters:
 			path: modules/social_features/social_profile/modules/social_profile_organization_tag/social_profile_organization_tag.module
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\:\\:referencedEntities\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_profile/modules/social_profile_organization_tag/social_profile_organization_tag.module
-
-		-
 			message: "#^Function social_profile_organization_tag_fetch\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/modules/social_profile_organization_tag/social_profile_organization_tag.module
@@ -17191,6 +16940,11 @@ parameters:
 			path: modules/social_features/social_profile/modules/social_profile_privacy/social_profile_privacy.module
 
 		-
+			message: "#^Parameter \\#1 \\$array of function reset expects array\\|object, array\\|int\\<min, \\-1\\>\\|int\\<1, max\\> given\\.$#"
+			count: 1
+			path: modules/social_features/social_profile/modules/social_profile_privacy/social_profile_privacy.module
+
+		-
 			message: "#^Parameter \\#1 \\$uid of function social_profile_privacy_private_fields_list expects int, string given\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/modules/social_profile_privacy/social_profile_privacy.module
@@ -17261,11 +17015,6 @@ parameters:
 			path: modules/social_features/social_profile/modules/social_profile_privacy/src/Service/SocialProfilePrivacyBatchHelper.php
 
 		-
-			message: "#^Cannot call method get\\(\\) on Drupal\\\\profile\\\\Entity\\\\ProfileInterface\\|null\\.$#"
-			count: 1
-			path: modules/social_features/social_profile/modules/social_profile_privacy/src/Service/SocialProfilePrivacyHelper.php
-
-		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityStorageInterface\\:\\:loadByUser\\(\\)\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/social_profile.install
@@ -17292,11 +17041,6 @@ parameters:
 
 		-
 			message: "#^Function _social_profile_create_menu_links\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_profile/social_profile.install
-
-		-
-			message: "#^Function _social_profile_field_definitions_update not found\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/social_profile.install
 
@@ -17457,7 +17201,7 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:get\\(\\)\\.$#"
-			count: 3
+			count: 1
 			path: modules/social_features/social_profile/social_profile.module
 
 		-
@@ -17492,7 +17236,7 @@ parameters:
 
 		-
 			message: "#^Cannot call method getEmail\\(\\) on Drupal\\\\user\\\\Entity\\\\User\\|null\\.$#"
-			count: 2
+			count: 1
 			path: modules/social_features/social_profile/social_profile.module
 
 		-
@@ -17506,7 +17250,7 @@ parameters:
 			path: modules/social_features/social_profile/social_profile.module
 
 		-
-			message: "#^Cannot call method id\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityInterface\\|null\\.$#"
+			message: "#^Cannot call method id\\(\\) on Drupal\\\\file\\\\Entity\\\\File\\|null\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/social_profile.module
 
@@ -17756,11 +17500,6 @@ parameters:
 			path: modules/social_features/social_profile/social_profile.module
 
 		-
-			message: "#^Parameter \\#1 \\$text of static method Drupal\\\\Core\\\\Link\\:\\:fromTextAndUrl\\(\\) expects string, string\\|null given\\.$#"
-			count: 1
-			path: modules/social_features/social_profile/social_profile.module
-
-		-
 			message: "#^Parameter \\#1 \\$uid of method Drupal\\\\social_group\\\\SocialGroupHelperService\\:\\:countGroupMembershipsForUser\\(\\) expects string, int\\|string\\|null given\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/social_profile.module
@@ -17786,6 +17525,11 @@ parameters:
 			path: modules/social_features/social_profile/social_profile.module
 
 		-
+			message: "#^Result of \\|\\| is always true\\.$#"
+			count: 1
+			path: modules/social_features/social_profile/social_profile.module
+
+		-
 			message: "#^Variable \\$global_value in empty\\(\\) is never defined\\.$#"
 			count: 2
 			path: modules/social_features/social_profile/social_profile.module
@@ -17802,6 +17546,11 @@ parameters:
 
 		-
 			message: "#^Function social_profile_post_update_10101_profile_names_update\\(\\) has parameter \\$sandbox with no type specified\\.$#"
+			count: 1
+			path: modules/social_features/social_profile/social_profile.post_update.php
+
+		-
+			message: "#^Parameter \\#1 \\$var of function count expects array\\|Countable, array\\|int given\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/social_profile.post_update.php
 
@@ -17842,6 +17591,11 @@ parameters:
 
 		-
 			message: "#^Cannot call method getKey\\(\\) on Drupal\\\\Core\\\\Entity\\\\EntityTypeInterface\\|null\\.$#"
+			count: 1
+			path: modules/social_features/social_profile/src/Plugin/EntityReferenceSelection/UserSelection.php
+
+		-
+			message: "#^Method Drupal\\\\social_profile\\\\Plugin\\\\EntityReferenceSelection\\\\UserSelection\\:\\:validateReferenceableEntities\\(\\) should return array but returns array\\|int\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/src/Plugin/EntityReferenceSelection/UserSelection.php
 
@@ -17949,11 +17703,6 @@ parameters:
 			message: "#^Parameter \\#2 \\$value of method Drupal\\\\Core\\\\Database\\\\Query\\\\ConditionInterface\\:\\:condition\\(\\) expects array\\|Drupal\\\\Core\\\\Database\\\\Query\\\\SelectInterface\\|string\\|null, int given\\.$#"
 			count: 1
 			path: modules/social_features/social_profile/src/UserStatistics.php
-
-		-
-			message: "#^Array \\(array\\<Drupal\\\\user\\\\Entity\\\\User\\>\\) does not accept Drupal\\\\user\\\\Entity\\\\User\\|false\\.$#"
-			count: 1
-			path: modules/social_features/social_profile/tests/src/Kernel/GraphQLUsersEndpointTest.php
 
 		-
 			message: "#^Cannot call method get\\(\\) on Drupal\\\\Core\\\\TypedData\\\\TypedDataInterface\\|null\\.$#"
@@ -18147,11 +17896,6 @@ parameters:
 
 		-
 			message: "#^Function social_search_resave_search_indexes\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_search/social_search.module
-
-		-
-			message: "#^Function social_search_search_api_views_handler_mapping_alter\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_search/social_search.module
 
@@ -18431,11 +18175,6 @@ parameters:
 			path: modules/social_features/social_tagging/social_tagging.module
 
 		-
-			message: "#^Function social_tagging_entity_form_display_alter\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_tagging/social_tagging.module
-
-		-
 			message: "#^Function social_tagging_form_alter\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_tagging/social_tagging.module
@@ -18586,11 +18325,6 @@ parameters:
 			path: modules/social_features/social_tagging/src/Form/SocialTaggingSettingsForm.php
 
 		-
-			message: "#^If condition is always false\\.$#"
-			count: 1
-			path: modules/social_features/social_tagging/src/SocialTaggingOverrides.php
-
-		-
 			message: "#^Method Drupal\\\\social_tagging\\\\SocialTaggingOverrides\\:\\:createConfigObject\\(\\) should return Drupal\\\\Core\\\\Config\\\\StorableConfigBase but returns null\\.$#"
 			count: 1
 			path: modules/social_features/social_tagging/src/SocialTaggingOverrides.php
@@ -18604,11 +18338,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$tid of method Drupal\\\\taxonomy\\\\TermStorage\\:\\:loadParents\\(\\) expects int, int\\|string\\|null given\\.$#"
 			count: 1
 			path: modules/social_features/social_tagging/src/SocialTaggingService.php
-
-		-
-			message: "#^Call to method setDescription\\(\\) on an unknown class Drupal\\\\field\\\\Entity\\\\Drupal\\\\field\\\\Entity\\\\FieldConfigInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_topic/social_topic.install
 
 		-
 			message: "#^Function _social_topic_create_menu_links\\(\\) has no return type specified\\.$#"
@@ -18756,11 +18485,6 @@ parameters:
 			path: modules/social_features/social_topic/social_topic.module
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\:\\:referencedEntities\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_topic/social_topic.module
-
-		-
 			message: "#^Function _social_topic_change_topic_icon_ajax\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_topic/social_topic.module
@@ -18887,11 +18611,6 @@ parameters:
 
 		-
 			message: "#^Function social_topic_widget_alter\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_topic/social_topic.module
-
-		-
-			message: "#^Parameter \\#1 \\$text of static method Drupal\\\\Core\\\\Link\\:\\:fromTextAndUrl\\(\\) expects string, string\\|null given\\.$#"
 			count: 1
 			path: modules/social_features/social_topic/social_topic.module
 
@@ -19092,16 +18811,6 @@ parameters:
 
 		-
 			message: "#^Function social_user_action_info_alter\\(\\) has parameter \\$definitions with no type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_user/social_user.module
-
-		-
-			message: "#^Function social_user_admin_people_overview_validate\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_user/social_user.module
-
-		-
-			message: "#^Function social_user_admin_people_overview_validate\\(\\) has parameter \\$form with no type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_user/social_user.module
 
@@ -19416,6 +19125,11 @@ parameters:
 			path: modules/social_features/social_user/src/Form/SocialUserLoginForm.php
 
 		-
+			message: "#^Class Drupal\\\\social_user\\\\Form\\\\SocialUserLoginForm extends @internal class Drupal\\\\user\\\\Form\\\\UserLoginForm\\.$#"
+			count: 1
+			path: modules/social_features/social_user/src/Form/SocialUserLoginForm.php
+
+		-
 			message: "#^Method Drupal\\\\social_user\\\\Form\\\\SocialUserLoginForm\\:\\:setGeneralErrorMessage\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_user/src/Form/SocialUserLoginForm.php
@@ -19461,17 +19175,7 @@ parameters:
 			path: modules/social_features/social_user/src/Form/SocialUserNavigationSettingsForm.php
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getEmail\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_user/src/Form/SocialUserPasswordForm.php
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:getUsername\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_user/src/Form/SocialUserPasswordForm.php
-
-		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Entity\\\\EntityInterface\\:\\:isActive\\(\\)\\.$#"
+			message: "#^Class Drupal\\\\social_user\\\\Form\\\\SocialUserPasswordForm extends @internal class Drupal\\\\user\\\\Form\\\\UserPasswordForm\\.$#"
 			count: 1
 			path: modules/social_features/social_user/src/Form/SocialUserPasswordForm.php
 
@@ -19482,11 +19186,6 @@ parameters:
 
 		-
 			message: "#^Method Drupal\\\\social_user\\\\Form\\\\SocialUserPasswordForm\\:\\:validateForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: modules/social_features/social_user/src/Form/SocialUserPasswordForm.php
-
-		-
-			message: "#^Parameter \\#2 \\$account of function _user_mail_notify expects Drupal\\\\Core\\\\Session\\\\AccountInterface, Drupal\\\\Core\\\\Entity\\\\EntityInterface given\\.$#"
 			count: 1
 			path: modules/social_features/social_user/src/Form/SocialUserPasswordForm.php
 
@@ -19524,11 +19223,6 @@ parameters:
 			message: "#^Property Drupal\\\\social_user\\\\Plugin\\\\Action\\\\SocialAddRoleUser\\:\\:\\$currentUser \\(Drupal\\\\Core\\\\Session\\\\AccountProxyInterface\\) does not accept Drupal\\\\Core\\\\Session\\\\AccountInterface\\.$#"
 			count: 1
 			path: modules/social_features/social_user/src/Plugin/Action/SocialAddRoleUser.php
-
-		-
-			message: "#^Cannot call method andIf\\(\\) on bool\\|Drupal\\\\Core\\\\Access\\\\AccessResultInterface\\.$#"
-			count: 1
-			path: modules/social_features/social_user/src/Plugin/Action/SocialBlockUser.php
 
 		-
 			message: "#^Cannot call method hasPermission\\(\\) on Drupal\\\\Core\\\\Session\\\\AccountInterface\\|null\\.$#"
@@ -19771,11 +19465,6 @@ parameters:
 			path: modules/social_features/social_user_export/social_user_export.install
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\File\\\\FileSystem\\:\\:uriScheme\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_user_export/social_user_export.module
-
-		-
 			message: "#^Function social_user_export_file_download\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: modules/social_features/social_user_export/social_user_export.module
@@ -19991,11 +19680,6 @@ parameters:
 			path: modules/social_features/social_user_export/src/Plugin/UserExportPlugin/UserUuid.php
 
 		-
-			message: "#^Call to an undefined method Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\:\\:referencedEntities\\(\\)\\.$#"
-			count: 1
-			path: modules/social_features/social_user_export/src/Plugin/UserExportPluginBase.php
-
-		-
 			message: "#^Method Drupal\\\\social\\\\Installer\\\\Form\\\\ModuleConfigureForm\\:\\:create\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Installer/Form/ModuleConfigureForm.php
@@ -20007,7 +19691,7 @@ parameters:
 
 		-
 			message: "#^\\\\Drupal calls should be avoided in classes, use dependency injection instead$#"
-			count: 3
+			count: 1
 			path: src/Installer/Form/ModuleConfigureForm.php
 
 		-
