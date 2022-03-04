@@ -1,0 +1,5 @@
+services:
+  social_follow_taxonomy.overrider:
+    class: Drupal\social_follow_taxonomy\SocialFollowTaxonomyConfigOverride
+    tags:
+      - { name: config.factory.override, priority: 5 }
