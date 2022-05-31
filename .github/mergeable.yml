@@ -65,57 +65,57 @@ mergeable:
       - do: checks # default fail case
         status: 'success'
 
-#  # Let's make sure that the proper labels are added.
-#  # See: https://mergeable.readthedocs.io/en/latest/validators/label.html
-#  - when: pull_request.*
-#    name: "Valid labels"
-#    validate:
-#      - do: label
-#        and:
-#          - must_include:
-#              regex: 'team'
-#              message: 'Please, add "team" label'
-#          - must_include:
-#              regex: 'status'
-#              message: 'Please, add "status" label'
-#          - must_include:
-#              regex: 'prio'
-#              message: 'Please, add "prio" label'
-#          - must_include:
-#              regex: 'type'
-#              message: 'Please, add "type" label'
-#    pass:
-#      - do: checks
-#        status: success
-#    fail:
-#      - do: comment
-#        payload:
-#          body: >
-#            The team, status, prio and type labels are very helpful in giving more information about a PR at first glance.
-#            They are used for providing more information about the PR, for example, the status label shows if the PR is ready for review or not.
-#            Don't worry if you're unsure what labels to pick, our maintainers will be able to assist you with that.
-#      - do: checks # default error case
-#        status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
-#        payload:
-#          title: 'Mergeable found some errors!'
-#          summary: |
-#            ### Status: {{toUpperCase validationStatus}}
-#            Some or All of the validators have returned 'error' status, please check below for details
-#            Here are some stats of the run: \n {{validationCount}} validations were ran.
-#            {{passCount}} ***PASSED***
-#            {{failCount}} ***FAILED***
-#            {{errorCount}} ***ERRORED***
-#          text: "{{#each validationSuites}}
-#              #### {{{statusIcon status}}} Validator: {{toUpperCase name}}
-#              Status {{toUpperCase status}}
-#              {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***
-#                     Input : {{{details.input}}}
-#                     Settings : {{{displaySettings details.settings}}}
-#                     {{#if details.error}}
-#                     Error : {{{details.error}}}
-#                     {{/if}}
-#                     {{/each}}
-#              {{/each}}"
+  # Let's make sure that the proper labels are added.
+  # See: https://mergeable.readthedocs.io/en/latest/validators/label.html
+  - when: pull_request.*
+    name: "Valid labels"
+    validate:
+      - do: label
+        and:
+          - must_include:
+              regex: 'team'
+              message: 'Please, add "team" label'
+          - must_include:
+              regex: 'status'
+              message: 'Please, add "status" label'
+          - must_include:
+              regex: 'prio'
+              message: 'Please, add "prio" label'
+          - must_include:
+              regex: 'type'
+              message: 'Please, add "type" label'
+    pass:
+      - do: checks
+        status: success
+    fail:
+      - do: comment
+        payload:
+          body: >
+            The team, status, prio and type labels are very helpful in giving more information about a PR at first glance.
+            They are used for providing more information about the PR, for example, the status label shows if the PR is ready for review or not.
+            Don't worry if you're unsure what labels to pick, our maintainers will be able to assist you with that.
+      - do: checks # default error case
+        status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
+        payload:
+          title: 'Mergeable found some errors!'
+          summary: |
+            ### Status: {{toUpperCase validationStatus}}
+            Some or All of the validators have returned 'error' status, please check below for details
+            Here are some stats of the run: \n {{validationCount}} validations were ran.
+            {{passCount}} ***PASSED***
+            {{failCount}} ***FAILED***
+            {{errorCount}} ***ERRORED***
+          text: "{{#each validationSuites}}
+              #### {{{statusIcon status}}} Validator: {{toUpperCase name}}
+              Status {{toUpperCase status}}
+              {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***
+                     Input : {{{details.input}}}
+                     Settings : {{{displaySettings details.settings}}}
+                     {{#if details.error}}
+                     Error : {{{details.error}}}
+                     {{/if}}
+                     {{/each}}
+              {{/each}}"
 
   # Remove label 'status: needs review' once PR is approved.
   - when: 'pull_request_review.*'
@@ -202,61 +202,61 @@ mergeable:
       - do: checks
         status: 'failure'
 
-  # We want to make sure that the cherry-pick was completed after the PR was merged.
-  # This check will run after 24 hours of PR merging.
-  # see: https://mergeable.readthedocs.io/en/latest/recipes.html?highlight=stale#check-stale-pr-and-issues
-  - when: schedule.repository
-    name: 'Check backport'
-    type: pull_request
-    filter:
-      and:
-        - do: payload
-          pull_request:
-            merged:
-              boolean:
-                match: true
-        - do: payload
-          pull_request:
-            labels:
-              must_include:
-                regex: 'status: needs backport'
-                key: 'name'
-    validate:
-      and:
-        - do: stale
-          days: 1
-          type: pull_request
-          time_constraint:
-          time_zone: 'Europe/Amsterdamn'
-          hours_between: [ '9', '17' ]
-          days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
-        - do: label
-          must_include:
-            regex: 'verified-cherry-picks'
-            message: 'Cherry pick flag is required'
-    fail:
-      - do: comment
-        payload:
-          body: >
-            We see that PR has 'status: needs backport' label. Please review the backport (cherry-pick) status of this PR.
-            the changes to mentioned milestone.
-      - do: checks
-        status: 'action_required'
-
-  # We want to remind about PRs older than 30 days
-  # See: https://mergeable.readthedocs.io/en/latest/validators/stale.html
-  - when: schedule.repository
-    name: "Validate stale PR"
-    type: pull_request
-    validate:
-      - do: stale
-        days: 30
-        type: pull_request
-        time_constraint:
-        time_zone: 'Europe/Amsterdamn'
-        hours_between: [ '9', '17' ]
-        days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
-    pass:
-      - do: comment
-        payload:
-          body: 'This is old. Is it still relevant?'
+#  # We want to make sure that the cherry-pick was completed after the PR was merged.
+#  # This check will run after 24 hours of PR merging.
+#  # see: https://mergeable.readthedocs.io/en/latest/recipes.html?highlight=stale#check-stale-pr-and-issues
+#  - when: schedule.repository
+#    name: 'Check backport'
+#    type: pull_request
+#    filter:
+#      and:
+#        - do: payload
+#          pull_request:
+#            merged:
+#              boolean:
+#                match: true
+#        - do: payload
+#          pull_request:
+#            labels:
+#              must_include:
+#                regex: 'status: needs backport'
+#                key: 'name'
+#    validate:
+#      and:
+#        - do: stale
+#          days: 1
+#          type: pull_request
+#          time_constraint:
+#          time_zone: 'Europe/Amsterdamn'
+#          hours_between: [ '9', '17' ]
+#          days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
+#        - do: label
+#          must_include:
+#            regex: 'verified-cherry-picks'
+#            message: 'Cherry pick flag is required'
+#    fail:
+#      - do: comment
+#        payload:
+#          body: >
+#            We see that PR has 'status: needs backport' label. Please review the backport (cherry-pick) status of this PR.
+#            the changes to mentioned milestone.
+#      - do: checks
+#        status: 'action_required'
+#
+#  # We want to remind about PRs older than 30 days
+#  # See: https://mergeable.readthedocs.io/en/latest/validators/stale.html
+#  - when: schedule.repository
+#    name: "Validate stale PR"
+#    type: pull_request
+#    validate:
+#      - do: stale
+#        days: 30
+#        type: pull_request
+#        time_constraint:
+#        time_zone: 'Europe/Amsterdamn'
+#        hours_between: [ '9', '17' ]
+#        days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
+#    pass:
+#      - do: comment
+#        payload:
+#          body: 'This is old. Is it still relevant?'
