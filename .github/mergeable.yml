@@ -12,7 +12,7 @@ mergeable:
       - do: comment
         payload:
           body: >
-            Thanks for contributing towards Open Social! A maintainer from @goalgorilla/maintainers will review your changes shortly. Please don't be discouraged if it takes a while.
+            Thanks for contributing towards Open Social! A maintainer from the @goalgorilla/maintainers group might not review all changes from all teams / contributors. Please don't be discouraged if it takes a while.
             In the meantime, we have some automated checks running and it might be that you will see me comment with some tips or requests to speed up the review process. :blush:
         leave_old_comment: true
 
@@ -62,7 +62,7 @@ mergeable:
         - do: comment
           payload:
             body: >
-              It would be great if you could create helpful commit messages, maybe a rebase would work before putting it up for review? ;)
+              It would be nice if this was a more "helpful/motivational" message,  maybe linking towards documentation or some inline comment with documentation if that is not too lengthy.
         - do: labels
           add: 'blocked: commit cleanup'
         - do: checks # default fail case
@@ -72,31 +72,6 @@ mergeable:
           remove: 'blocked: commit cleanup'
         - do: checks # default fail case
           status: 'success'
-
-  # Open Social always maintains multiple releases. We want to make sure that a proper milestone is added.
-  # This is only ignored if PR is internal.
-  - when: pull_request.*
-    name: "Valid milestone"
-    validate:
-      or:
-        - do: milestone
-          no_empty:
-            enabled: true
-        - do: title
-          begins_with:
-            match: [ 'Internal:', 'Hotfix:' ]
-    pass:
-      - do: checks
-        status: 'success'
-    fail:
-      - do: comment
-        payload:
-          body: >
-            A milestone would be super lovely, this way we can map it against a correct release but also be aware
-            of where to cherry-pick. Don't worry if you're unsure what milestone to pick, our maintainers will be
-            able to assist you with that.
-      - do: checks
-        status: 'failure'
 
   # Let's make sure that the proper labels are added.
   # See: https://mergeable.readthedocs.io/en/latest/validators/label.html
@@ -123,8 +98,8 @@ mergeable:
       - do: comment
         payload:
           body: >
-            The team, status, prio and type labels are very helpful in giving more information about PR in first glance.
-            They are used for providing more information about the PR, for example, the status label shows if the PR is ready for review of not.
+            The team, status, prio and type labels are very helpful in giving more information about a PR at first glance.
+            They are used for providing more information about the PR, for example, the status label shows if the PR is ready for review or not.
             Don't worry if you're unsure what labels to pick, our maintainers will be able to assist you with that.
       - do: checks # default error case
         status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
@@ -205,6 +180,31 @@ mergeable:
           payload:
             body: 'As the @author has requested review from maintainers, we have added @goalgorilla/maintainers reviewers.'
 
+  # Open Social always maintains multiple releases. We want to make sure that a proper milestone is added.
+  # This is only ignored if PR is internal.
+  - when: pull_request.*
+    name: "Valid milestone"
+    validate:
+      or:
+        - do: milestone
+          no_empty:
+            enabled: true
+        - do: title
+          begins_with:
+            match: [ 'Internal:', 'Hotfix:' ]
+    pass:
+      - do: checks
+        status: 'success'
+    fail:
+      - do: comment
+        payload:
+          body: >
+            A milestone would be super lovely, this way we can map it against a correct release but also be aware
+            of where to cherry-pick. Don't worry if you're unsure what milestone to pick, our maintainers will be
+            able to assist you with that.
+      - do: checks
+        status: 'failure'
+
   # We want to make sure that the cherry-pick was completed after the PR was merged.
   # This check will run after 24 hours of PR merging.
   # see: https://mergeable.readthedocs.io/en/latest/recipes.html?highlight=stale#check-stale-pr-and-issues
@@ -237,15 +237,11 @@ mergeable:
           must_include:
             regex: 'verified-cherry-picks'
             message: 'Cherry pick flag is required'
-    pass:
-      - do: comment
-        payload:
-          body: 'Great job! Please relax. The PR is complete.'
     fail:
       - do: comment
         payload:
           body: >
-            Hurray! Your PR was merged, yesteday. We see that PR has 'status: needs backport' label. We, 'pretty please' you to backport (cherry-pick)
+            We see that PR has 'status: needs backport' label. Please review the backport (cherry-pick) status of this PR.
             the changes to mentioned milestone.
       - do: checks
         status: 'action_required'
