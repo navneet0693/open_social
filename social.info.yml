@@ -1,6 +1,6 @@
 name: Social
 type: profile
-description: 'Open Social distribution profile.'
+description: 'Open Social distribution profile fixed with blah blah.'
 core_version_requirement: ^9
 version: '11.4.0'
 project: social
