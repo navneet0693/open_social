@@ -122,10 +122,11 @@ mergeable:
     name: 'Status check'
     validate:
       - do: payload
-        review:
-          state:
-            must_include:
-              regex: 'approved'
+        pull_request:
+          review:
+            state:
+              must_include:
+                regex: 'approved'
     pass:
       - do: labels
         delete: 'status: needs review'
