@@ -3,7 +3,6 @@ mergeable:
   # Let's welcome contributors.
   - when: pull_request.opened
     name: "Hola!"
-    validate: []
     filter:
       - do: author
         must_exclude:
