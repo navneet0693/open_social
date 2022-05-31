@@ -120,13 +120,16 @@ mergeable:
   # Remove label 'status: needs review' once PR is approved.
   - when: 'pull_request_review.*'
     name: 'Status check'
-    validate:
+    filter:
       - do: payload
-        pull_request:
-          review:
-            state:
-              must_include:
-                regex: 'approved'
+        review:
+          state:
+            must_include:
+              regex: 'approved'
+    validate:
+      - do: label
+        must_include:
+          regex: 'status: needs review'
     pass:
       - do: labels
         delete: 'status: needs review'
