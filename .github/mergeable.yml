@@ -52,26 +52,26 @@ mergeable:
 
   # Check for meaningful commit messages.
   - when: pull_request.*
-      name: "Check commit messages"
-      validate:
-        - do: commit
-          message:
-            regex: '^(coding standards|chore|fix|refactor|test|style|perf)(\(\w+\))?:.+$'
-            skip_merge: true
-      fail:
-        - do: comment
-          payload:
-            body: >
-              It would be nice if this was a more "helpful/motivational" message,  maybe linking towards documentation or some inline comment with documentation if that is not too lengthy.
-        - do: labels
-          add: 'blocked: commit cleanup'
-        - do: checks # default fail case
-          status: 'failure'
-      pass:
-        - do: labels
-          remove: 'blocked: commit cleanup'
-        - do: checks # default fail case
-          status: 'success'
+    name: "Check commit messages"
+    validate:
+      - do: commit
+        message:
+          regex: '^(coding standards|chore|fix|refactor|test|style|perf)(\(\w+\))?:.+$'
+          skip_merge: true
+    fail:
+      - do: comment
+        payload:
+          body: >
+            It would be nice if this was a more "helpful/motivational" message,  maybe linking towards documentation or some inline comment with documentation if that is not too lengthy.
+      - do: labels
+        add: 'blocked: commit cleanup'
+      - do: checks # default fail case
+        status: 'failure'
+    pass:
+      - do: labels
+        remove: 'blocked: commit cleanup'
+      - do: checks # default fail case
+        status: 'success'
 
   # Let's make sure that the proper labels are added.
   # See: https://mergeable.readthedocs.io/en/latest/validators/label.html
@@ -79,18 +79,18 @@ mergeable:
     name: "Valid labels"
     validate:
       - do: label
-        - must_include:
-            regex: 'team'
-            message: 'Please, add "team" label'
-        - must_include:
-            regex: 'status'
-            message: 'Please, add "status" label'
-        - must_include:
-            regex: 'prio'
-            message: 'Please, add "prio" label'
-        - must_include:
-            regex: 'type'
-            message: 'Please, add "type" label'
+          - must_include:
+              regex: 'team'
+              message: 'Please, add "team" label'
+          - must_include:
+              regex: 'status'
+              message: 'Please, add "status" label'
+          - must_include:
+              regex: 'prio'
+              message: 'Please, add "prio" label'
+          - must_include:
+              regex: 'type'
+              message: 'Please, add "type" label'
     pass:
       - do: checks
         status: success
@@ -256,9 +256,9 @@ mergeable:
       hours_between: [ '9', '17' ]
       days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
     validate:
-        - do: stale
-          days: 30
-          type: pull_request
+      - do: stale
+        days: 30
+        type: pull_request
     pass:
       - do: comment
         payload:
