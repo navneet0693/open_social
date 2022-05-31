@@ -16,14 +16,6 @@ mergeable:
             In the meantime, we have some automated checks running and it might be that you will see me comment with some tips or requests to speed up the review process. :blush:
         leave_old_comment: true
 
-  # Adds label 'status: needs review' once a PR is ready for review.
-  - when: 'pull_request.ready_for_review'
-    name: 'Status check'
-    pass:
-      - do: labels
-        add: 'status: needs review'
-        delete: 'status: needs work'
-
   # Check for a valid title.
   - when: pull_request.*
     name: "Valid issue title"
