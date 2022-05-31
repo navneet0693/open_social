@@ -158,10 +158,10 @@ mergeable:
     name: 'Request mainatainer for review'
     filter:
       - do: payload
-          review:
-            state:
-              must_include:
-                regex: 'review_requested'
+        review:
+          state:
+            must_include:
+              regex: 'review_requested'
     validate:
       - do: label
         begins_with:
@@ -170,8 +170,8 @@ mergeable:
       - do: request_review
         teams: ['maintainers']
       - do: comment
-          payload:
-            body: 'As the @author has requested review from maintainers, we have added @goalgorilla/maintainers reviewers.'
+        payload:
+          body: 'As the @author has requested review from maintainers, we have added @goalgorilla/maintainers reviewers.'
 
   # Open Social always maintains multiple releases. We want to make sure that a proper milestone is added.
   # This is only ignored if PR is internal.
