@@ -158,7 +158,7 @@ mergeable:
           body: 'As the reviewer has requested changes, we have added "status: needs work" and have removed "status: needs review" changes.'
 
   # Let's add "maintainers" team as reviewer once, 'optional: review requested' label is added.
-  - when: pull_request.*
+  - when: 'pull_request_review.*'
     name: 'Request mainatainer for review'
     filter:
       - do: payload
