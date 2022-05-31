@@ -71,18 +71,19 @@ mergeable:
     name: "Valid labels"
     validate:
       - do: label
-        must_include:
-          regex: 'team'
-          message: 'Please, add "team" label'
-        must_include:
-          regex: 'status'
-          message: 'Please, add "status" label'
-        must_include:
-          regex: 'prio'
-          message: 'Please, add "prio" label'
-        must_include:
-          regex: 'type'
-          message: 'Please, add "type" label'
+        and:
+          - must_include:
+              regex: 'team'
+              message: 'Please, add "team" label'
+          - must_include:
+              regex: 'status'
+              message: 'Please, add "status" label'
+          - must_include:
+              regex: 'prio'
+              message: 'Please, add "prio" label'
+          - must_include:
+              regex: 'type'
+              message: 'Please, add "type" label'
     pass:
       - do: checks
         status: success
