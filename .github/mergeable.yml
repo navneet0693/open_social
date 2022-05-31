@@ -3,6 +3,7 @@ mergeable:
   # Let's welcome contributors.
   - when: pull_request.opened
     name: "Hola!"
+    validate: []
     filter:
       - do: author
         must_exclude:
@@ -203,10 +204,6 @@ mergeable:
   - when: schedule.repository
     name: 'Check backport'
     type: pull_request
-    time_constraint:
-      time_zone: 'Europe/Amsterdamn'
-      hours_between: [ '9', '17' ]
-      days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
     filter:
       and:
         - do: payload
@@ -222,6 +219,10 @@ mergeable:
                 key: 'name'
     validate:
       and:
+        - time_constraint:
+          time_zone: 'Europe/Amsterdamn'
+          hours_between: [ '9', '17' ]
+          days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
         - do: stale
           days: 1
           type: pull_request
@@ -243,11 +244,11 @@ mergeable:
   - when: schedule.repository
     name: "Validate stale PR"
     type: pull_request
-    time_constraint:
-      time_zone: 'Europe/Amsterdamn'
-      hours_between: [ '9', '17' ]
-      days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
     validate:
+      - time_constraint:
+        time_zone: 'Europe/Amsterdamn'
+        hours_between: [ '9', '17' ]
+        days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
       - do: stale
         days: 30
         type: pull_request
