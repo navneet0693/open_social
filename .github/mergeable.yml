@@ -71,6 +71,7 @@ mergeable:
     name: "Valid labels"
     validate:
       - do: label
+        and:
           - must_include:
               regex: 'team'
               message: 'Please, add "team" label'
