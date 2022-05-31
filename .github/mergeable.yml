@@ -219,13 +219,13 @@ mergeable:
                 key: 'name'
     validate:
       and:
-        - time_constraint:
-          time_zone: 'Europe/Amsterdamn'
-          hours_between: [ '9', '17' ]
-          days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
         - do: stale
           days: 1
           type: pull_request
+          time_constraint:
+          time_zone: 'Europe/Amsterdamn'
+          hours_between: [ '9', '17' ]
+          days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
         - do: label
           must_include:
             regex: 'verified-cherry-picks'
@@ -245,13 +245,13 @@ mergeable:
     name: "Validate stale PR"
     type: pull_request
     validate:
-      - time_constraint:
-        time_zone: 'Europe/Amsterdamn'
-        hours_between: [ '9', '17' ]
-        days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
       - do: stale
         days: 30
         type: pull_request
+        time_constraint:
+        time_zone: 'Europe/Amsterdamn'
+        hours_between: [ '9', '17' ]
+        days_of_week: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
     pass:
       - do: comment
         payload:
