@@ -231,11 +231,9 @@ mergeable:
                       regex: 'status: needs backport'
                       key: 'name'
               # Or, it contains a milestone.
-              - do: payload
-                pull_request:
-                  milestone:
-                    boolean:
-                      match: true
+              - do: milestone
+                no_empty:
+                  enabled: true
           # And, is definitely the PR is merged.
           - do: payload
             pull_request:
